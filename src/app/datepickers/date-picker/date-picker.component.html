@@ -1,0 +1,13 @@
+<div class="datepicker">
+    <input
+    id="date-input"
+    type="date"
+    [ngModel]="date | date: 'yyyy-MM-dd'"
+    (ngModelChange)="changeDate(date = $event)"
+    />
+    <div class="btn-overlay"
+        (click)="showDatePicker()">
+        <fa-icon [icon]="faCalender"></fa-icon>
+    </div>
+</div>
+
