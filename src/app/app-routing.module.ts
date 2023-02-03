@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'carousels',
     loadComponent: () => import('./carousels/carousels.component').then(m => m.CarouselsComponent),
+  },
+  {
+    path: 'datepickers',
+    loadComponent: () => import('./datepickers/datepickers.component').then(m => m.DatepickersComponent),
   }
 ];
 
