@@ -34,7 +34,8 @@
 
 <!-- carousel type 3-->
 <div class="carousel flex-column" *ngIf="slides && type == 3">
-  <div class="carousel-item flex-row">
+  <div class="carousel-item flex-row"
+    [class.reverse]="textPosition=='right'">
     <div class="text" *ngIf="textArray">
       <h1>{{textArray[currentSlideIndex].title}}</h1>
       <p>{{textArray[currentSlideIndex].desc}}</p>

@@ -28,20 +28,20 @@ $carousel-bar-height: 40px;
   }
 
   .text{
-    min-width: 300px;
     text-align: left;
+    padding: 15px;
 
     h1, p{
       color: $text-color;
-      width: 80%;
     }
 
     h1{
+      text-align: left;
       margin-top: 0px;
     }
 
     p{
-      margin-bottom: 0px;
+      margin: 0px;
     }
   }
 }
@@ -86,6 +86,10 @@ $carousel-bar-height: 40px;
   .text,.slide{
     width: 50%;
   }
+}
+
+.reverse{
+  flex-direction: row-reverse;
 }
 
 .flex-column{
