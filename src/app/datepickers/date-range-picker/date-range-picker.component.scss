@@ -43,14 +43,14 @@ $input-height: 35px;
     align-items: center;
 
     fa-icon{
-        color: $primary-color;
+        color: var(--primary-color);
         font-size: 1.5em;
         display: contents;
     }
 
     &:hover{
         fa-icon{
-            color: $primary-color-dark;
+            color: var(--primary-color-dark);
         }
     }
     

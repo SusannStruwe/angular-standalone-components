@@ -58,8 +58,8 @@ $carousel-bar-height: 40px;
     width: 15px;
     height: 15px;
     margin: 0px 5px;
-    background: $primary-color;
-    border: 1px solid $primary-color;
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.6s ease;
@@ -67,11 +67,11 @@ $carousel-bar-height: 40px;
 
   .bordered{
     background:transparent;
-    border: 1px solid $primary-color;
+    border: 1px solid var(--primary-color);
   }
 
   .active{
-    background: $primary-color;
+    background: var(--primary-color);
   }
 }
 
@@ -129,7 +129,7 @@ $carousel-bar-height: 40px;
 
   &:hover, &:focus {
     opacity: 1;
-    background-color: $primary-color;
+    background-color: var(--primary-color);
     opacity: 1;    
   }
 

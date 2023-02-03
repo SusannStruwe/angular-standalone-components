@@ -29,7 +29,7 @@ button {
     height: 100%;
 
     fa-icon{
-      color: $primary-color;
+      color: var(--primary-color);
     }
   }
 }
@@ -60,10 +60,10 @@ button {
 }
 
 .shine, .btn-border:hover{
-  color: $primary-color;
+  color: var(--primary-color);
 
   fa-icon{
-    color: $primary-color;
+    color: var(--primary-color);
   }
 }
 
@@ -78,28 +78,28 @@ button {
 
 .btn-border:hover::before,
 .shine::before {
-  border-top-color: $primary-color; // Make borders visible
-  border-right-color: $primary-color;
+  border-top-color: var(--primary-color); // Make borders visible
+  border-right-color: var(--primary-color);
   transition:
   width 0.25s ease-out, // Width expands first
   height 0.25s ease-out 0.25s; // And then height
 
   fa-icon{
-    color: $primary-color;
+    color: var(--primary-color);
   }
 }
 
 .btn-border:hover::after,
 .shine::after {
-  border-bottom-color: $primary-color; // Make borders visible
-  border-left-color: $primary-color;
+  border-bottom-color: var(--primary-color); // Make borders visible
+  border-left-color: var(--primary-color);
   transition:
   border-color 0s ease-out 0.5s, // Wait for ::before to finish before showing border
   width 0.25s ease-out 0.5s, // And then exanding width
   height 0.25s ease-out 0.75s; // And finally height
 
   fa-icon{
-    color: $primary-color;
+    color: var(--primary-color);
   }
 }
 

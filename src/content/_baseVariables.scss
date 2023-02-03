@@ -2,14 +2,13 @@
 /**************************************************
   Colors
 ***************************************************/
-$primary-color-dark: #039788;
+//$primary-color-dark: #039788;
 $primary-color: #00bdab; 
-$primary-color-light: #1ae3d0;
+$primary-color-dark: darken($primary-color, 10%);
 
 $gray: #333;
 $text-color: $gray; 
 $bg-color: #fbfbfb;
-
 
 /**************************************************
   Fonts
