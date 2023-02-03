@@ -1,6 +1,6 @@
 
 <div class="header">
-    <h1>Buttons</h1>
+    <h1>Datepickers</h1>
 </div>
 
 <div class="content">
@@ -8,6 +8,14 @@
     <div class="container">
         <h2>date-range-picker-component</h2>
 
+        <date-range-picker-component
+            [startDate]="startDate"
+            [endDate]="endDate"
+            (startDateChanged)="startDateChanged($event)"
+            (endDateChanged)="endDateChanged($event)">
+        </date-range-picker-component>
+
+        <p class="output">Output: <span>{{startDate | date: 'dd.MM.yyyy'}}</span>  -  <span>{{endDate | date: 'dd.MM.yyyy'}}</span></p>
         
     </div>
    
