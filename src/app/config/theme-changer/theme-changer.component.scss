@@ -1,0 +1,53 @@
+@import 'src/content/_baseVariables';
+
+.theme-input{
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 250px;
+
+  p{
+    margin:0;
+  }
+
+  .preview{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    background: var(--primary-color);
+    left: 5px;
+    top: 32px;
+  }
+
+  input{
+    height: 35px;
+    border: 1px solid var(--primary-color);
+    font-size: 1.2em;
+    outline: none;
+    font-family: $font-family;
+    padding: 2px 5px 2px 40px;
+    width: 150px;
+    cursor: pointer;
+  }
+
+  .refresh-btn{
+    border: 1px solid var(--primary-color);
+    padding: 7px;
+    background: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.6s ease;
+
+    fa-icon{
+      font-size: 1.5em;
+      color: white;
+    }
+
+    &:hover{
+      background: var(--primary-color-dark);
+    }
+  }
+}
+

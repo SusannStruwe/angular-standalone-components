@@ -1,0 +1,20 @@
+
+<sass-helper></sass-helper>
+
+<div class="theme-input" >
+    <p>Change primary-color for testing:</p>
+    
+    <div class="flex-row">
+        <div class="preview"
+        [style.background]="primaryColor"></div>
+
+        <input type="text"
+        [(ngModel)]="primaryColor"/>
+        
+        <div class="refresh-btn"
+        (click)="refreshView()">
+            <fa-icon [icon]="faRefresh"></fa-icon>
+        </div>
+    </div>
+
+</div>

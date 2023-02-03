@@ -26,8 +26,11 @@ export class CarouselComponent {
   @Input() textArray?: any[];
    // example --> left or right
   @Input() textPosition?: string;
+  // to use different sizes
+  @Input() maxHeight?: number;
   // example --> type = 1
   @Input() type?: number;
+  
   @Input() diashow?: boolean;
 
   faChevronRight = faChevronRight;

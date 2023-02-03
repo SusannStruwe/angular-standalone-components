@@ -18,8 +18,12 @@ button {
   }
 
   &:hover {
-    background: $primary-color !important;
+    background: var(--primary-color) !important;
   }
 }
 
+
+.container{
+  min-width: 650px;
+}
 

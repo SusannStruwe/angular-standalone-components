@@ -1,0 +1,27 @@
+<div class="date-range-picker">
+    <div class="item">
+        <input
+        id="startdate-input"
+        type="date"
+        [ngModel]="startDate | date: 'yyyy-MM-dd'"
+        (ngModelChange)="changeStartDate(startDate = $event)"
+        />
+        <div class="btn-overlay"
+            (click)="showStartDatePicker()">
+            <fa-icon [icon]="faCalender"></fa-icon>
+        </div>
+    </div>
+
+    <div class="item">
+        <input
+        id="enddate-input"
+        type="date"
+        [ngModel]="endDate | date: 'yyyy-MM-dd'"
+        (ngModelChange)="changeEndDate(endDate = $event)"
+        />
+        <div class="btn-overlay"
+            (click)="showEndDatePicker()">
+            <fa-icon [icon]="faCalender"></fa-icon>
+        </div>
+    </div>
+</div>

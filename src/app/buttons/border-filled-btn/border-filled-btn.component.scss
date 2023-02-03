@@ -1,6 +1,6 @@
 @import 'src/content/_baseVariables';
 
-$text-color: $primary-color;
+$text-color: var(--primary-color);
 $btnHeight: 50px;
 
 button {
@@ -8,12 +8,12 @@ button {
   height: $btnHeight;
   padding: 10px 30px;
   margin: 5px;
-  border: 2px solid $primary-color;
-  color: $primary-color;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
   font-weight: 300;
   font-size: $font-size;
   background: transparent;
-  background-image: linear-gradient($primary-color, $primary-color);
+  background-image: linear-gradient(var(--primary-color), var(--primary-color));
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: 0% 100%;
@@ -21,7 +21,7 @@ button {
   cursor: pointer;
 
   fa-icon{
-    color: $primary-color;
+    color: var(--primary-color);
   }
 
   .text{
@@ -86,10 +86,10 @@ button[disabled]{
 
   &:hover{
     &:not([disabled]){
-      color: $primary-color;
+      color: var(--primary-color);
     
       fa-icon{
-        color: $primary-color;
+        color: var(--primary-color);
       }
     }
   }
@@ -97,7 +97,7 @@ button[disabled]{
 
 
 .gray.loading::after{
-  border-top-color: $primary-color;
+  border-top-color: var(--primary-color);
 }
 
 

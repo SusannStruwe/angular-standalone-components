@@ -6,6 +6,7 @@
   <div class="carousel-item">
       <img
       class="slide"
+      [style.max-height]="maxHeight+'px'"
       [src]="slides[currentSlideIndex].src"
       />
   </div>
@@ -20,6 +21,7 @@
   <div class="carousel-item">
     <img
     class="slide"
+    [style.max-height]="maxHeight+'px'"
     [src]="slides[currentSlideIndex].src"
     />
   </div>
@@ -42,6 +44,7 @@
     </div>
     <img
     class="slide"
+    [style.max-height]="maxHeight+'px'"
     [src]="slides[currentSlideIndex].src"
     />
   </div>

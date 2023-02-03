@@ -1,0 +1,57 @@
+@import 'src/content/baseVariables';
+
+$gray-color: #ddd;
+$input-height: 35px;
+
+.date-range-picker{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    margin: 5px 10px;
+    min-width: 300px;
+    align-items: center;
+    border-radius: 4px;
+
+    .item{
+        margin: 0px 10px;
+        position: relative;
+    }
+
+    input{
+        height: $input-height;
+        font-size: 1.2em;
+        outline: none;
+        font-family: $font-family;
+        border: 1px solid $gray-color;
+        padding: 2px 5px 2px 10px;
+        cursor: pointer;
+    }
+}
+
+.btn-overlay{
+    height: $input-height;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: white;
+    border: 1px solid $gray-color;
+    padding: 2px 10px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    fa-icon{
+        color: var(--primary-color);
+        font-size: 1.5em;
+        display: contents;
+    }
+
+    &:hover{
+        fa-icon{
+            color: var(--primary-color-dark);
+        }
+    }
+    
+}

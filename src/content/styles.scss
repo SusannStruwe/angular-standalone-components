@@ -1,6 +1,5 @@
 @import './baseVariables';
 
-
 html,
 body {
   text-rendering: optimizeLegibility;
@@ -15,7 +14,6 @@ body {
   scroll-behavior: smooth;
 }
 
-
 h1,
 h2,
 h3,
@@ -28,7 +26,7 @@ h6 {
 }
 
 h1{
-  color: $primary-color;
+  color: var(--primary-color);
   text-transform: uppercase;
   font-size: 1.8em;
 }
@@ -65,8 +63,12 @@ a {
 
   &:visited,
   &:hover {
-    color: $primary-color;
+    color: var(--primary-color);
   }
+}
+
+fa-icon{
+  display: contents;
 }
 
 
@@ -74,7 +76,6 @@ a {
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
-
 
 .header{
   display: grid;
@@ -102,7 +103,38 @@ a {
     padding: 10px;
     max-width: 600px;
     border: 1px solid #ddd;
+    text-align: center;
   }
 }
 
+.flex-column{
+  display: flex;
+  flex-direction: column;
+}
 
+.flex-row{
+  display: flex;
+  flex-direction: row;
+}
+
+
+//============================================================
+// Add varaibales to access by sss-helper in ts components
+//=======================================================
+$prefix: "--"; //Prefix string for custom CSS properties
+
+//Merges a variable name with $prefix
+@function custom-property-name($name) {
+    @return $prefix + $name;
+}
+
+// Defines a custom property
+@mixin define-custom-property($name, $value) {
+    #{custom-property-name($name)}: $value;
+}
+
+body {
+    // Append SASS variables which are desired to be accessible
+    @include define-custom-property('primary-color', $primary-color);
+    @include define-custom-property('primary-color-dark', $primary-color-dark);
+}
