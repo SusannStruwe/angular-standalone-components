@@ -1,0 +1,59 @@
+<!-- carousel type 1-->
+<div class="carousel" *ngIf="slides && type == 1">
+  <button aria-label="control-prev" class="control prev" (click)="previousSlide()">
+    <fa-icon [icon]="faChevronLeft"></fa-icon>
+  </button>
+  <div class="carousel-item">
+      <img
+      class="slide"
+      [src]="slides[currentSlideIndex].src"
+      />
+  </div>
+  <button aria-label="control-next" class="control next" (click)="nextSlide()">
+    <fa-icon [icon]="faChevronRight"></fa-icon>
+  </button>
+</div>
+
+
+<!-- carousel type 2-->
+<div class="carousel flex-column" *ngIf="slides && type == 2">
+  <div class="carousel-item">
+    <img
+    class="slide"
+    [src]="slides[currentSlideIndex].src"
+    />
+  </div>
+  <div class="carousel-bar">
+    <span class="dot bordered" *ngFor="let slide of slides; let i = index"
+    [class.active]="i === currentSlideIndex"
+    (click)="setSlide(i)">
+    </span>
+  </div>
+</div>
+
+
+<!-- carousel type 3-->
+<div class="carousel flex-column" *ngIf="slides && type == 3">
+  <div class="carousel-item flex-row">
+    <div class="text" *ngIf="textArray">
+      <h1>{{textArray[currentSlideIndex].title}}</h1>
+      <p>{{textArray[currentSlideIndex].desc}}</p>
+    </div>
+    <img
+    class="slide"
+    [src]="slides[currentSlideIndex].src"
+    />
+  </div>
+  <div class="carousel-bar">
+    <span class="dot bordered" *ngFor="let slide of slides; let i = index"
+    [class.active]="i === currentSlideIndex"
+    (click)="setSlide(i)">
+    </span>
+  </div>
+</div>
+
+ 
+
+ 
+
+

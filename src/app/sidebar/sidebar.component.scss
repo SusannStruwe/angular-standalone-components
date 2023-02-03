@@ -1,0 +1,36 @@
+@import 'src/content/_baseVariables';
+
+
+.sidebar{
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: $sidebar-with;
+  background: white;
+  border-right: 1px solid #ddd;
+  margin: 0;
+  padding: 10px;
+  z-index: 10;
+
+  li{
+    padding: 5px; 
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.2em;
+
+    &:hover{
+      color: $primary-color;
+    }
+  }
+
+  .active{
+    color: $primary-color;
+  }
+}
+
+
+.default{
+  padding: 15px 5px !important;
+  font-weight: 600;
+}

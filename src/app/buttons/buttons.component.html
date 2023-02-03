@@ -1,0 +1,73 @@
+
+<div class="header">
+    <h1>Buttons</h1>
+</div>
+
+<div class="content">
+
+    <div class="container">
+        <h2>border-shine-btn-component</h2>
+        <border-shine-btn-component
+            [buttonText]="buttonText">
+        </border-shine-btn-component>
+
+        <border-shine-btn-component
+            [buttonText]="buttonText"
+            [faIcon]="faTwitter">
+        </border-shine-btn-component>
+
+        <border-shine-btn-component
+            [faIcon]="faTwitter">
+        </border-shine-btn-component>
+    </div>
+
+    <div class="container">
+        <h2>border-filled-btn-component</h2>
+
+        <border-filled-btn-component
+            [color]="'gray'"
+            [isLoading]="false"
+            [buttonText]="buttonText"
+            [disabled] = "false">
+        </border-filled-btn-component>
+
+        <border-filled-btn-component
+            [isLoading]="false"
+            [buttonText]="buttonText"
+            [disabled] = "false">
+        </border-filled-btn-component>
+
+        <border-filled-btn-component
+            [color]="'gray'"
+            [isLoading]="false"
+            [buttonText]="buttonText"
+            [disabled] = "false"
+            [faIcon]="faTwitter">
+        </border-filled-btn-component>
+
+        <border-filled-btn-component
+            [color]="'gray'"
+            [faIcon]="faTwitter">
+        </border-filled-btn-component>
+    </div>
+
+    <div class="container">
+        <h2>circle-btn-component</h2>
+
+        <circle-btn-component
+        [faIcon]="faTwitter">
+        </circle-btn-component>
+
+        <circle-btn-component
+        [backgroundColor]="'#1ae3d0'"
+        [faIcon]="faTwitter">
+        </circle-btn-component>
+
+        <circle-btn-component
+        [backgroundColor]="'#e3c11a'"
+        [faIcon]="faTwitter">
+        </circle-btn-component>
+
+    </div>
+   
+</div>

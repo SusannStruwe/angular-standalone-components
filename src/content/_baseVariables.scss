@@ -1,0 +1,98 @@
+
+/**************************************************
+  Colors
+***************************************************/
+
+
+$primary-color-dark: #039788;
+$primary-color: #00bdab; 
+$primary-color-light: #1ae3d0;
+
+$gray: #333;
+$text-color: $gray; 
+$bg-color: #fbfbfb;
+
+
+/**************************************************
+  Fonts
+***************************************************/
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$font-size: 1.0em;
+
+$font-family: 'Source Sans Pro';
+@font-face {
+  font-family: $font-family;
+  src: url(./fonts/SourceSansPro-Light.ttf) format('truetype');
+  font-weight: $font-weight-light;
+}
+
+@font-face {
+  font-family: $font-family;
+  src: url(./fonts/SourceSansPro-Regular.ttf) format('truetype');
+  font-weight: $font-weight-normal;
+}
+
+@font-face {
+  font-family: $font-family;
+  src: url(./fonts/SourceSansPro-Semibold.ttf) format('truetype');
+  font-weight: $font-weight-semibold;
+}
+
+@font-face {
+  font-family: $font-family;
+  src: url(./fonts/SourceSansPro-Bold.ttf) format('truetype');
+  font-weight: $font-weight-bold;
+}
+
+
+$font-family-productname: 'Comfortaa';
+@font-face {
+  font-family: $font-family-productname;
+  src: url(./fonts/Comfortaa-Light.ttf) format('truetype');
+  font-weight: $font-weight-light;
+}
+
+@font-face {
+  font-family: $font-family-productname;
+  src: url(./fonts/Comfortaa-Regular.ttf) format('truetype');
+  font-weight: $font-weight-normal;
+}
+
+@font-face {
+  font-family: $font-family-productname;
+  src: url(./fonts/Comfortaa-Bold.ttf) format('truetype');
+  font-weight: $font-weight-bold;
+}
+
+
+$font-family-soleil: 'soleil,sans-serif';
+@font-face {
+  font-family: $font-family-soleil;
+  src: url(./fonts/SoleilLight.otf) format('truetype');
+  font-weight: $font-weight-light;
+}
+
+@font-face {
+  font-family: $font-family-soleil;
+  src: url(./fonts/SoleilRegular.otf) format('truetype');
+  font-weight: $font-weight-normal;
+}
+
+@font-face {
+  font-family: $font-family-soleil;
+  src: url(./fonts/SoleilBold.otf) format('truetype');
+  font-weight: $font-weight-bold;
+}
+
+
+
+/**************************************************
+  Sizes
+***************************************************/
+
+$sidebar-with: 200px;
