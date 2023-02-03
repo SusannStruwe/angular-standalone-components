@@ -24,6 +24,8 @@ export class CarouselComponent {
   @Input() slides?: any[];
   // example --> textArray = [ { title: "Title 1", desc: "Beschreibung" } ]
   @Input() textArray?: any[];
+   // example --> left or right
+  @Input() textPosition?: string;
   // example --> type = 1
   @Input() type?: number;
   @Input() diashow?: boolean;
