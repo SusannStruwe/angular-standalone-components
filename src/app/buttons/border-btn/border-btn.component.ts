@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'border-btn-component',
@@ -24,11 +23,11 @@ export class BorderBtnComponent {
   @Input() style: string = "shining";
   // example --> spin or not
   @Input() spinning?: boolean;
-
-  faTwitter = faTwitter;
     
   constructor(
 
   ) { }
+
+
 
 }

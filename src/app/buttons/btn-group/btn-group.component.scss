@@ -1,2 +1,57 @@
 @import 'src/content/_baseVariables';
 
+$btnHeight: 50px;
+$borderRadius: 4px;
+$borderWidth: 2px;
+
+
+.btn-group{
+    margin: 10px auto;
+}
+
+button {
+  position: relative;
+  height: $btnHeight;
+  padding: 10px 30px;
+  border: 0;
+  font-weight: 300;
+  font-size: $font-size;
+  border: $borderWidth solid var(--primary-color);
+  background: white;
+  color: var(--primary-color);
+  cursor: pointer;
+  margin-right: -$borderWidth;
+  transition: 0.25s;
+
+  fa-icon{
+    color: var(--primary-color);
+  }
+
+  span{
+    margin: 0px 5px;
+  }
+
+  &:first-of-type{
+    border-top-left-radius: $borderRadius;
+    border-bottom-left-radius: $borderRadius;
+  }
+
+  &:last-of-type{
+    border-top-right-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+    margin-right: 0;
+  }
+
+  &:hover, &.active{
+    background-color: var(--primary-color);
+    color: white;
+    fa-icon{
+        color: white;
+    }
+  }
+
+  &:hover{
+    background-color: var(--primary-color-dark);
+  }
+}
+

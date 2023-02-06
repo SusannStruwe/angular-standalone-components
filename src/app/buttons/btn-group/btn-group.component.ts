@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+
 
 @Component({
   selector: 'btn-group-component',
@@ -12,12 +12,19 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 })
 export class BtnGoupComponent {
 
-  @Input() faIcon?: IconDefinition;
-  @Input() backgroundColor?: string;
-  
-    
-  constructor(
+  // example --> primary or gray
+  @Input() color?: string;
+  // example ->   buttons = [{text:"left", icon: faXing, active: false}]
+  @Input() btnArray: any[] = [];
 
+  @Output() clickedBtn = new EventEmitter<string>();
+  
+  constructor(
   ) { }
+
+
+  btnClick(name: string): void {
+    this.clickedBtn.emit(name);
+  }
 
 }
