@@ -49,8 +49,9 @@ $input-height: 35px;
     }
 
     &:hover{
+        background-color: var(--primary-color);
         fa-icon{
-            color: var(--primary-color-dark);
+            color: white;
         }
     }
     

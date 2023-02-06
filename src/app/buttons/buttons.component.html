@@ -7,50 +7,104 @@
 <div class="content">
 
     <div class="container">
-        <h2>border-shine-btn-component</h2>
-        <border-shine-btn-component
-            [buttonText]="buttonText">
-        </border-shine-btn-component>
+        <h2>border-btn-component (style shining)</h2>
 
-        <border-shine-btn-component
-            [buttonText]="buttonText"
-            [faIcon]="faTwitter">
-        </border-shine-btn-component>
+        <border-btn-component
+        [style]="shiningStyle"
+        [buttonText]="buttonText"
+        [disabled] = "false">
+        </border-btn-component>
 
-        <border-shine-btn-component
-            [faIcon]="faTwitter">
-        </border-shine-btn-component>
+        <border-btn-component
+        [style]="shiningStyle"
+        [buttonText]="buttonText"
+        [disabled] = "false"
+        [faIcon]="faTwitter">
+        </border-btn-component>
+
+        <border-btn-component
+        [style]="shiningStyle"
+        [disabled] = "false"
+        [faIcon]="faTwitter">
+        </border-btn-component>
+
+        <border-btn-component
+        [style]="shiningStyle"
+        [buttonText]="buttonText"
+        [disabled] = "true"
+        [faIcon]="faTwitter">
+        </border-btn-component>
+
+        <border-btn-component
+        [style]="shiningStyle"
+        [buttonText]="buttonText"
+        [disabled] = "false"
+        [faIcon]="faLoader"
+        [spinning]="true">
+        </border-btn-component>
+
     </div>
+
+    
+    <div class="container">
+        <h2>border-btn-component (style filling)</h2>
+
+        <border-btn-component
+        [style]="fillingStyle"
+        [buttonText]="buttonText"
+        [disabled] = "false">
+        </border-btn-component>
+
+        <border-btn-component
+        [style]="fillingStyle"
+        [buttonText]="buttonText"
+        [color]="'gray'"
+        [disabled] = "false"
+        [faIcon]="faTwitter">
+        </border-btn-component>
+
+        <border-btn-component
+        [style]="fillingStyle"
+        [disabled] = "false"
+        [faIcon]="faTwitter">
+        </border-btn-component>
+
+        <border-btn-component
+        [style]="fillingStyle"
+        [buttonText]="buttonText"
+        [disabled] = "true"
+        [faIcon]="faTwitter">
+        </border-btn-component>
+
+        <border-btn-component
+        [style]="fillingStyle"
+        [buttonText]="buttonText"
+        [disabled] = "false"
+        [faIcon]="faLoader"
+        [spinning]="true">
+        </border-btn-component>
+    </div>
+
 
     <div class="container">
-        <h2>border-filled-btn-component</h2>
+        <h2>btn-group-component</h2>
 
-        <border-filled-btn-component
-            [color]="'gray'"
-            [isLoading]="false"
-            [buttonText]="buttonText"
-            [disabled] = "false">
-        </border-filled-btn-component>
+        <btn-group-component
+        [btnArray] = "buttons"
+        (clickedBtn)="clickedBtn($event)">
+        </btn-group-component>
+        <p class="output">Output: <span>{{clickedBtnText}}</span></p>
 
-        <border-filled-btn-component
-            [isLoading]="false"
-            [buttonText]="buttonText"
-            [disabled] = "false">
-        </border-filled-btn-component>
+        <btn-group-component
+        [btnArray] = "buttons2">
+        </btn-group-component>
 
-        <border-filled-btn-component
-            [color]="'gray'"
-            [isLoading]="false"
-            [buttonText]="buttonText"
-            [disabled] = "false"
-            [faIcon]="faTwitter">
-        </border-filled-btn-component>
+        <btn-group-component
+        [btnArray] = "buttons3">
+        </btn-group-component>
 
-        <border-filled-btn-component
-            [color]="'gray'"
-            [faIcon]="faTwitter">
-        </border-filled-btn-component>
     </div>
+   
 
     <div class="container">
         <h2>circle-btn-component</h2>

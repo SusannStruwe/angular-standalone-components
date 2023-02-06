@@ -1,0 +1,10 @@
+<button
+[ngClass]="[style,color]"
+[attr.aria-label]="buttonText"
+[disabled]="disabled">
+    <fa-icon *ngIf="faIcon" 
+    [icon]="faIcon" 
+    [spin]="spinning"></fa-icon>
+    <span>{{buttonText}}</span>
+</button>
+

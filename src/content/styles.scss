@@ -1,5 +1,6 @@
 @import './baseVariables';
 
+
 html,
 body {
   text-rendering: optimizeLegibility;
@@ -98,7 +99,7 @@ fa-icon{
   flex-direction: column;
 
   .container{
-    display: inline-table;
+    display: table;
     margin: 5px auto;
     padding: 10px;
     max-width: 600px;

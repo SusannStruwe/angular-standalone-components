@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'datepickers',
     loadComponent: () => import('./datepickers/datepickers.component').then(m => m.DatepickersComponent),
+  },
+  {
+    path: 'cards',
+    loadComponent: () => import('./cards/cards.component').then(m => m.CardsComponent),
   }
 ];
 

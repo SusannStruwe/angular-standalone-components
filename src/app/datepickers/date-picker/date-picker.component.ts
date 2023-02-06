@@ -19,6 +19,7 @@ export class DatePickerComponent {
   faCalender = faCalendar;
 
   @Input() date?: Date;
+  
   @Output() dateChanged = new EventEmitter<Date>();
 
   constructor() { }

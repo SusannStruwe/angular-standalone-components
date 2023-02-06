@@ -1,0 +1,14 @@
+
+<div class="btn-group">
+    <button
+    *ngFor="let item of btnArray; let i = index"
+    [class.active]="item.active"
+    (click)="btnClick(item.text)"
+    [attr.aria-label]="item.text">
+        <fa-icon *ngIf="item.icon" [icon]="item.icon"></fa-icon>
+        <span *ngIf="item.text">{{item.text}}</span>
+    </button>
+
+</div>
+
+
