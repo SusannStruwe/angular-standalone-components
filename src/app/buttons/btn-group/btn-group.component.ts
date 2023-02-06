@@ -4,20 +4,18 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
-  selector: 'border-filled-btn-component',
+  selector: 'btn-group-component',
   standalone: true,
   imports:[CommonModule, FontAwesomeModule],
-  templateUrl: './border-filled-btn.component.html',
-  styleUrls: ['./border-filled-btn.component.scss']
+  templateUrl: './btn-group.component.html',
+  styleUrls: ['./btn-group.component.scss']
 })
-export class BorderFilledBtnComponent {
+export class BtnGoupComponent {
 
-  @Input() buttonText?: string;
   @Input() faIcon?: IconDefinition;
-  @Input() disabled?: boolean;
-  @Input() color?: string;
-  @Input() isLoading?: boolean;
+  @Input() backgroundColor?: string;
   
+    
   constructor(
 
   ) { }

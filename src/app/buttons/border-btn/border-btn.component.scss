@@ -1,0 +1,175 @@
+@import 'src/content/_baseVariables';
+
+$btnHeight: 50px;
+
+button {
+  position: relative;
+  height: $btnHeight;
+  margin: 5px;
+  padding: 10px 30px;
+  border: 0;
+  font-weight: 300;
+  font-size: $font-size;
+  background: white;
+  color: $gray;
+  cursor: pointer;
+
+  fa-icon{
+    color: $gray;
+  }
+}
+
+
+/************************************
+Shining
+**************************************/
+
+.shining {
+  background: transparent;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 0 2px $gray;
+  transition: color 0.25s;
+
+  &::before,
+  &::after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    // Set border to invisible, so we don't see a 4px border on a 0x0 element before the transition starts
+    border: 2px solid transparent;
+    width: 0;
+    height: 0;
+
+    fa-icon{
+      color: var(--primary-color);
+    }
+  }
+
+  // This covers the top & right borders (expands right, then down)
+  &::before {
+    top: 0;
+    left: 0;
+  }
+
+  // And this the bottom & left borders (expands left, then up)
+  &::after {
+    bottom: 0;
+    right: 0;
+  }
+
+
+  &:hover{
+    &:not([disabled]){
+      color: var(--primary-color);
+    
+      fa-icon{
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  &:hover::before,
+  &:hover::after{
+    width: 100%;
+    height: 100%;
+
+    fa-icon{
+      color: var(--primary-color);
+    }
+  }
+
+  &:hover::before{
+    border-top-color: var(--primary-color); // Make borders visible
+    border-right-color: var(--primary-color);
+    transition:
+    width 0.25s ease-out, // Width expands first
+    height 0.25s ease-out 0.25s; // And then height
+  }
+
+  &:hover::after{
+    border-bottom-color: var(--primary-color); // Make borders visible
+    border-left-color: var(--primary-color);
+    transition:
+    border-color 0s ease-out 0.5s, // Wait for ::before to finish before showing border
+    width 0.25s ease-out 0.5s, // And then exanding width
+    height 0.25s ease-out 0.75s; // And finally height 
+  }
+
+}
+
+
+
+/************************************
+Filling
+**************************************/
+.filling{
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  background: transparent;
+  background-image: linear-gradient(var(--primary-color), var(--primary-color));
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size .5s, color .5s;
+
+  fa-icon{
+    color:var(--primary-color);
+  }
+
+  &:hover{
+    &:not([disabled]){
+      background-size: 100% 100%;
+      color: $gray;
+    
+      fa-icon{
+        color: $gray;
+      }
+    }
+  }
+}
+
+
+.filling.gray{
+  border: 2px solid $gray;
+  color: $gray;
+  background-image: linear-gradient($gray, $gray);
+
+  fa-icon{
+    color: $gray;
+  }
+
+  &:hover{
+    &:not([disabled]){
+      color: var(--primary-color);
+    
+      fa-icon{
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  &.loading::after{
+    border-top-color: var(--primary-color);
+  }
+}
+
+
+
+/************************************
+Disabled
+**************************************/
+button:disabled,
+button[disabled]{
+  opacity: 0.5;
+  background-size: 0% 100%;
+  cursor: not-allowed;
+
+  &:hover::before,
+  &:hover::after{
+    width: 0%;
+    height:0%;
+    border-color: transparent;
+  }
+}

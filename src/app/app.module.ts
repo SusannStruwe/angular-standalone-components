@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { PreviewComponent } from './preview/preview.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { PreviewComponent } from './layout/preview/preview.component';
+
 
 
 @NgModule({

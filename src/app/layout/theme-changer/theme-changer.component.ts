@@ -3,7 +3,8 @@ import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faRefresh } from '@fortawesome/free-solid-svg-icons';
-import { SassHelperComponent } from '../sass-helper.component';
+import { SassHelperComponent } from 'src/app/config/sass-helper.component';
+
 
 @Component({
   selector: 'theme-changer-component',

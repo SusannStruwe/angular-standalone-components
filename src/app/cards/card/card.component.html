@@ -1,0 +1,21 @@
+<div class="card shadow shine"
+    [style.width]="width"
+    [style.height]="height"
+    >
+
+    <img
+    *ngIf="imageUrl"
+    [src]="imageUrl"
+    />
+    <div
+    *ngIf="bgColor"
+    class="bg-color"
+    [style.background]="bgColor"
+    ></div>
+
+    <h1 class="title"
+    *ngIf="title">{{title}}</h1>
+    
+    <p class="description"
+    *ngIf="description">{{description}}</p>
+</div>

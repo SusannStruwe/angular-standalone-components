@@ -1,11 +1,12 @@
 
 import { Component } from '@angular/core';
+import { ThemeChangerComponent } from '../layout/theme-changer/theme-changer.component';
 import { CarouselComponent } from './carousel/carousel.component';
 
 @Component({
   selector: 'carousels-component',
   standalone: true,
-  imports:[CarouselComponent ],
+  imports:[CarouselComponent, ThemeChangerComponent],
   templateUrl: './carousels.component.html',
   styleUrls: ['./carousels.component.scss']
 })

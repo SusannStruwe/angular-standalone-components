@@ -1,13 +1,18 @@
 
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { ThemeChangerComponent } from '../layout/theme-changer/theme-changer.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { DateRangePickerComponent } from './date-range-picker/date-range-picker.component';
 
 @Component({
   selector: 'datepickers-component',
   standalone: true,
-  imports:[DateRangePickerComponent, DatePickerComponent, DatePipe],
+  imports:[
+    DateRangePickerComponent, 
+    DatePickerComponent, 
+    DatePipe, ThemeChangerComponent
+  ],
   templateUrl: './datepickers.component.html',
   styleUrls: ['./datepickers.component.scss']
 })
