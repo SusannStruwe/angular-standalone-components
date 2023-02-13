@@ -1,11 +1,10 @@
-import { CommonModule, Time } from '@angular/common';
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Order, PlanningItem, PlanningState, TimeSpan } from '../planning-item';
 import * as moment from 'moment';
 import { BtnGoupComponent } from 'src/app/buttons/btn-group/btn-group.component';
 
-const WINDOW_BREAKPOINT_DAILY = 1350;
 
 @Component({
   selector: 'scheduling-component',
@@ -15,45 +14,34 @@ const WINDOW_BREAKPOINT_DAILY = 1350;
   styleUrls: ['./scheduling.component.scss']
 })
 export class SchedulingComponent {
-  order1: Order = new Order('12233', moment().subtract(16, 'hours').toDate(), moment().subtract(9, 'hours').toDate(), PlanningState.STARTED);
-  order2: Order = new Order('44555', moment().subtract(8.9, 'hours').toDate(), moment().subtract(7, 'hours').toDate(), PlanningState.MAINTAIN);
-  order3: Order = new Order('66666', moment().subtract(6, 'hours').toDate(), moment().subtract(0, 'hours').toDate(), PlanningState.DISRUPTED);
-
-  planningItem: PlanningItem = new PlanningItem(null, 'Maschine 1', [this.order1, this.order2, this.order3]);
-  planningItem2: PlanningItem = new PlanningItem(null, 'Maschine 2', [this.order1, this.order2, this.order3]);
-  planningItem3: PlanningItem = new PlanningItem(null, 'Maschine 3', [this.order1, this.order2, this.order3]);
-  planningItem4: PlanningItem = new PlanningItem(null, 'Maschine 4', [this.order1, this.order2, this.order3]);
-  planningItem5: PlanningItem = new PlanningItem(null, 'Maschine 5', [this.order1, this.order2, this.order3]);
-  planningItems: PlanningItem[] = [this.planningItem, this.planningItem2, this.planningItem3, this.planningItem4, this.planningItem5];
+  
+  @Input() planningItems: PlanningItem[] = [];
+  @Input() striped = true;
 
   timeSpan = TimeSpan.DAY; 
-  currentDate = "";
   buttons = [
     {text:TimeSpan.DAY},
     {text:TimeSpan.WEEK},
     {text:TimeSpan.MONTH}
   ];
-  striped = true;
 
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(){
-    
+    this.planningItems = this.getSampleData();
   }
 
   ngAfterViewChecked(){
     this.cdr.detectChanges();
   }
 
-  itemSelected(item:PlanningItem){
-    console.log(item);
-  }
-
+  //Click event from btn group
   clickedBtn(btn: any){
     this.timeSpan = btn.text as TimeSpan;
     this.cdr.detectChanges();
   }
 
+  // Check if item is current day or hour
   isCurrent(item: string):boolean{
     if(this.timeSpan == TimeSpan.DAY){
       let current = new Date().getHours();
@@ -78,7 +66,11 @@ export class SchedulingComponent {
     return columns;
   }
 
-  getLeftPosition(startDate: Date):number{
+  planningItemClicked(item:PlanningItem){
+    console.log(item);
+  }
+
+  getPlanningItemLeftPosition(startDate: Date):number{
     const cellWidth = this.getCellWidth();
 
     if(this.timeSpan == TimeSpan.DAY){
@@ -98,7 +90,7 @@ export class SchedulingComponent {
     } 
   }
 
-  getItemWidth(startDate: Date, endDate: Date):number{
+  getPlanningItemWidth(startDate: Date, endDate: Date):number{
     const cellWidth = this.getCellWidth();
     const duration = moment.duration(moment(endDate).diff(moment(startDate)));
     const minuteDuration = duration.asMinutes();
@@ -117,6 +109,7 @@ export class SchedulingComponent {
     return `${order.state}`+ (this.striped? ' striped' : '');
   }
 
+  // Generates array of days from current month
   getDays():string[]{
     const days = [];
     const dateStart = moment().startOf('month');
@@ -129,6 +122,7 @@ export class SchedulingComponent {
     return days;
   }
 
+  // Generates array of week day from current week
   getWeekDays():string[]{
     const days = [];
     const dateStart = moment().startOf('week');
@@ -141,6 +135,7 @@ export class SchedulingComponent {
     return days;
   }
 
+  // Generates array of hours from current day
   getHours(): string[] {
     const header = [];
     for (let i = 0; i < 24; i ++) {
@@ -155,4 +150,19 @@ export class SchedulingComponent {
   }
 
 
+  getSampleData():PlanningItem[]{
+    const order1: Order = new Order('12233', moment().subtract(16, 'hours').toDate(), moment().subtract(9, 'hours').toDate(), PlanningState.STARTED);
+    const order2: Order = new Order('44555', moment().subtract(8.9, 'hours').toDate(), moment().subtract(7, 'hours').toDate(), PlanningState.MAINTAIN);
+    const order3: Order = new Order('66666', moment().subtract(6, 'hours').toDate(), moment().subtract(0, 'hours').toDate(), PlanningState.DISRUPTED);
+    const order4: Order = new Order('4444', moment().subtract(17, 'hours').toDate(), moment().subtract(12, 'hours').toDate(), PlanningState.STARTED);
+  
+    const planningItem: PlanningItem = new PlanningItem(null, 'Maschine 1', [order1, order2, order3]);
+    const planningItem2: PlanningItem = new PlanningItem(null, 'Maschine 2', [order1, order2, order3]);
+    const planningItem3: PlanningItem = new PlanningItem(null, 'Maschine 3', [order4, order2, order3]);
+    const planningItem4: PlanningItem = new PlanningItem(null, 'Maschine 4', [order1, order2, order3]);
+    const planningItem5: PlanningItem = new PlanningItem(null, 'Maschine 5', [order1, order2, order3]);
+    const planningItems: PlanningItem[] = [planningItem, planningItem2, planningItem3, planningItem4, planningItem5];
+
+    return planningItems;
+  }
 }

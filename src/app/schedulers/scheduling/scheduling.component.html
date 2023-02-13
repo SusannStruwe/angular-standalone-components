@@ -34,9 +34,9 @@
             <div *ngFor="let order of planningItem.orders" 
             class="planning-item"
             [ngClass]="getStateClass(order)"
-            [style.width]="getItemWidth(order.startDate, order.endDate) + 'px'"
-            [style.left]="getLeftPosition(order.startDate) + 'px'"
-            (click)="itemSelected(planningItem)">
+            [style.width]="getPlanningItemWidth(order.startDate, order.endDate) + 'px'"
+            [style.left]="getPlanningItemLeftPosition(order.startDate) + 'px'"
+            (click)="planningItemClicked(planningItem)">
                 {{order.id}}
             </div>
         </div>
