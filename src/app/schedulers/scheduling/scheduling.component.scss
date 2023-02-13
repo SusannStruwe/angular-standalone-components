@@ -4,6 +4,7 @@ $border-color: #ccc;
 $header-bg-color: #fefefe;
 $cell-width: 7.5%;
 $first-cell-width: 175px;
+$row-height: 40px;
 
 /******* machine-state-colors *******/
 /*$normal-state-color: #5cb55a;
@@ -41,8 +42,9 @@ $paused-state-color-stripe-2: #aaa;
 
 :host{
     margin: auto;
+    display: inline-block;
     width: 1300px;
-    height: 300px;
+    min-height: 300px;
 }
 
 
@@ -106,7 +108,7 @@ $paused-state-color-stripe-2: #aaa;
             flex-grow: 1;
             padding: 5px;
             width: $cell-width;
-            min-height: 30px;
+            min-height: $row-height;
             border-bottom: 1px solid $border-color;
             border-right: 1px solid $border-color;
     
@@ -131,6 +133,8 @@ $paused-state-color-stripe-2: #aaa;
     .planning-item{
         position: absolute;
         z-index: 10;
+        height: 30px;
+        line-height: 30px;
         margin-left: calc($first-cell-width + 12px);
         top: 5px;
         left: 100px;
