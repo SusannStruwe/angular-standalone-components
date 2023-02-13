@@ -3,7 +3,7 @@
 $border-color: #ccc;
 $header-bg-color: #fefefe;
 $cell-width: 7.5%;
-$first-cell-width: 10%;
+$first-cell-width: 175px;
 
 /******* machine-state-colors *******/
 $normal-state-color: #5cb55a; /* green*/
@@ -70,6 +70,7 @@ $paused-state-color-stripe-2: #aaa; /* gray*/
         }
 
         &.current{
+            font-weight: 600;
             background-color: $primary-color-light;
             border: 1px solid $primary-color;
         }
@@ -122,11 +123,12 @@ $paused-state-color-stripe-2: #aaa; /* gray*/
     .planning-item{
         position: absolute;
         z-index: 10;
-        margin-left: calc($first-cell-width + 10px);
+        margin-left: calc($first-cell-width + 12px);
         top: 5px;
         left: 100px;
-        padding: 5px;
+        padding: 5px 0px;
         border-radius: 5px;
+        overflow: hidden;
         color: white;
         cursor: pointer;
     }

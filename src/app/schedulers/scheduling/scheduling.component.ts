@@ -16,7 +16,7 @@ const WINDOW_BREAKPOINT_DAILY = 1350;
 })
 export class SchedulingComponent {
   order1: Order = new Order('12233', 'Maschine 1', moment().subtract(16, 'hours').toDate(), moment().subtract(9, 'hours').toDate(), PlanningState.STARTED);
-  order2: Order = new Order('44555', 'Maschine 1', moment().subtract(8, 'hours').toDate(), moment().subtract(7, 'hours').toDate(), PlanningState.MAINTAIN);
+  order2: Order = new Order('44555', 'Maschine 1', moment().subtract(8.9, 'hours').toDate(), moment().subtract(7, 'hours').toDate(), PlanningState.MAINTAIN);
   order3: Order = new Order('66666', 'Maschine 1', moment().subtract(6, 'hours').toDate(), moment().subtract(0, 'hours').toDate(), PlanningState.DISRUPTED);
   planningItem: PlanningItem = new PlanningItem(null, 'Maschine 1', [this.order1, this.order2, this.order3]);
   planningItem2: PlanningItem = new PlanningItem(null, 'Maschine 2', [this.order1, this.order2, this.order3]);
@@ -76,22 +76,22 @@ export class SchedulingComponent {
 
   getLeftPosition(startDate: Date):number{
     const cellWidth = this.getCellWidth();
-    // day -> cell is 60min
-    // week & month > cell is 24h -> 1.440min
+
     if(this.timeSpan == TimeSpan.DAY){
       const startHour = startDate.getHours();
       const startMinutes = startDate.getMinutes();
-      const position = startHour * cellWidth + (startMinutes*cellWidth / 100);
-      return  Math.round(position);
+      return  Math.round(startHour * cellWidth + (startMinutes*cellWidth / 100));
 
     }else{
-      const schedulerStart = this.timeSpan == TimeSpan.WEEK ? moment().startOf('week') : moment().startOf('month') ;
-      const startDay = startDate.getDay();
+      const schedulerStart = this.timeSpan == TimeSpan.WEEK ? moment().startOf('week') : moment().startOf('month');
+      const startDay = moment(startDate);
+      const duration = moment.duration(moment(startDay).diff(moment(schedulerStart)));
       const startHour = startDate.getHours();
       const startMinutes = startDate.getMinutes();
-      const position = startHour * cellWidth + (startMinutes*cellWidth / 100);
-      return  Math.round(position);
-    }
+      // 1 day -> 24 hours -> 1140 minutes
+      console.log(Math.trunc(duration.asDays()) * cellWidth);
+      return Math.trunc(Math.trunc(duration.asDays()) * cellWidth) +  Math.trunc(startHour * cellWidth / 24) + Math.trunc(startMinutes * cellWidth / 1140);
+    } 
   }
 
   getItemWidth(startDate: Date, endDate: Date):number{
@@ -102,7 +102,6 @@ export class SchedulingComponent {
     // week & month > cell is 24h -> 1.440min
     return Math.round((minuteDuration/(this.timeSpan == TimeSpan.DAY ? 60 : 1440)) * cellWidth);
   }
-
 
   getCellWidth():number{
     const backgroundEl = document.getElementsByClassName('background')[0];
@@ -135,17 +134,15 @@ export class SchedulingComponent {
     return days;
   }
 
-
   getHours(): string[] {
     const header = [];
-    const step = window.innerWidth < WINDOW_BREAKPOINT_DAILY ? 2 : 1; // If window is smaller than WINDOW_BREAKPOINT_DAILY only every second hour is drawn
-    for (let i = 0; i < 24; i = i + step) {
-      header.push(`${this.padLeadingZero(i % 24)}:00`);
+    for (let i = 0; i < 24; i ++) {
+      header.push(`${this.leadingZero(i % 24)}:00`);
     }
     return header;
   }
 
-  padLeadingZero(num: number): string {
+  leadingZero(num: number): string {
     if (num < 10) return `0${num}`;
     else return `${num}`;
   }

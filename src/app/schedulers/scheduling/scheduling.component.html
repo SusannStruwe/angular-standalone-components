@@ -10,12 +10,14 @@
 
 <div class="scheduler">
 
+    <!--header-->
     <div class="scheduler-header">
         <div></div>
         <div *ngFor="let item of getColumns()"
         [class.current]="isCurrent(item)">{{item}}</div>
     </div>
 
+    <!--content-->
     <div class="scheduler-content">
        
         <div class="scheduler-content-row"
@@ -38,8 +40,6 @@
             </div>
         </div>
       
-       
-       
     </div>
 
 </div>
