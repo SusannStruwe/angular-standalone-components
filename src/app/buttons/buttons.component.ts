@@ -36,27 +36,32 @@ export class ButtonsComponent {
   fillingStyle = "filling";
 
   buttons = [
-    {text:"left", icon: faXing, active: false},
-    {text:"middle", icon: faTwitter, active: true},
-    {text:"right", icon: faLinkedinIn, active: false}
+    {text:"left", icon: faXing},
+    {text:"middle", icon: faTwitter},
+    {text:"right", icon: faLinkedinIn}
   ];
   buttons2 = [
-    {text:"1", icon: null, active: false},
-    {text:"2", icon: null, active: true},
-    {text:"3", icon: null, active: false},
-    {text:"4", icon: null, active: false}
+    {text:"1", icon: null},
+    {text:"2", icon: null},
+    {text:"3", icon: null},
+    {text:"4", icon: null}
   ];
   buttons3 = [
-    {text: null, icon: faXing, active: false},
-    {text: null, icon: faTwitter, active: true},
-    {text: null, icon: faLinkedinIn, active: false}
+    {text: null, icon: faXing},
+    {text: null, icon: faTwitter},
+    {text: null, icon: faLinkedinIn}
   ];
   clickedBtnText = "";
 
   constructor() { }
 
 
-  clickedBtn(text: string){
-    this.clickedBtnText = text;
+  clickedBtn(item: any){
+    if(item.text){
+      this.clickedBtnText = item.text;
+    }else{
+      this.clickedBtnText = item.icon;
+    }
+   
   }
 }

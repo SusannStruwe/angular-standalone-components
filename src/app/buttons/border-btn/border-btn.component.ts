@@ -23,6 +23,8 @@ export class BorderBtnComponent {
   @Input() style: string = "shining";
   // example --> spin or not
   @Input() spinning?: boolean;
+  // example --> active or not
+  @Input() active?: boolean;
     
   constructor(
 

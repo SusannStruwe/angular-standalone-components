@@ -14,7 +14,8 @@ export class CircleBtnComponent {
 
   @Input() faIcon?: IconDefinition;
   @Input() backgroundColor?: string;
-    
+  @Input() active?: boolean;
+
   constructor(
 
   ) { }

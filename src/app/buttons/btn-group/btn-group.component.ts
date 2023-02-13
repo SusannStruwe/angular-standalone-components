@@ -16,6 +16,8 @@ export class BtnGoupComponent {
   @Input() color?: string;
   // example ->   buttons = [{text:"left", icon: faXing, active: false}]
   @Input() btnArray: any[] = [];
+  // example ->   left
+  @Input() activeBtn?: string ;
 
   @Output() clickedBtn = new EventEmitter<string>();
   
@@ -23,8 +25,14 @@ export class BtnGoupComponent {
   ) { }
 
 
-  btnClick(name: string): void {
-    this.clickedBtn.emit(name);
+  btnClick(item: any): void {
+    if(item.text){
+      this.activeBtn = item.text;
+    }else{
+      this.activeBtn = item.icon;
+    }
+    
+    this.clickedBtn.emit(item);
   }
 
 }

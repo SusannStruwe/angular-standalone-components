@@ -1,0 +1,153 @@
+@import 'src/content/_baseVariables';
+
+$border-color: #ccc;
+$header-bg-color: #fefefe;
+$cell-width: 7.5%;
+$first-cell-width: 10%;
+
+/******* machine-state-colors *******/
+$normal-state-color: #5cb55a; /* green*/
+$normal-state-color-stripe-1: #49a048; /* green*/
+$normal-state-color-stripe-2: #5cb55a; /* green*/
+
+$acting-state-color: #5699e4; /*blue*/
+$acting-state-color-stripe-1: #4987cf; /* orange*/
+$acting-state-color-stripe-2: #5699e4; /* orange*/
+
+$warning-state-color: #f4bf1e; /*f5cf10 orange*/
+$warning-state-color-stripe-1: #dbaa16; /* orange*/
+$warning-state-color-stripe-2: #f4bf1e; /* orange*/
+
+$critical-state-color: #ea7d12; /*orange*/
+$critical-state-color-stripe-1: #d17111; /* orange*/
+$critical-state-color-stripe-2: #ea7d12; /* orange*/
+
+$fatal-state-color: #d1350b; /*#e6444d red */
+$fatal-state-color-stripe-1: #b92f09; /* red*/
+$fatal-state-color-stripe-2: #d1350b; /* red*/
+
+$paused-state-color: #aaa; /*# gray */
+$paused-state-color-stripe-1: #999; /* gray*/
+$paused-state-color-stripe-2: #aaa; /* gray*/
+
+
+:host{
+    margin: auto;
+    width: 1300px;
+    height: 300px;
+}
+
+
+.scheduler{
+    position: relative;
+    display: flex-inline;
+    flex-direction: row;
+    width: 100%;
+}
+
+.scheduler-header{
+    display: flex;
+    flex-direction: row;
+    font-weight: 400;
+    font-size: 0.9em;
+    background-color: $header-bg-color;
+    position: relative;
+    top: 0;
+    left: 0;
+
+    & > div{
+        flex-grow: 1;
+        padding: 5px;
+        border-top: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
+        border-right: 1px solid $border-color;
+        overflow: hidden;
+        width: $cell-width;
+
+        &:first-of-type{
+            min-width: $first-cell-width;
+            border-left: 1px solid $border-color;
+        }
+
+        &.current{
+            background-color: $primary-color-light;
+            border: 1px solid $primary-color;
+        }
+    }
+}
+
+
+.scheduler-content{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.scheduler-content-row{
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    .background{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+
+        & > div{
+            flex-grow: 1;
+            padding: 5px;
+            width: $cell-width;
+            min-height: 30px;
+            border-bottom: 1px solid $border-color;
+            border-right: 1px solid $border-color;
+    
+            &:first-of-type{
+                min-width: $first-cell-width;
+                border-left: 1px solid $border-color;
+                font-weight: 400;
+            }
+
+            &:last-of-type{
+                border-right: 1px solid $border-color;
+            }
+
+            &.current{
+                background-color: $primary-color-light;
+                border-left: 1px solid $primary-color;
+                border-right: 1px solid $primary-color;
+            }
+        }
+    }
+
+    .planning-item{
+        position: absolute;
+        z-index: 10;
+        margin-left: calc($first-cell-width + 10px);
+        top: 5px;
+        left: 100px;
+        padding: 5px;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+
+.started{
+    background-color: $normal-state-color;
+}
+.maintain{
+    background-color: $acting-state-color;
+}
+.paused{
+    background-color: $paused-state-color;
+}
+.planned{
+    background-color: $acting-state-color;
+}
+.disrupted{
+    background-color: $critical-state-color;
+}
+.finished{
+    background-color: $acting-state-color;
+}

@@ -4,6 +4,9 @@ $btnHeight: 50px;
 $borderRadius: 4px;
 $borderWidth: 2px;
 
+:host{
+  display: inline-block;
+}
 
 .btn-group{
     margin: 10px auto;
@@ -45,6 +48,7 @@ button {
   &:hover, &.active{
     background-color: var(--primary-color);
     color: white;
+
     fa-icon{
         color: white;
     }

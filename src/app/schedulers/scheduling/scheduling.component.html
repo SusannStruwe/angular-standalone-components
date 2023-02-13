@@ -1,0 +1,45 @@
+
+
+<btn-group-component
+    [btnArray] = "buttons"
+    [activeBtn]="'DAY'"
+    (clickedBtn)="clickedBtn($event)">
+</btn-group-component>
+
+<br>
+
+<div class="scheduler">
+
+    <div class="scheduler-header">
+        <div></div>
+        <div *ngFor="let item of getColumns()"
+        [class.current]="isCurrent(item)">{{item}}</div>
+    </div>
+
+    <div class="scheduler-content">
+       
+        <div class="scheduler-content-row"
+            *ngFor="let planningItem of planningItems">
+
+             <!-- background -->
+            <div class="background">
+                <div>{{planningItem.machine}}</div>
+                <div *ngFor="let item of getColumns()"
+                [class.current]="isCurrent(item)"></div>
+            </div>
+
+            <!-- foreground -->
+            <div *ngFor="let order of planningItem.orders" 
+            [className]="'planning-item ' + order.state"
+            [style.width]="getItemWidth(order.startDate, order.endDate) + 'px'"
+            [style.left]="getLeftPosition(order.startDate) + 'px'"
+            (click)="itemSelected(planningItem)">
+                {{order.id}}
+            </div>
+        </div>
+      
+       
+       
+    </div>
+
+</div>

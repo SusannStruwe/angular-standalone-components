@@ -43,6 +43,14 @@
         [spinning]="true">
         </border-btn-component>
 
+        <border-btn-component
+        [style]="shiningStyle"
+        [buttonText]="buttonText"
+        [disabled] = "false"
+        [faIcon]="faLoader"
+        [active]="true">
+        </border-btn-component>
+
     </div>
 
     
@@ -83,6 +91,14 @@
         [faIcon]="faLoader"
         [spinning]="true">
         </border-btn-component>
+
+        <border-btn-component
+        [style]="fillingStyle"
+        [buttonText]="buttonText"
+        [disabled] = "false"
+        [faIcon]="faLoader"
+        [active]="true">
+        </border-btn-component>
     </div>
 
 
@@ -95,9 +111,13 @@
         </btn-group-component>
         <p class="output">Output: <span>{{clickedBtnText}}</span></p>
 
+        <br>
+
         <btn-group-component
         [btnArray] = "buttons2">
         </btn-group-component>
+        
+        <br>
 
         <btn-group-component
         [btnArray] = "buttons3">
@@ -122,6 +142,12 @@
         [backgroundColor]="'#e3c11a'"
         [faIcon]="faTwitter">
         </circle-btn-component>
+
+        <!--<circle-btn-component
+        [active]="true"
+        [backgroundColor]="'#e3c11a'"
+        [faIcon]="faTwitter">
+        </circle-btn-component>-->
 
     </div>
    

@@ -19,12 +19,16 @@ const routes: Routes = [
   {
     path: 'cards',
     loadComponent: () => import('./cards/cards.component').then(m => m.CardsComponent),
+  },
+  {
+    path: 'schedulers',
+    loadComponent: () => import('./schedulers/schedulers.component').then(m => m.SchedulersComponent),
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(
-    routes, 
+    routes,
     {
       enableTracing: false,
       useHash: true,
