@@ -1,0 +1,207 @@
+@import 'src/content/_baseVariables';
+
+$border-color: #ccc;
+$header-bg-color: #fefefe;
+$cell-width: 7.5%;
+$first-cell-width: 175px;
+$row-height: 40px;
+
+/******* machine-state-colors *******/
+/*$normal-state-color: #5cb55a;
+$normal-state-color-stripe-1: #49a048; 
+$normal-state-color-stripe-2: #5cb55a; 
+
+$acting-state-color: #5699e4; 
+$acting-state-color-stripe-1: #4987cf; 
+$acting-state-color-stripe-2: #5699e4; 
+
+$critical-state-color: #ea7d12; 
+$critical-state-color-stripe-1: #d17111; 
+$critical-state-color-stripe-2: #ea7d12; 
+
+$paused-state-color: #aaa; 
+$paused-state-color-stripe-1: #999; 
+$paused-state-color-stripe-2: #aaa; */
+
+$normal-state-color: #00bdab;
+$normal-state-color-stripe-1: #02a090; 
+$normal-state-color-stripe-2: #00bdab; 
+
+$acting-state-color: #5699e4; 
+$acting-state-color-stripe-1: #4987cf; 
+$acting-state-color-stripe-2: #5699e4; 
+
+$critical-state-color: #f58b20; 
+$critical-state-color-stripe-1: #d87513; 
+$critical-state-color-stripe-2: #f58b20; 
+
+$paused-state-color: #aaa; 
+$paused-state-color-stripe-1: #999; 
+$paused-state-color-stripe-2: #aaa; 
+
+
+:host{
+    margin: auto;
+    display: inline-block;
+    width: 1300px;
+    min-height: 300px;
+}
+
+
+.scheduler{
+    position: relative;
+    display: flex-inline;
+    flex-direction: row;
+    width: 100%;
+}
+
+.scheduler-header{
+    display: flex;
+    flex-direction: row;
+    font-weight: 400;
+    font-size: 0.9em;
+    background-color: $header-bg-color;
+    position: relative;
+    top: 0;
+    left: 0;
+
+    & > div{
+        flex-grow: 1;
+        padding: 5px;
+        border-top: 1px solid $border-color;
+        border-bottom: 1px solid $border-color;
+        border-right: 1px solid $border-color;
+        overflow: hidden;
+        width: $cell-width;
+
+        &:first-of-type{
+            min-width: $first-cell-width;
+            border-left: 1px solid $border-color;
+        }
+
+        &.active{
+            font-weight: 600;
+            background-color: $primary-color-light;
+            border: 1px solid $primary-color;
+        }
+    }
+}
+
+
+.scheduler-content{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.scheduler-content-row{
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    .background{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+
+        & > div{
+            flex-grow: 1;
+            padding: 5px;
+            width: $cell-width;
+            min-height: $row-height;
+            border-bottom: 1px solid $border-color;
+            border-right: 1px solid $border-color;
+    
+            &:first-of-type{
+                min-width: $first-cell-width;
+                border-left: 1px solid $border-color;
+                font-weight: 400;
+            }
+
+            &:last-of-type{
+                border-right: 1px solid $border-color;
+            }
+
+            &.active{
+                background-color: $primary-color-light;
+                border-left: 1px solid $primary-color;
+                border-right: 1px solid $primary-color;
+            }
+        }
+    }
+
+    .planning-item{
+        position: absolute;
+        z-index: 10;
+        height: 30px;
+        line-height: 30px;
+        margin-left: calc($first-cell-width + 12px);
+        top: 5px;
+        left: 100px;
+        padding: 5px 0px;
+        border-radius: 5px;
+        overflow: hidden;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+
+.started{
+    background-color: $normal-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $normal-state-color-stripe-1,
+            $normal-state-color-stripe-1 10px,
+            $normal-state-color-stripe-2 10px,
+            $normal-state-color-stripe-2 20px
+        );
+    }
+}
+
+.maintain{
+    background-color: $acting-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $acting-state-color-stripe-1,
+            $acting-state-color-stripe-1 10px,
+            $acting-state-color-stripe-2 10px,
+            $acting-state-color-stripe-2 20px
+        );
+    }
+}
+.paused{
+    background-color: $paused-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $paused-state-color-stripe-1,
+            $paused-state-color-stripe-1 10px,
+            $paused-state-color-stripe-2 10px,
+            $paused-state-color-stripe-2 20px
+        );
+    }
+}
+
+.disrupted{
+    background-color: $critical-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $critical-state-color-stripe-1,
+            $critical-state-color-stripe-1 10px,
+            $critical-state-color-stripe-2 10px,
+            $critical-state-color-stripe-2 20px
+        );
+    }
+}
+
+.planned{
+    background-color: #777;
+}
+.finished{
+    background-color: #aaa;
+}
+

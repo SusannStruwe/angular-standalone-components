@@ -2,9 +2,6 @@
 
 $light-gray-color: #ddd;
 
-:host{
-  display: inline-block;
-}
 
 button {
   position: relative;
@@ -15,15 +12,18 @@ button {
   background: $light-gray-color;
   cursor: pointer;
   font-size: 1.2em;
-  transition: background 0.6s ease;
 
   fa-icon{
     color: $gray;
   }
 
-  &:hover,&.active {
+  &:hover {
     background: var(--primary-color) !important;
   }
 }
 
+
+.container{
+  min-width: 650px;
+}
 
