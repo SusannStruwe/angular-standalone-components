@@ -15,13 +15,16 @@ const WINDOW_BREAKPOINT_DAILY = 1350;
   styleUrls: ['./scheduling.component.scss']
 })
 export class SchedulingComponent {
-  order1: Order = new Order('12233', 'Maschine 1', moment().subtract(16, 'hours').toDate(), moment().subtract(9, 'hours').toDate(), PlanningState.STARTED);
-  order2: Order = new Order('44555', 'Maschine 1', moment().subtract(8.9, 'hours').toDate(), moment().subtract(7, 'hours').toDate(), PlanningState.MAINTAIN);
-  order3: Order = new Order('66666', 'Maschine 1', moment().subtract(6, 'hours').toDate(), moment().subtract(0, 'hours').toDate(), PlanningState.DISRUPTED);
+  order1: Order = new Order('12233', moment().subtract(16, 'hours').toDate(), moment().subtract(9, 'hours').toDate(), PlanningState.STARTED);
+  order2: Order = new Order('44555', moment().subtract(8.9, 'hours').toDate(), moment().subtract(7, 'hours').toDate(), PlanningState.MAINTAIN);
+  order3: Order = new Order('66666', moment().subtract(6, 'hours').toDate(), moment().subtract(0, 'hours').toDate(), PlanningState.DISRUPTED);
+
   planningItem: PlanningItem = new PlanningItem(null, 'Maschine 1', [this.order1, this.order2, this.order3]);
   planningItem2: PlanningItem = new PlanningItem(null, 'Maschine 2', [this.order1, this.order2, this.order3]);
   planningItem3: PlanningItem = new PlanningItem(null, 'Maschine 3', [this.order1, this.order2, this.order3]);
-  planningItems: PlanningItem[] = [this.planningItem, this.planningItem2, this.planningItem3];
+  planningItem4: PlanningItem = new PlanningItem(null, 'Maschine 4', [this.order1, this.order2, this.order3]);
+  planningItem5: PlanningItem = new PlanningItem(null, 'Maschine 5', [this.order1, this.order2, this.order3]);
+  planningItems: PlanningItem[] = [this.planningItem, this.planningItem2, this.planningItem3, this.planningItem4, this.planningItem5];
 
   timeSpan = TimeSpan.DAY; 
   currentDate = "";
@@ -30,6 +33,7 @@ export class SchedulingComponent {
     {text:TimeSpan.WEEK},
     {text:TimeSpan.MONTH}
   ];
+  striped = true;
 
   constructor(private cdr: ChangeDetectorRef) { }
 
@@ -109,6 +113,9 @@ export class SchedulingComponent {
     return cellWidth;
   }
 
+  getStateClass(order: Order):string{
+    return `${order.state}`+ (this.striped? ' striped' : '');
+  }
 
   getDays():string[]{
     const days = [];

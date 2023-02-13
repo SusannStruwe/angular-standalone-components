@@ -6,29 +6,37 @@ $cell-width: 7.5%;
 $first-cell-width: 175px;
 
 /******* machine-state-colors *******/
-$normal-state-color: #5cb55a; /* green*/
-$normal-state-color-stripe-1: #49a048; /* green*/
-$normal-state-color-stripe-2: #5cb55a; /* green*/
+/*$normal-state-color: #5cb55a;
+$normal-state-color-stripe-1: #49a048; 
+$normal-state-color-stripe-2: #5cb55a; 
 
-$acting-state-color: #5699e4; /*blue*/
-$acting-state-color-stripe-1: #4987cf; /* orange*/
-$acting-state-color-stripe-2: #5699e4; /* orange*/
+$acting-state-color: #5699e4; 
+$acting-state-color-stripe-1: #4987cf; 
+$acting-state-color-stripe-2: #5699e4; 
 
-$warning-state-color: #f4bf1e; /*f5cf10 orange*/
-$warning-state-color-stripe-1: #dbaa16; /* orange*/
-$warning-state-color-stripe-2: #f4bf1e; /* orange*/
+$critical-state-color: #ea7d12; 
+$critical-state-color-stripe-1: #d17111; 
+$critical-state-color-stripe-2: #ea7d12; 
 
-$critical-state-color: #ea7d12; /*orange*/
-$critical-state-color-stripe-1: #d17111; /* orange*/
-$critical-state-color-stripe-2: #ea7d12; /* orange*/
+$paused-state-color: #aaa; 
+$paused-state-color-stripe-1: #999; 
+$paused-state-color-stripe-2: #aaa; */
 
-$fatal-state-color: #d1350b; /*#e6444d red */
-$fatal-state-color-stripe-1: #b92f09; /* red*/
-$fatal-state-color-stripe-2: #d1350b; /* red*/
+$normal-state-color: #00bdab;
+$normal-state-color-stripe-1: #02a090; 
+$normal-state-color-stripe-2: #00bdab; 
 
-$paused-state-color: #aaa; /*# gray */
-$paused-state-color-stripe-1: #999; /* gray*/
-$paused-state-color-stripe-2: #aaa; /* gray*/
+$acting-state-color: #5699e4; 
+$acting-state-color-stripe-1: #4987cf; 
+$acting-state-color-stripe-2: #5699e4; 
+
+$critical-state-color: #f58b20; 
+$critical-state-color-stripe-1: #d87513; 
+$critical-state-color-stripe-2: #f58b20; 
+
+$paused-state-color: #aaa; 
+$paused-state-color-stripe-1: #999; 
+$paused-state-color-stripe-2: #aaa; 
 
 
 :host{
@@ -69,7 +77,7 @@ $paused-state-color-stripe-2: #aaa; /* gray*/
             border-left: 1px solid $border-color;
         }
 
-        &.current{
+        &.active{
             font-weight: 600;
             background-color: $primary-color-light;
             border: 1px solid $primary-color;
@@ -112,7 +120,7 @@ $paused-state-color-stripe-2: #aaa; /* gray*/
                 border-right: 1px solid $border-color;
             }
 
-            &.current{
+            &.active{
                 background-color: $primary-color-light;
                 border-left: 1px solid $primary-color;
                 border-right: 1px solid $primary-color;
@@ -137,19 +145,59 @@ $paused-state-color-stripe-2: #aaa; /* gray*/
 
 .started{
     background-color: $normal-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $normal-state-color-stripe-1,
+            $normal-state-color-stripe-1 10px,
+            $normal-state-color-stripe-2 10px,
+            $normal-state-color-stripe-2 20px
+        );
+    }
 }
+
 .maintain{
     background-color: $acting-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $acting-state-color-stripe-1,
+            $acting-state-color-stripe-1 10px,
+            $acting-state-color-stripe-2 10px,
+            $acting-state-color-stripe-2 20px
+        );
+    }
 }
 .paused{
     background-color: $paused-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $paused-state-color-stripe-1,
+            $paused-state-color-stripe-1 10px,
+            $paused-state-color-stripe-2 10px,
+            $paused-state-color-stripe-2 20px
+        );
+    }
 }
-.planned{
-    background-color: $acting-state-color;
-}
+
 .disrupted{
     background-color: $critical-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $critical-state-color-stripe-1,
+            $critical-state-color-stripe-1 10px,
+            $critical-state-color-stripe-2 10px,
+            $critical-state-color-stripe-2 20px
+        );
+    }
+}
+
+.planned{
+    background-color: #777;
 }
 .finished{
-    background-color: $acting-state-color;
+    background-color: #aaa;
 }
+

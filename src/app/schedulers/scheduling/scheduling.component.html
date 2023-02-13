@@ -14,7 +14,7 @@
     <div class="scheduler-header">
         <div></div>
         <div *ngFor="let item of getColumns()"
-        [class.current]="isCurrent(item)">{{item}}</div>
+        [class.active]="isCurrent(item)">{{item}}</div>
     </div>
 
     <!--content-->
@@ -27,12 +27,13 @@
             <div class="background">
                 <div>{{planningItem.machine}}</div>
                 <div *ngFor="let item of getColumns()"
-                [class.current]="isCurrent(item)"></div>
+                [class.active]="isCurrent(item)"></div>
             </div>
 
             <!-- foreground -->
             <div *ngFor="let order of planningItem.orders" 
-            [className]="'planning-item ' + order.state"
+            class="planning-item"
+            [ngClass]="getStateClass(order)"
             [style.width]="getItemWidth(order.startDate, order.endDate) + 'px'"
             [style.left]="getLeftPosition(order.startDate) + 'px'"
             (click)="itemSelected(planningItem)">
