@@ -22,7 +22,8 @@ button {
   }
 
   &:hover,&.active {
-    background: var(--primary-color) !important;
+    filter: brightness(0.8);
+    // background: var(--primary-color) !important;
   }
 }
 
