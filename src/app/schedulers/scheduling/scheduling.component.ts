@@ -1,8 +1,8 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { PlanningState, SchedulerEvent, SchedulerRow, TimeSpan } from '../scheduler-model';
+import { SchedulerEvent, SchedulerRow, TimeSpan } from '../scheduler-model';
 import * as moment from 'moment';
 import { BtnGoupComponent } from 'src/app/buttons/btn-group/btn-group.component';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -28,6 +28,8 @@ export class SchedulingComponent {
   @Input() schedulerRows: SchedulerRow[] = [];
   @Input() timeSpan: TimeSpan = TimeSpan.DAY;
   @Output() schedulerEventSelected = new EventEmitter<SchedulerEvent>();
+
+  @ViewChild('cellWidth') cellWidth?: ElementRef; 
 
   buttons = [
     {text:"Tag", value: TimeSpan.DAY},
@@ -186,9 +188,11 @@ export class SchedulingComponent {
 
   //Get width from cell
   getCellWidth():number{
-    const backgroundEl = document.getElementsByClassName('background')[0];
-    const cellWidth = backgroundEl.children[1].getClientRects()[0].width;
-    return cellWidth;
+    if(this.cellWidth){
+      return this.cellWidth.nativeElement.offsetWidth;
+    }else{
+      return 0;
+    }
   }
 
   //Get class style as string
