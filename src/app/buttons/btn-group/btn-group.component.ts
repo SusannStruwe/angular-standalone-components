@@ -19,7 +19,7 @@ export class BtnGoupComponent {
   // example ->   left
   @Input() activeBtn?: string ;
 
-  @Output() clickedBtn = new EventEmitter<string>();
+  @Output() btnSelected = new EventEmitter<string>();
   
   constructor(
   ) { }
@@ -32,7 +32,7 @@ export class BtnGoupComponent {
       this.activeBtn = item.icon;
     }
     
-    this.clickedBtn.emit(item);
+    this.btnSelected.emit(item);
   }
 
 }
