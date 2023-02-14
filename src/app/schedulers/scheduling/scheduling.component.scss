@@ -47,12 +47,22 @@ $paused-state-color-stripe-2: #aaa;
     min-height: 300px;
 }
 
+.navigation-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 5px;
+}
 
 .scheduler{
     position: relative;
     display: flex-inline;
     flex-direction: row;
     width: 100%;
+}
+
+.scheduler-top-header{
+
 }
 
 .scheduler-header{
@@ -75,7 +85,9 @@ $paused-state-color-stripe-2: #aaa;
         width: $cell-width;
 
         &:first-of-type{
+            text-align: left;
             min-width: $first-cell-width;
+            border-right: 2px solid $border-color;
             border-left: 1px solid $border-color;
         }
 
@@ -106,15 +118,18 @@ $paused-state-color-stripe-2: #aaa;
 
         & > div{
             flex-grow: 1;
-            padding: 5px;
+            padding: 5px 0px 5px 10px;
             width: $cell-width;
             min-height: $row-height;
+            line-height: $row-height;
             border-bottom: 1px solid $border-color;
             border-right: 1px solid $border-color;
     
             &:first-of-type{
+                text-align: left;
                 min-width: $first-cell-width;
                 border-left: 1px solid $border-color;
+                border-right: 2px solid $border-color;
                 font-weight: 400;
             }
 
@@ -130,7 +145,7 @@ $paused-state-color-stripe-2: #aaa;
         }
     }
 
-    .planning-item{
+    .scheduler-event{
         position: absolute;
         z-index: 10;
         height: 30px;
@@ -143,6 +158,11 @@ $paused-state-color-stripe-2: #aaa;
         overflow: hidden;
         color: white;
         cursor: pointer;
+
+        &.no-left-radius{
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
     }
 }
 
@@ -158,6 +178,10 @@ $paused-state-color-stripe-2: #aaa;
             $normal-state-color-stripe-2 20px
         );
     }
+    &:hover{
+        // background: $normal-state-color-stripe-1;
+        opacity: 0.7;
+    }
 }
 
 .maintain{
@@ -171,6 +195,10 @@ $paused-state-color-stripe-2: #aaa;
             $acting-state-color-stripe-2 20px
         );
     }
+    &:hover{
+        // background: $normal-state-color-stripe-1;
+        opacity: 0.7;
+    }
 }
 .paused{
     background-color: $paused-state-color;
@@ -182,6 +210,10 @@ $paused-state-color-stripe-2: #aaa;
             $paused-state-color-stripe-2 10px,
             $paused-state-color-stripe-2 20px
         );
+    }
+    &:hover{
+        // background: $normal-state-color-stripe-1;
+        opacity: 0.7;
     }
 }
 
@@ -195,6 +227,10 @@ $paused-state-color-stripe-2: #aaa;
             $critical-state-color-stripe-2 10px,
             $critical-state-color-stripe-2 20px
         );
+    }
+    &:hover{
+        // background: $normal-state-color-stripe-1;
+        opacity: 0.7;
     }
 }
 

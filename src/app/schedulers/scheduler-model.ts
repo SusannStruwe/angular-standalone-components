@@ -1,18 +1,17 @@
-export class PlanningItem {
-
+export class SchedulerRow {
     constructor(
-        public id: string | null,
-        public machine: string,
-        public orders: Order[]) {}
+        public label: string,
+        public description: string | null,
+        public schedulerEvents: SchedulerEvent[]) {}
 }
 
-export class Order {
-
+export class SchedulerEvent {
     constructor(
-        public id: string | null,
+        public label: string,
+        public description: string | null,
         public startDate: Date,
         public endDate: Date,
-        public state: PlanningState) {}
+        public classStyle: string) {}
 }
 
 export enum PlanningState {

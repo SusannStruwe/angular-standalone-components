@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { Order, PlanningItem, PlanningState, TimeSpan } from '../planning-item';
+import { PlanningState, SchedulerEvent, SchedulerRow, TimeSpan } from '../scheduler-model';
 import * as moment from 'moment';
 import { BtnGoupComponent } from 'src/app/buttons/btn-group/btn-group.component';
 
@@ -15,9 +15,11 @@ import { BtnGoupComponent } from 'src/app/buttons/btn-group/btn-group.component'
 })
 export class SchedulingComponent {
   
-  @Input() planningItems: PlanningItem[] = [];
-  @Input() striped = true;
+  @Input() schedulerRows: SchedulerRow[] = [];
 
+  filteredSchedulerRows: SchedulerRow[] = [];
+  startDate: Date = moment().startOf('day').toDate();
+  endDate: Date = moment().endOf('day').toDate();
   timeSpan = TimeSpan.DAY; 
   buttons = [
     {text:TimeSpan.DAY},
@@ -28,7 +30,12 @@ export class SchedulingComponent {
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(){
-    this.planningItems = this.getSampleData();
+    this.schedulerRows = this.getSampleData();
+    this.filteredSchedulerRows = Object.assign([], this.schedulerRows); 
+    this.filteredSchedulerRows.forEach(item => {
+        item.schedulerEvents = item.schedulerEvents.filter(event=>moment(event.endDate).isAfter(this.startDate));
+      }
+    );
   }
 
   ngAfterViewChecked(){
@@ -37,17 +44,35 @@ export class SchedulingComponent {
 
   //Click event from btn group
   clickedBtn(btn: any){
-    this.timeSpan = btn.text as TimeSpan;
+    this.updateTimeSpan(btn.text);
     this.cdr.detectChanges();
+  }
+
+  updateTimeSpan(text: string):void{
+    this.timeSpan = text as TimeSpan;
+    switch(this.timeSpan){
+      case  TimeSpan.MONTH: 
+        this.startDate = moment().startOf('month').toDate();
+        this.endDate = moment().endOf('month').toDate();
+        break;
+      case  TimeSpan.DAY: 
+        this.startDate = moment().startOf('day').toDate();
+        this.endDate = moment().endOf('day').toDate();
+        break;
+      case  TimeSpan.WEEK: 
+        this.startDate = moment().startOf('week').toDate();
+        this.endDate = moment().endOf('week').toDate();
+        break;
+    }
   }
 
   // Check if item is current day or hour
   isCurrent(item: string):boolean{
     if(this.timeSpan == TimeSpan.DAY){
       let current = new Date().getHours();
-      return current.toString() +':00' == item;
+      return this.leadingZero(current) +':00' == item;
     }else{
-      let current = this.timeSpan == TimeSpan.WEEK ? moment().format('DD.MM'): moment().format('DD');
+      let current = this.timeSpan == TimeSpan.WEEK ? moment().format('DD'): moment().format('DD');
       return current.toString() == item;
     }
   }
@@ -66,37 +91,30 @@ export class SchedulingComponent {
     return columns;
   }
 
-  planningItemClicked(item:PlanningItem){
+  schedulerEventClicked(item:SchedulerEvent){
     console.log(item);
   }
 
-  getPlanningItemLeftPosition(startDate: Date):number{
+  getSchedulerEventLeftPosition(eventStartDate: Date):number{
     const cellWidth = this.getCellWidth();
-
-    if(this.timeSpan == TimeSpan.DAY){
-      const startHour = startDate.getHours();
-      const startMinutes = startDate.getMinutes();
-      return  Math.round(startHour * cellWidth + (startMinutes*cellWidth / 100));
-
+    if(moment(eventStartDate).isAfter(this.startDate)){
+      const duration = moment.duration(moment(eventStartDate).diff(moment(this.startDate)));
+      return  Math.trunc(duration.asMinutes() * cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440));
     }else{
-      const schedulerStart = this.timeSpan == TimeSpan.WEEK ? moment().startOf('week') : moment().startOf('month');
-      const startDay = moment(startDate);
-      const duration = moment.duration(moment(startDay).diff(moment(schedulerStart)));
-      const startHour = startDate.getHours();
-      const startMinutes = startDate.getMinutes();
-      // 1 day -> 24 hours -> 1140 minutes
-      console.log(Math.trunc(duration.asDays()) * cellWidth);
-      return Math.trunc(Math.trunc(duration.asDays()) * cellWidth) +  Math.trunc(startHour * cellWidth / 24) + Math.trunc(startMinutes * cellWidth / 1140);
-    } 
+      return 0;
+    }
   }
 
-  getPlanningItemWidth(startDate: Date, endDate: Date):number{
+
+  getSchedulerEventWidthPosition(startDate: Date, endDate: Date):number{
     const cellWidth = this.getCellWidth();
-    const duration = moment.duration(moment(endDate).diff(moment(startDate)));
-    const minuteDuration = duration.asMinutes();
-    // day -> cell is 60min
-    // week & month > cell is 24h -> 1.440min
-    return Math.round((minuteDuration/(this.timeSpan == TimeSpan.DAY ? 60 : 1440)) * cellWidth);
+    let duration: moment.Duration;
+    if(moment(startDate).isBefore(this.startDate)){
+      duration = moment.duration(moment(endDate).diff(moment(this.startDate)));
+    }else{
+      duration = moment.duration(moment(endDate).diff(moment(startDate)));
+    }
+    return Math.trunc((duration.asMinutes() * cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440)));
   }
 
   getCellWidth():number{
@@ -105,8 +123,12 @@ export class SchedulingComponent {
     return cellWidth;
   }
 
-  getStateClass(order: Order):string{
-    return `${order.state}`+ (this.striped? ' striped' : '');
+  getStateClass(schedulerEvent: SchedulerEvent):string{
+    let startedPreviousDay = '';
+    if(this.getSchedulerEventLeftPosition(schedulerEvent.startDate) === 0){
+      startedPreviousDay = ' no-left-radius';
+    }
+    return `${schedulerEvent.classStyle}` + startedPreviousDay;
   }
 
   // Generates array of days from current month
@@ -129,7 +151,7 @@ export class SchedulingComponent {
     const dateEnd = moment().endOf('week');
 
     while (dateStart.isBefore(dateEnd)) {
-       days.push(dateStart.format('DD.MM'))
+       days.push(dateStart.format('DD'))
        dateStart.add(1, 'days')
     }
     return days;
@@ -150,19 +172,31 @@ export class SchedulingComponent {
   }
 
 
-  getSampleData():PlanningItem[]{
-    const order1: Order = new Order('12233', moment().subtract(16, 'hours').toDate(), moment().subtract(9, 'hours').toDate(), PlanningState.STARTED);
-    const order2: Order = new Order('44555', moment().subtract(8.9, 'hours').toDate(), moment().subtract(7, 'hours').toDate(), PlanningState.MAINTAIN);
-    const order3: Order = new Order('66666', moment().subtract(6, 'hours').toDate(), moment().subtract(0, 'hours').toDate(), PlanningState.DISRUPTED);
-    const order4: Order = new Order('4444', moment().subtract(17, 'hours').toDate(), moment().subtract(12, 'hours').toDate(), PlanningState.STARTED);
-  
-    const planningItem: PlanningItem = new PlanningItem(null, 'Maschine 1', [order1, order2, order3]);
-    const planningItem2: PlanningItem = new PlanningItem(null, 'Maschine 2', [order1, order2, order3]);
-    const planningItem3: PlanningItem = new PlanningItem(null, 'Maschine 3', [order4, order2, order3]);
-    const planningItem4: PlanningItem = new PlanningItem(null, 'Maschine 4', [order1, order2, order3]);
-    const planningItem5: PlanningItem = new PlanningItem(null, 'Maschine 5', [order1, order2, order3]);
-    const planningItems: PlanningItem[] = [planningItem, planningItem2, planningItem3, planningItem4, planningItem5];
+  getSampleData():SchedulerRow[]{
+       /* const schedulerEvent1: SchedulerEvent = new SchedulerEvent('12233', null, moment().subtract(1, 'hours').toDate(), moment().subtract(9, 'hours').toDate(), PlanningState.STARTED + ' striped');
+    const schedulerEvent2: SchedulerEvent = new SchedulerEvent('44555', null, moment().subtract(8.9, 'hours').toDate(), moment().subtract(7, 'hours').toDate(), PlanningState.MAINTAIN);
+    const schedulerEvent3: SchedulerEvent = new SchedulerEvent('66666', null, moment().subtract(6, 'hours').toDate(), moment().subtract(5, 'hours').toDate(), PlanningState.DISRUPTED);
+    const schedulerEvent4: SchedulerEvent = new SchedulerEvent('4444',  null,moment().subtract(17, 'hours').toDate(), moment().subtract(12, 'hours').toDate(), PlanningState.STARTED);
+  */
 
-    return planningItems;
+
+    const schedulerEvent1: SchedulerEvent = new SchedulerEvent('12233', null, moment('2023-02-13 09:00:00').toDate(), moment('2023-02-14 08:00:00').toDate(), PlanningState.STARTED + ' striped');
+    const schedulerEvent2: SchedulerEvent = new SchedulerEvent('44555', null, moment('2023-02-13 09:00:00').toDate(), moment('2023-02-13 17:00:00').toDate(), PlanningState.MAINTAIN);
+    const schedulerRow: SchedulerRow = new SchedulerRow('Maschine 1', null, [schedulerEvent1, schedulerEvent2]);
+
+    const schedulerEvent3: SchedulerEvent = new SchedulerEvent('66666', null, moment('2023-02-13 09:00:00').toDate(), moment('2023-02-13 11:00:00').toDate(), PlanningState.DISRUPTED);
+    const schedulerEvent4: SchedulerEvent = new SchedulerEvent('4444',  null,moment('2023-02-14 09:00:00').toDate(), moment('2023-02-14 16:00:00').toDate(), PlanningState.STARTED);
+    const schedulerRow2: SchedulerRow = new SchedulerRow('Maschine 2', null, [schedulerEvent3, schedulerEvent4]);
+
+    const schedulerEvent5: SchedulerEvent = new SchedulerEvent('12233', null, moment('2023-02-13 09:00:00').toDate(), moment('2023-02-14 08:00:00').toDate(), PlanningState.STARTED + ' striped');
+    const schedulerEvent6: SchedulerEvent = new SchedulerEvent('44555', null, moment('2023-02-14 09:00:00').toDate(), moment('2023-02-15 17:00:00').toDate(), PlanningState.MAINTAIN);
+    const schedulerRow3: SchedulerRow = new SchedulerRow('Maschine 3', null, [schedulerEvent5, schedulerEvent6]);
+
+    const schedulerEvent7: SchedulerEvent = new SchedulerEvent('44555', null, moment('2023-02-13 09:00:00').toDate(), moment('2023-02-15 17:00:00').toDate(), PlanningState.STARTED + ' striped');
+    const schedulerRow4: SchedulerRow = new SchedulerRow('Maschine 4', null, [schedulerEvent7]);
+
+    const schedulerRows: SchedulerRow[] = [schedulerRow, schedulerRow2, schedulerRow3, schedulerRow4];
+
+    return schedulerRows;
   }
 }
