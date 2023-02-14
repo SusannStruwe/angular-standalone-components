@@ -1,16 +1,21 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, LOCALE_ID, Output } from '@angular/core';
 import localeDe from '@angular/common/locales/de';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 
-registerLocaleData(localeDe, 'de-DE', 'de');
+registerLocaleData(localeDe);
 
 @Component({
   selector: 'date-picker-component',
   standalone: true,
-  imports:[CommonModule, FormsModule, FontAwesomeModule],
+  providers:[{ provide: LOCALE_ID, useValue: 'de-DE'}],
+  imports:[
+    CommonModule, 
+    FormsModule, 
+    FontAwesomeModule
+  ],
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.scss']
 })

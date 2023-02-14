@@ -1,33 +1,47 @@
 
 
 <div class="navigation-bar">
-    <h2 *ngIf="timeSpan !=='DAY'">{{startDate | date:'dd.' }} - {{endDate | date:'dd.MMMM yyyy'}}</h2>
-    <h2 *ngIf="timeSpan ==='DAY'">{{endDate | date:'dd.MMMM yyyy'}}</h2>
     <btn-group-component
         [btnArray] = "buttons"
-        [activeBtn]="'DAY'"
-        (clickedBtn)="clickedBtn($event)">
+        [activeBtn]="'Tag'"
+        (clickedBtn)="timeSpanBtnClicked($event)">
     </btn-group-component>
+
+    <div class="flex-row">
+        <button (click)="previous()">
+            <fa-icon [icon]="faArrowLeft"></fa-icon>
+        </button>
+        <button (click)="next()">
+            <fa-icon [icon]="faArrowRight"></fa-icon>
+        </button>
+    </div>
 </div>
 
 <div class="scheduler">
+
     <!--header-->
     <div class="scheduler-header">
         <div></div>
-        <div></div>
-    </div>
-
-    <div class="scheduler-header">
-        <div></div>
-        <div *ngFor="let item of getColumns()"
-        [class.active]="isCurrent(item)">{{item}}</div>
+        <span class="flex-column">
+            <div>
+                <h2 *ngIf="timeSpan !=='day'" [style.min-width]="'290px'">{{startDate | date:'dd.' }} - {{endDate | date:'dd. MMMM yyyy'}}</h2>
+                <h2 *ngIf="timeSpan ==='day'"  [style.min-width]="'200px'">{{endDate | date:'dd. MMMM yyyy'}}</h2>
+            </div>
+            <div class="flex-row" *ngIf="timeSpan !== 'day'">
+                <div *ngFor="let item of getWeekDays()">{{item | date:'EEEEEE'}}</div>
+            </div>
+            <div class="flex-row">
+                <div *ngFor="let item of getColumns()"
+                [class.active]="isCurrent(item)">{{item}}</div>
+            </div>
+        </span>
     </div>
 
     <!--content-->
     <div class="scheduler-content">
        
         <div class="scheduler-content-row"
-            *ngFor="let schedulerRow of filteredSchedulerRows">
+            *ngFor="let schedulerRow of schedulerRows">
 
              <!-- background -->
             <div class="background">
@@ -37,11 +51,12 @@
             </div>
 
             <!-- foreground -->
-            <div *ngFor="let schedulerEvent of schedulerRow.schedulerEvents" 
+            <div 
+            *ngFor="let schedulerEvent of schedulerRow.schedulerEvents" 
             class="scheduler-event"
             [ngClass]="getStateClass(schedulerEvent)"
             [style.left]="getSchedulerEventLeftPosition(schedulerEvent.startDate) + 'px'"
-            [style.width]="getSchedulerEventWidthPosition(schedulerEvent.startDate, schedulerEvent.endDate) + 'px'"
+            [style.width]="getSchedulerEventWidthPosition(schedulerEvent) + 'px'"
             (click)="schedulerEventClicked(schedulerEvent)">
                 {{schedulerEvent.label}}
             </div>

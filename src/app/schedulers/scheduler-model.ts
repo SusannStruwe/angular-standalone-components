@@ -24,7 +24,7 @@ export enum PlanningState {
 }
 
 export enum TimeSpan {
-    MONTH = 'MONTH',
-    DAY = 'DAY',
-    WEEK = 'WEEK'
+    MONTH = 'month',
+    DAY = 'day',
+    WEEK = 'week'
 }

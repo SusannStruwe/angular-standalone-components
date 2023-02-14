@@ -1,28 +1,14 @@
 @import 'src/content/_baseVariables';
 
 $border-color: #ccc;
-$header-bg-color: #fefefe;
-$cell-width: 7.5%;
+$header-bg-color: white;
+$cell-width: 10%;
 $first-cell-width: 175px;
 $row-height: 40px;
+$btnHeight: 45px;
+$borderRadius: 4px;
 
 /******* machine-state-colors *******/
-/*$normal-state-color: #5cb55a;
-$normal-state-color-stripe-1: #49a048; 
-$normal-state-color-stripe-2: #5cb55a; 
-
-$acting-state-color: #5699e4; 
-$acting-state-color-stripe-1: #4987cf; 
-$acting-state-color-stripe-2: #5699e4; 
-
-$critical-state-color: #ea7d12; 
-$critical-state-color-stripe-1: #d17111; 
-$critical-state-color-stripe-2: #ea7d12; 
-
-$paused-state-color: #aaa; 
-$paused-state-color-stripe-1: #999; 
-$paused-state-color-stripe-2: #aaa; */
-
 $normal-state-color: #00bdab;
 $normal-state-color-stripe-1: #02a090; 
 $normal-state-color-stripe-2: #00bdab; 
@@ -51,8 +37,35 @@ $paused-state-color-stripe-2: #aaa;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 10px 5px;
+    align-items: center;
+    margin: 5px 5px;
+
+    button{
+        position: relative;
+        height: $btnHeight;
+        margin: 0px 5px;
+        padding: 10px 30px;
+        border: 0;
+        font-weight: 300;
+        font-size: $font-size;
+        background: $primary-color;
+        color: $gray;
+        cursor: pointer;
+        border-radius: $borderRadius;
+      
+        fa-icon{
+          color: white;
+        }
+      
+        span{
+          margin: 0px 5px;
+        }
+        &:hover{
+            background: $primary-color-dark;
+        }
+    }
 }
+
 
 .scheduler{
     position: relative;
@@ -61,9 +74,6 @@ $paused-state-color-stripe-2: #aaa;
     width: 100%;
 }
 
-.scheduler-top-header{
-
-}
 
 .scheduler-header{
     display: flex;
@@ -75,26 +85,57 @@ $paused-state-color-stripe-2: #aaa;
     top: 0;
     left: 0;
 
-    & > div{
-        flex-grow: 1;
-        padding: 5px;
-        border-top: 1px solid $border-color;
-        border-bottom: 1px solid $border-color;
-        border-right: 1px solid $border-color;
-        overflow: hidden;
-        width: $cell-width;
-
+    & > div {
+              
         &:first-of-type{
+            padding: 5px;
             text-align: left;
-            min-width: $first-cell-width;
+            flex: 0 0 $first-cell-width;
+            border-top: 1px solid $border-color;
+            border-bottom: 1px solid $border-color;
             border-right: 2px solid $border-color;
             border-left: 1px solid $border-color;
         }
+    }
 
-        &.active{
-            font-weight: 600;
-            background-color: $primary-color-light;
-            border: 1px solid $primary-color;
+    h2{
+        margin: 10px 10px;
+    }
+
+    .flex-column{
+        width: 100%;
+        & > div{
+            border-top: 1px solid $border-color;
+            border-right:1px solid $border-color;
+        }
+    }
+
+    .flex-row{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        top: 0;
+        left: 0;
+
+        & > div{
+            flex-grow: 1;
+            padding: 5px;
+            border-right: 1px solid $border-color;
+            overflow: hidden;
+            width: $cell-width;
+    
+            &.active{
+                font-weight: 600;
+                background-color: $primary-color-light;
+                border: 1px solid $primary-color;
+            }
+            &:last-of-type{
+                border-right: none;
+            }
+        }
+
+        &:last-of-type{
+            border-bottom: 1px solid $border-color;
         }
     }
 }
@@ -127,7 +168,7 @@ $paused-state-color-stripe-2: #aaa;
     
             &:first-of-type{
                 text-align: left;
-                min-width: $first-cell-width;
+                flex: 0 0 $first-cell-width;
                 border-left: 1px solid $border-color;
                 border-right: 2px solid $border-color;
                 font-weight: 400;
