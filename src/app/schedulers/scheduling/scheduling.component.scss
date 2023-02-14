@@ -27,6 +27,12 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
     display: inline-block;
     width: 1300px;
     min-height: 300px;
+
+    // will force the browser to calculate the width according to the "outer"-width of the div, 
+    // padding will be subtracted from the width
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
 }
 
 .navigation-bar{
@@ -199,15 +205,16 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
 
     .scheduler-event{
         position: absolute;
-        z-index: 10;
-        height: 30px;
-        line-height: 30px;
-        margin-left: calc($first-cell-width + 12px);
-        top: 5px;
+        top: 8px;
         left: 100px;
-        padding: 5px 0px;
+        z-index: 10;
+        height: 25px;
+        line-height: 25px;
+        margin-left: calc($first-cell-width + 12px);
+        padding: 5px;
         border-radius: 5px;
         overflow: hidden;
+        text-overflow: ellipsis;
         color: white;
         cursor: pointer;
 
