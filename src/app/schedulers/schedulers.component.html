@@ -9,7 +9,9 @@
     <div class="container">
         <h2>scheduling-component</h2>
         <div class="flex-row">
-            <scheduling-component></scheduling-component>
+            <scheduling-component
+            [schedulerRows]="schedulerRows"
+            (schedulerEventSelected)="schedulerEventSelected($event)"></scheduling-component>
         </div>
     </div>
     

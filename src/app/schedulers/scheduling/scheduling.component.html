@@ -28,7 +28,8 @@
                 <h2 *ngIf="timeSpan ==='day'"  [style.min-width]="'200px'">{{endDate | date:'dd. MMMM yyyy'}}</h2>
             </div>
             <div class="flex-row" *ngIf="timeSpan !== 'day'">
-                <div *ngFor="let item of getWeekDays()">{{item | date:'EEEEEE'}}</div>
+                <div *ngFor="let item of getWeekDays()"
+                [class.active]="isCurrent(item)">{{item | date:'EEEEEE'}}</div>
             </div>
             <div class="flex-row">
                 <div *ngFor="let item of getColumns()"
@@ -54,7 +55,7 @@
             <div 
             *ngFor="let schedulerEvent of schedulerRow.schedulerEvents" 
             class="scheduler-event"
-            [ngClass]="getStateClass(schedulerEvent)"
+            [ngClass]="getClassStyle(schedulerEvent)"
             [style.left]="getSchedulerEventLeftPosition(schedulerEvent.startDate) + 'px'"
             [style.width]="getSchedulerEventWidthPosition(schedulerEvent) + 'px'"
             (click)="schedulerEventClicked(schedulerEvent)">

@@ -1,7 +1,7 @@
 @import 'src/content/_baseVariables';
 
 $border-color: #ccc;
-$header-bg-color: white;
+$header-bg-color: #fbfbfb;
 $cell-width: 10%;
 $first-cell-width: 175px;
 $row-height: 40px;
@@ -9,9 +9,9 @@ $btnHeight: 45px;
 $borderRadius: 4px;
 
 /******* machine-state-colors *******/
-$normal-state-color: #00bdab;
+$normal-state-color: var(--primary-color);;
 $normal-state-color-stripe-1: #02a090; 
-$normal-state-color-stripe-2: #00bdab; 
+$normal-state-color-stripe-2: var(--primary-color);; 
 
 $acting-state-color: #5699e4; 
 $acting-state-color-stripe-1: #4987cf; 
@@ -48,7 +48,7 @@ $paused-state-color-stripe-2: #aaa;
         border: 0;
         font-weight: 300;
         font-size: $font-size;
-        background: $primary-color;
+        background: var(--primary-color);
         color: $gray;
         cursor: pointer;
         border-radius: $borderRadius;
@@ -81,6 +81,7 @@ $paused-state-color-stripe-2: #aaa;
     font-weight: 400;
     font-size: 0.9em;
     background-color: $header-bg-color;
+    border-bottom: 1px solid #aaa;
     position: relative;
     top: 0;
     left: 0;
@@ -90,6 +91,7 @@ $paused-state-color-stripe-2: #aaa;
         &:first-of-type{
             padding: 5px;
             text-align: left;
+            background-color: white;
             flex: 0 0 $first-cell-width;
             border-top: 1px solid $border-color;
             border-bottom: 1px solid $border-color;
@@ -105,8 +107,10 @@ $paused-state-color-stripe-2: #aaa;
     .flex-column{
         width: 100%;
         & > div{
-            border-top: 1px solid $border-color;
             border-right:1px solid $border-color;
+        }
+        &:first-of-type{
+            border-top: 1px solid $border-color;
         }
     }
 
@@ -120,14 +124,21 @@ $paused-state-color-stripe-2: #aaa;
         & > div{
             flex-grow: 1;
             padding: 5px;
-            border-right: 1px solid $border-color;
             overflow: hidden;
             width: $cell-width;
+            border-top: 1px solid $border-color;
+
+            &:nth-child(even){
+                border-left: 1px solid $border-color;
+                border-right: 1px solid $border-color;
+            }
     
             &.active{
                 font-weight: 600;
                 background-color: $primary-color-light;
-                border: 1px solid $primary-color;
+                border-top: 1px solid $primary-color;
+                border-left: 1px solid $primary-color;
+                border-right: 1px solid $primary-color;
             }
             &:last-of-type{
                 border-right: none;
@@ -164,8 +175,12 @@ $paused-state-color-stripe-2: #aaa;
             min-height: $row-height;
             line-height: $row-height;
             border-bottom: 1px solid $border-color;
-            border-right: 1px solid $border-color;
-    
+
+            &:nth-child(odd){
+                border-left: 1px solid $border-color;
+                border-right: 1px solid $border-color;
+            }
+
             &:first-of-type{
                 text-align: left;
                 flex: 0 0 $first-cell-width;
