@@ -1,168 +1,247 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { Order, PlanningItem, PlanningState, TimeSpan } from '../planning-item';
+import { SchedulerEvent, SchedulerRow, TimeSpan } from '../scheduler-model';
 import * as moment from 'moment';
 import { BtnGoupComponent } from 'src/app/buttons/btn-group/btn-group.component';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { LOCALE_ID } from '@angular/core';
 
+registerLocaleData(localeDe);
+const WEEK_DAY_FORMAT = 'DD';
 
 @Component({
   selector: 'scheduling-component',
   standalone: true,
-  imports:[CommonModule, FontAwesomeModule, BtnGoupComponent],
+  providers:[{ provide: LOCALE_ID, useValue: 'de-DE'}],
+  imports:[
+    CommonModule, 
+    FontAwesomeModule, 
+    BtnGoupComponent
+  ],
   templateUrl: './scheduling.component.html',
   styleUrls: ['./scheduling.component.scss']
 })
 export class SchedulingComponent {
   
-  @Input() planningItems: PlanningItem[] = [];
-  @Input() striped = true;
+  @Input() schedulerRows: SchedulerRow[] = [];
+  @Input() timeSpan: TimeSpan = TimeSpan.DAY;
+  @Output() schedulerEventSelected = new EventEmitter<SchedulerEvent>();
 
-  timeSpan = TimeSpan.DAY; 
+  @ViewChild('cellWidth') cellWidth?: ElementRef; 
+
   buttons = [
-    {text:TimeSpan.DAY},
-    {text:TimeSpan.WEEK},
-    {text:TimeSpan.MONTH}
+    {text:"Tag", value: TimeSpan.DAY},
+    {text:"Woche", value: TimeSpan.WEEK},
+    {text:"Monat", value: TimeSpan.MONTH}
   ];
+  activeTimeSpanBtn:string = "";
+  startDate: Date = moment().startOf('day').toDate();
+  endDate: Date = moment().endOf('day').toDate();
+  faArrowLeft = faChevronLeft;
+  faArrowRight = faChevronRight;
 
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(){
-    this.planningItems = this.getSampleData();
+    this.setTimeSpan(this.timeSpan);
+    this.activeTimeSpanBtn = this.buttons.filter((btn:any) => btn.value === this.timeSpan)[0].text;
   }
 
   ngAfterViewChecked(){
     this.cdr.detectChanges();
   }
 
-  //Click event from btn group
-  clickedBtn(btn: any){
-    this.timeSpan = btn.text as TimeSpan;
+  next():void{
+    switch(this.timeSpan){
+      case  TimeSpan.MONTH: 
+        this.startDate = moment(this.startDate).add(1, 'month').startOf('month').toDate();
+        this.endDate = moment(this.endDate).add(1, 'month').endOf('month').toDate();
+        break;
+      case  TimeSpan.DAY: 
+        this.startDate = moment(this.startDate).add(1, 'day').startOf('day').toDate();
+        this.endDate = moment(this.endDate).add(1, 'day').endOf('day').toDate();
+        break;
+      case  TimeSpan.WEEK: 
+        this.startDate = moment(this.startDate).add(1, 'week').startOf('isoWeek').toDate();
+        this.endDate = moment(this.endDate).add(1, 'week').endOf('isoWeek').toDate();
+        break;
+    }
     this.cdr.detectChanges();
   }
 
-  // Check if item is current day or hour
-  isCurrent(item: string):boolean{
-    if(this.timeSpan == TimeSpan.DAY){
-      let current = new Date().getHours();
-      return current.toString() +':00' == item;
-    }else{
-      let current = this.timeSpan == TimeSpan.WEEK ? moment().format('DD.MM'): moment().format('DD');
-      return current.toString() == item;
+  previous():void{
+    switch(this.timeSpan){
+      case  TimeSpan.MONTH:
+        this.startDate = moment(this.startDate).subtract(1, 'month').startOf('month').toDate();
+        this.endDate = moment(this.endDate).subtract(1, 'month').endOf('month').toDate();
+        break;
+      case  TimeSpan.DAY: 
+        this.startDate = moment(this.startDate).subtract(1, 'day').startOf('day').toDate();
+        this.endDate = moment(this.endDate).subtract(1, 'day').endOf('day').toDate();
+        break;
+      case  TimeSpan.WEEK: 
+        this.startDate = moment(this.startDate).subtract(1, 'week').startOf('isoWeek').toDate();
+        this.endDate = moment(this.endDate).subtract(1, 'week').endOf('isoWeek').toDate();
+        break;
+    }
+    this.cdr.detectChanges();
+  }
+
+  //Click event from btn group
+  timeSpanBtnClicked(btn: any){
+    this.setTimeSpan(btn.value as TimeSpan);
+    this.cdr.detectChanges();
+  }
+
+  //Click event from scheduler event
+  schedulerEventClicked(item:SchedulerEvent){
+    this.schedulerEventSelected.emit(item);
+  }
+
+  //Sets new timeSpan
+  setTimeSpan(timeSpan: TimeSpan):void{
+    this.timeSpan = timeSpan;
+    switch(this.timeSpan){
+      case  TimeSpan.MONTH: 
+        this.startDate = moment().startOf('month').toDate();
+        this.endDate = moment().endOf('month').toDate();
+        break;
+      case  TimeSpan.DAY: 
+        this.startDate = moment().startOf('day').toDate();
+        this.endDate = moment().endOf('day').toDate();
+        break;
+      case  TimeSpan.WEEK: 
+        this.startDate = moment().startOf('isoWeek').toDate();
+        this.endDate = moment().endOf('isoWeek').toDate();
+        break;
     }
   }
 
+  // Check if item is current day or hour
+  isCurrent(item: string | Date):boolean{
+    let current = new Date();
+
+    if(item instanceof Date){
+      return moment(item).isSame(current, 'day');
+
+    }else{
+      if(this.timeSpan == TimeSpan.DAY){
+        return this.leadingZero(current.getHours()) +':00' == item && moment(this.startDate).isSame(current, 'day');
+      }else{
+        let currentFormatted = moment().format(WEEK_DAY_FORMAT);
+        return currentFormatted.toString() == item && moment(current).isSameOrBefore(this.endDate) && moment(current).isSameOrAfter(this.startDate);
+      }
+    }
+  }
+
+  //Gets cell columns
   getColumns() {
     let columns = [];
-
     switch(this.timeSpan){
       case  TimeSpan.MONTH: columns = this.getDays();
         break;
       case  TimeSpan.DAY: columns = this.getHours();
         break;
-      case  TimeSpan.WEEK: columns = this.getWeekDays();
+      case  TimeSpan.WEEK: columns = this.getDays();
         break;
     }
     return columns;
   }
 
-  planningItemClicked(item:PlanningItem){
-    console.log(item);
-  }
-
-  getPlanningItemLeftPosition(startDate: Date):number{
+  //Calculates scheduler event left position
+  getSchedulerEventLeftPosition(eventStartDate: Date):number{
     const cellWidth = this.getCellWidth();
-
-    if(this.timeSpan == TimeSpan.DAY){
-      const startHour = startDate.getHours();
-      const startMinutes = startDate.getMinutes();
-      return  Math.round(startHour * cellWidth + (startMinutes*cellWidth / 100));
-
+    if(moment(eventStartDate).isSameOrAfter(this.startDate)){
+      const duration = moment.duration(moment(eventStartDate).diff(moment(this.startDate)));
+      return  Math.trunc(duration.asMinutes() * cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440));
     }else{
-      const schedulerStart = this.timeSpan == TimeSpan.WEEK ? moment().startOf('week') : moment().startOf('month');
-      const startDay = moment(startDate);
-      const duration = moment.duration(moment(startDay).diff(moment(schedulerStart)));
-      const startHour = startDate.getHours();
-      const startMinutes = startDate.getMinutes();
-      // 1 day -> 24 hours -> 1140 minutes
-      console.log(Math.trunc(duration.asDays()) * cellWidth);
-      return Math.trunc(Math.trunc(duration.asDays()) * cellWidth) +  Math.trunc(startHour * cellWidth / 24) + Math.trunc(startMinutes * cellWidth / 1140);
-    } 
-  }
-
-  getPlanningItemWidth(startDate: Date, endDate: Date):number{
-    const cellWidth = this.getCellWidth();
-    const duration = moment.duration(moment(endDate).diff(moment(startDate)));
-    const minuteDuration = duration.asMinutes();
-    // day -> cell is 60min
-    // week & month > cell is 24h -> 1.440min
-    return Math.round((minuteDuration/(this.timeSpan == TimeSpan.DAY ? 60 : 1440)) * cellWidth);
-  }
-
-  getCellWidth():number{
-    const backgroundEl = document.getElementsByClassName('background')[0];
-    const cellWidth = backgroundEl.children[1].getClientRects()[0].width;
-    return cellWidth;
-  }
-
-  getStateClass(order: Order):string{
-    return `${order.state}`+ (this.striped? ' striped' : '');
-  }
-
-  // Generates array of days from current month
-  getDays():string[]{
-    const days = [];
-    const dateStart = moment().startOf('month');
-    const dateEnd = moment().endOf('month');
-
-    while (dateStart.isBefore(dateEnd)) {
-       days.push(dateStart.format('DD'))
-       dateStart.add(1, 'days')
+      return 0;
     }
-    return days;
   }
 
-  // Generates array of week day from current week
-  getWeekDays():string[]{
+  //Calculates scheduler event width
+  getSchedulerEventWidthPosition(event: SchedulerEvent):number{
+    if(this.isBetween(event)){
+      const cellWidth = this.getCellWidth();
+      let duration: moment.Duration;
+      if(moment(event.startDate).isBefore(this.startDate)){
+        duration = moment.duration(moment(event.endDate).diff(moment(this.startDate)));
+      }else{
+        duration = moment.duration(moment(event.endDate).diff(moment(event.startDate)));
+      }
+      return Math.trunc((duration.asMinutes() * cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440)));
+    }else{
+      return 0;
+    }
+  }
+
+  // Checks scheduler event should be shown
+  isBetween(event: SchedulerEvent):boolean{
+    let case1 = moment(event.startDate).isBefore(this.startDate) && moment(event.endDate).isAfter(this.endDate);
+    let case2 = moment(event.startDate).isAfter(this.startDate) && moment(event.startDate).isBefore(this.endDate) && moment(event.endDate).isAfter(this.endDate);
+    let case3 = moment(event.startDate).isBefore(this.startDate) && moment(event.endDate).isAfter(this.startDate) && moment(event.endDate).isBefore(this.endDate);
+    let case4 = moment(event.startDate).isAfter(this.startDate) && moment(event.endDate).isBefore(this.endDate);
+    return case1 || case2 || case3 || case4;
+  }
+
+  //Get width from cell
+  getCellWidth():number{
+    if(this.cellWidth){
+      return this.cellWidth.nativeElement.offsetWidth;
+    }else{
+      return 0;
+    }
+  }
+
+  //Get class style as string
+  getClassStyle(schedulerEvent: SchedulerEvent):string{
+    let startedPreviousDay = '';
+    if(this.getSchedulerEventLeftPosition(schedulerEvent.startDate) === 0){
+      startedPreviousDay = ' no-left-radius';
+    }
+    return `${schedulerEvent.classStyle}` + startedPreviousDay;
+  }
+
+  // Generates array of days from current month or week
+  getDays(): string[]{
     const days = [];
-    const dateStart = moment().startOf('week');
-    const dateEnd = moment().endOf('week');
+    const dateStart = moment(this.startDate).startOf(this.timeSpan === TimeSpan.WEEK ? 'isoWeek' : this.timeSpan);
+    const dateEnd = moment(this.endDate).endOf(this.timeSpan === TimeSpan.WEEK ? 'isoWeek' : this.timeSpan);
 
     while (dateStart.isBefore(dateEnd)) {
-       days.push(dateStart.format('DD.MM'))
-       dateStart.add(1, 'days')
+       days.push(dateStart.format(WEEK_DAY_FORMAT));
+       dateStart.add(1, 'days');
     }
     return days;
   }
 
   // Generates array of hours from current day
   getHours(): string[] {
-    const header = [];
+    const header: string[] = [];
     for (let i = 0; i < 24; i ++) {
       header.push(`${this.leadingZero(i % 24)}:00`);
     }
     return header;
   }
 
+  // Generates array of iso week days 
+  getWeekDays(): Date[]{
+    const days = [];
+    const dateStart = moment(this.startDate).startOf(this.timeSpan === TimeSpan.WEEK ? 'isoWeek' : this.timeSpan);
+    const dateEnd = moment(this.endDate).endOf(this.timeSpan === TimeSpan.WEEK ? 'isoWeek' : this.timeSpan);
+
+    while (dateStart.isBefore(dateEnd)) {
+      days.push(dateStart.toDate());
+      dateStart.add(1, 'days');
+   }
+    return days;
+  }
+
+  //add leading zero to single digit numbers 
   leadingZero(num: number): string {
     if (num < 10) return `0${num}`;
     else return `${num}`;
-  }
-
-
-  getSampleData():PlanningItem[]{
-    const order1: Order = new Order('12233', moment().subtract(16, 'hours').toDate(), moment().subtract(9, 'hours').toDate(), PlanningState.STARTED);
-    const order2: Order = new Order('44555', moment().subtract(8.9, 'hours').toDate(), moment().subtract(7, 'hours').toDate(), PlanningState.MAINTAIN);
-    const order3: Order = new Order('66666', moment().subtract(6, 'hours').toDate(), moment().subtract(0, 'hours').toDate(), PlanningState.DISRUPTED);
-    const order4: Order = new Order('4444', moment().subtract(17, 'hours').toDate(), moment().subtract(12, 'hours').toDate(), PlanningState.STARTED);
-  
-    const planningItem: PlanningItem = new PlanningItem(null, 'Maschine 1', [order1, order2, order3]);
-    const planningItem2: PlanningItem = new PlanningItem(null, 'Maschine 2', [order1, order2, order3]);
-    const planningItem3: PlanningItem = new PlanningItem(null, 'Maschine 3', [order4, order2, order3]);
-    const planningItem4: PlanningItem = new PlanningItem(null, 'Maschine 4', [order1, order2, order3]);
-    const planningItem5: PlanningItem = new PlanningItem(null, 'Maschine 5', [order1, order2, order3]);
-    const planningItems: PlanningItem[] = [planningItem, planningItem2, planningItem3, planningItem4, planningItem5];
-
-    return planningItems;
   }
 }

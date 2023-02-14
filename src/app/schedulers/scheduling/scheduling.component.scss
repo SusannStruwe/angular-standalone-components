@@ -1,43 +1,25 @@
 @import 'src/content/_baseVariables';
 
 $border-color: #ccc;
-$header-bg-color: #fefefe;
-$cell-width: 7.5%;
+$header-bg-color: #fbfbfb;
+$cell-width: 10%;
 $first-cell-width: 175px;
 $row-height: 40px;
+$btnHeight: 45px;
+$borderRadius: 4px;
 
 /******* machine-state-colors *******/
-/*$normal-state-color: #5cb55a;
-$normal-state-color-stripe-1: #49a048; 
-$normal-state-color-stripe-2: #5cb55a; 
+$normal-state-color:$primary-color;
+$normal-state-color-dark: darken($normal-state-color, 5%);
 
 $acting-state-color: #5699e4; 
-$acting-state-color-stripe-1: #4987cf; 
-$acting-state-color-stripe-2: #5699e4; 
-
-$critical-state-color: #ea7d12; 
-$critical-state-color-stripe-1: #d17111; 
-$critical-state-color-stripe-2: #ea7d12; 
-
-$paused-state-color: #aaa; 
-$paused-state-color-stripe-1: #999; 
-$paused-state-color-stripe-2: #aaa; */
-
-$normal-state-color: #00bdab;
-$normal-state-color-stripe-1: #02a090; 
-$normal-state-color-stripe-2: #00bdab; 
-
-$acting-state-color: #5699e4; 
-$acting-state-color-stripe-1: #4987cf; 
-$acting-state-color-stripe-2: #5699e4; 
+$acting-state-color-dark: darken($acting-state-color, 5%);
 
 $critical-state-color: #f58b20; 
-$critical-state-color-stripe-1: #d87513; 
-$critical-state-color-stripe-2: #f58b20; 
+$critical-state-color-dark: darken($critical-state-color, 5%);
 
 $paused-state-color: #aaa; 
-$paused-state-color-stripe-1: #999; 
-$paused-state-color-stripe-2: #aaa; 
+$paused-state-color-dark: darken($paused-state-color, 5%);
 
 
 :host{
@@ -45,6 +27,45 @@ $paused-state-color-stripe-2: #aaa;
     display: inline-block;
     width: 1300px;
     min-height: 300px;
+
+    // will force the browser to calculate the width according to the "outer"-width of the div, 
+    // padding will be subtracted from the width
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
+}
+
+.navigation-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 5px;
+
+    button{
+        position: relative;
+        height: $btnHeight;
+        margin: 0px 5px;
+        padding: 10px 30px;
+        border: 0;
+        font-weight: 300;
+        font-size: $font-size;
+        background: var(--primary-color);
+        color: $gray;
+        cursor: pointer;
+        border-radius: $borderRadius;
+      
+        fa-icon{
+          color: white;
+        }
+      
+        span{
+          margin: 0px 5px;
+        }
+        &:hover{
+            filter: brightness(0.9);
+        }
+    }
 }
 
 
@@ -55,34 +76,79 @@ $paused-state-color-stripe-2: #aaa;
     width: 100%;
 }
 
+
 .scheduler-header{
     display: flex;
     flex-direction: row;
     font-weight: 400;
     font-size: 0.9em;
     background-color: $header-bg-color;
+    border-bottom: 1px solid #aaa;
     position: relative;
     top: 0;
     left: 0;
 
-    & > div{
-        flex-grow: 1;
-        padding: 5px;
-        border-top: 1px solid $border-color;
-        border-bottom: 1px solid $border-color;
-        border-right: 1px solid $border-color;
-        overflow: hidden;
-        width: $cell-width;
-
+    & > div {
+              
         &:first-of-type{
-            min-width: $first-cell-width;
+            padding: 5px;
+            text-align: left;
+            background-color: white;
+            flex: 0 0 $first-cell-width;
+            border-top: 1px solid $border-color;
+            border-bottom: 1px solid $border-color;
+            border-right: 2px solid $border-color;
             border-left: 1px solid $border-color;
         }
+    }
 
-        &.active{
-            font-weight: 600;
-            background-color: $primary-color-light;
-            border: 1px solid $primary-color;
+    h2{
+        margin: 10px 10px;
+    }
+
+    .flex-column{
+        width: 100%;
+        & > div{
+            border-right:1px solid $border-color;
+        }
+        &:first-of-type{
+            border-top: 1px solid $border-color;
+        }
+    }
+
+    .flex-row{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        top: 0;
+        left: 0;
+
+        & > div{
+            flex-grow: 1;
+            padding: 5px;
+            overflow: hidden;
+            width: $cell-width;
+            border-top: 1px solid $border-color;
+
+            &:nth-child(even){
+                border-left: 1px solid $border-color;
+                border-right: 1px solid $border-color;
+            }
+    
+            &.active{
+                font-weight: 600;
+                background-color: $primary-color-light;
+                border-top: 1px solid $primary-color;
+                border-left: 1px solid $primary-color;
+                border-right: 1px solid $primary-color;
+            }
+            &:last-of-type{
+                border-right: none;
+            }
+        }
+
+        &:last-of-type{
+            border-bottom: 1px solid $border-color;
         }
     }
 }
@@ -106,15 +172,22 @@ $paused-state-color-stripe-2: #aaa;
 
         & > div{
             flex-grow: 1;
-            padding: 5px;
+            padding: 5px 0px 5px 10px;
             width: $cell-width;
             min-height: $row-height;
+            line-height: $row-height;
             border-bottom: 1px solid $border-color;
-            border-right: 1px solid $border-color;
-    
-            &:first-of-type{
-                min-width: $first-cell-width;
+
+            &:nth-child(odd){
                 border-left: 1px solid $border-color;
+                border-right: 1px solid $border-color;
+            }
+
+            &:first-of-type{
+                text-align: left;
+                flex: 0 0 $first-cell-width;
+                border-left: 1px solid $border-color;
+                border-right: 2px solid $border-color;
                 font-weight: 400;
             }
 
@@ -130,19 +203,25 @@ $paused-state-color-stripe-2: #aaa;
         }
     }
 
-    .planning-item{
+    .scheduler-event{
         position: absolute;
-        z-index: 10;
-        height: 30px;
-        line-height: 30px;
-        margin-left: calc($first-cell-width + 12px);
-        top: 5px;
+        top: 8px;
         left: 100px;
-        padding: 5px 0px;
+        z-index: 10;
+        height: 25px;
+        line-height: 27px;
+        margin-left: calc($first-cell-width + 12px);
+        padding: 5px 7px;
         border-radius: 5px;
         overflow: hidden;
+        text-overflow: ellipsis;
         color: white;
         cursor: pointer;
+
+        &.no-left-radius{
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
     }
 }
 
@@ -152,11 +231,14 @@ $paused-state-color-stripe-2: #aaa;
     &.striped{
         background: repeating-linear-gradient(
             135deg,
-            $normal-state-color-stripe-1,
-            $normal-state-color-stripe-1 10px,
-            $normal-state-color-stripe-2 10px,
-            $normal-state-color-stripe-2 20px
+            $normal-state-color-dark,
+            $normal-state-color-dark 10px,
+            $normal-state-color 10px,
+            $normal-state-color 20px
         );
+    }
+    &:hover{
+        filter: brightness(0.9);
     }
 }
 
@@ -165,11 +247,14 @@ $paused-state-color-stripe-2: #aaa;
     &.striped{
         background: repeating-linear-gradient(
             135deg,
-            $acting-state-color-stripe-1,
-            $acting-state-color-stripe-1 10px,
-            $acting-state-color-stripe-2 10px,
-            $acting-state-color-stripe-2 20px
+            $acting-state-color-dark,
+            $acting-state-color-dark 10px,
+            $acting-state-color 10px,
+            $acting-state-color 20px
         );
+    }
+    &:hover{
+        filter: brightness(0.9);
     }
 }
 .paused{
@@ -177,11 +262,14 @@ $paused-state-color-stripe-2: #aaa;
     &.striped{
         background: repeating-linear-gradient(
             135deg,
-            $paused-state-color-stripe-1,
-            $paused-state-color-stripe-1 10px,
-            $paused-state-color-stripe-2 10px,
-            $paused-state-color-stripe-2 20px
+            $paused-state-color-dark,
+            $paused-state-color-dark 10px,
+            $paused-state-color 10px,
+            $paused-state-color 20px
         );
+    }
+    &:hover{
+        filter: brightness(0.9);
     }
 }
 
@@ -190,11 +278,14 @@ $paused-state-color-stripe-2: #aaa;
     &.striped{
         background: repeating-linear-gradient(
             135deg,
-            $critical-state-color-stripe-1,
-            $critical-state-color-stripe-1 10px,
-            $critical-state-color-stripe-2 10px,
-            $critical-state-color-stripe-2 20px
+            $critical-state-color-dark,
+            $critical-state-color-dark 10px,
+            $critical-state-color 10px,
+            $critical-state-color 20px
         );
+    }
+    &:hover{
+        filter: brightness(0.9);
     }
 }
 

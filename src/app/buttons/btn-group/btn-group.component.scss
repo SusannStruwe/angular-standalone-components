@@ -1,6 +1,6 @@
 @import 'src/content/_baseVariables';
 
-$btnHeight: 50px;
+$btnHeight: 45px;
 $borderRadius: 4px;
 $borderWidth: 2px;
 
@@ -55,7 +55,8 @@ button {
   }
 
   &:hover{
-    background-color: var(--primary-color-dark);
+    // background-color: var(--primary-color-dark);
+    filter: brightness(0.9);
   }
 }
 
