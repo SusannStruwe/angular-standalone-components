@@ -3,8 +3,8 @@
 <div class="navigation-bar">
     <btn-group-component
         [btnArray] = "buttons"
-        [activeBtn]="'Tag'"
-        (clickedBtn)="timeSpanBtnClicked($event)">
+        [activeBtn]="activeTimeSpanBtn"
+        (btnSelected)="timeSpanBtnClicked($event)">
     </btn-group-component>
 
     <div class="flex-row">

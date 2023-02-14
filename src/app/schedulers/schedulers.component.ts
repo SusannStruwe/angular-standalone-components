@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import * as moment from 'moment';
 import { ThemeChangerComponent } from '../layout/theme-changer/theme-changer.component';
-import { PlanningState, SchedulerEvent, SchedulerRow } from './scheduler-model';
+import { PlanningState, SchedulerEvent, SchedulerRow, TimeSpan } from './scheduler-model';
 import { SchedulingComponent } from './scheduling/scheduling.component';
 
 
@@ -19,6 +19,7 @@ import { SchedulingComponent } from './scheduling/scheduling.component';
 export class SchedulersComponent {
 
   schedulerRows: SchedulerRow[] = [];
+  timeSpan: TimeSpan = TimeSpan.WEEK;
 
   constructor() { }
 

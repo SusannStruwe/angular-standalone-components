@@ -26,6 +26,7 @@ const WEEK_DAY_FORMAT = 'DD';
 export class SchedulingComponent {
   
   @Input() schedulerRows: SchedulerRow[] = [];
+  @Input() timeSpan: TimeSpan = TimeSpan.DAY;
   @Output() schedulerEventSelected = new EventEmitter<SchedulerEvent>();
 
   buttons = [
@@ -33,14 +34,18 @@ export class SchedulingComponent {
     {text:"Woche", value: TimeSpan.WEEK},
     {text:"Monat", value: TimeSpan.MONTH}
   ];
-
+  activeTimeSpanBtn:string = "";
   startDate: Date = moment().startOf('day').toDate();
   endDate: Date = moment().endOf('day').toDate();
-  timeSpan = TimeSpan.DAY; 
   faArrowLeft = faChevronLeft;
   faArrowRight = faChevronRight;
 
   constructor(private cdr: ChangeDetectorRef) { }
+
+  ngOnInit(){
+    this.setTimeSpan(this.timeSpan);
+    this.activeTimeSpanBtn = this.buttons.filter((btn:any) => btn.value === this.timeSpan)[0].text;
+  }
 
   ngAfterViewChecked(){
     this.cdr.detectChanges();
@@ -84,7 +89,7 @@ export class SchedulingComponent {
 
   //Click event from btn group
   timeSpanBtnClicked(btn: any){
-    this.changeTimeSpan(btn.value as TimeSpan);
+    this.setTimeSpan(btn.value as TimeSpan);
     this.cdr.detectChanges();
   }
 
@@ -94,7 +99,7 @@ export class SchedulingComponent {
   }
 
   //Sets new timeSpan
-  changeTimeSpan(timeSpan: TimeSpan):void{
+  setTimeSpan(timeSpan: TimeSpan):void{
     this.timeSpan = timeSpan;
     switch(this.timeSpan){
       case  TimeSpan.MONTH: 
