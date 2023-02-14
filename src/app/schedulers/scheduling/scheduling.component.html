@@ -62,13 +62,16 @@
                 </div>
             </div>
             <!-- foreground -->
-            <div class="scheduler-event"
-                *ngFor="let schedulerEvent of schedulerRow.schedulerEvents; let i = index" 
-                [ngClass]="getClassStyle(schedulerEvent)"
-                [style.left]="getSchedulerEventLeftPosition(schedulerEvent.startDate) + 'px'"
-                [style.width]="getSchedulerEventWidthPosition(schedulerEvent) + 'px'"
-                (click)="schedulerEventClicked(schedulerEvent)">{{schedulerEvent.label}}
+            <div  *ngFor="let schedulerEvent of schedulerRow.schedulerEvents" >
+                <div class="scheduler-event"
+                    *ngIf="isBetween(schedulerEvent)"
+                    [ngClass]="getClassStyle(schedulerEvent)"
+                    [style.left.px]="getSchedulerEventLeftPosition(schedulerEvent.startDate)"
+                    [style.width.px]="getSchedulerEventWidthPosition(schedulerEvent)"
+                    (click)="schedulerEventClicked(schedulerEvent)">{{schedulerEvent.label}}
+                </div>
             </div>
+            
         </div>
     </div>
 

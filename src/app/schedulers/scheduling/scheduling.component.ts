@@ -188,8 +188,11 @@ export class SchedulingComponent {
 
   //Get width from cell
   getCellWidth():number{
+    console.log(this.timeSpan);
+    console.log(this.cellWidth?.nativeElement.offsetWidth);
+    console.log(this.cellWidth?.nativeElement.getBoundingClientRect().width);
     if(this.cellWidth){
-      return this.cellWidth.nativeElement.offsetWidth;
+      return this.cellWidth.nativeElement.getBoundingClientRect().width;
     }else{
       return 0;
     }
