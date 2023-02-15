@@ -25,6 +25,8 @@ $input-height: 35px;
         border: 1px solid $gray-color;
         padding: 2px 5px 2px 10px;
         cursor: pointer;
+        color: var(--text-color);
+        background: transparent;
     }
 }
 
@@ -33,7 +35,7 @@ $input-height: 35px;
     position: absolute;
     top: 0;
     right: 0;
-    background: white;
+    background: var(--bg-color);
     border: 1px solid $gray-color;
     padding: 2px 10px;
     cursor: pointer;
@@ -51,7 +53,7 @@ $input-height: 35px;
     &:hover{
         background-color: var(--primary-color);
         fa-icon{
-            color: white;
+            color: var(--fa-icon-color);
         }
     }
     
