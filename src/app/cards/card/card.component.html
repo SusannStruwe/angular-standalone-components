@@ -1,21 +1,24 @@
 <div class="card shadow shine"
     [style.width]="width"
     [style.height]="height"
-    >
+    [style.justify-content]="!imageUrl && !bgColor ? 'end': 'space-between'">
 
     <img
     *ngIf="imageUrl"
-    [src]="imageUrl"
-    />
-    <div
-    *ngIf="bgColor"
-    class="bg-color"
-    [style.background]="bgColor"
-    ></div>
+    [style.height]="description?'65%':'75%'"
+    [src]="imageUrl"/>
 
-    <h1 class="title"
-    *ngIf="title">{{title}}</h1>
+    <div *ngIf="bgColor"
+    class="bg-color"
+    [style.height]="description?'65%':'75%'"
+    [style.background]="bgColor"></div>
+
+    <div *ngIf="!imageUrl && !bgColor"></div>
+
+    <h1 *ngIf="title"
+    class="title">{{title}}</h1>
     
-    <p class="description"
-    *ngIf="description">{{description}}</p>
+    <p *ngIf="description"
+    class="description">{{description}}</p>
+
 </div>
