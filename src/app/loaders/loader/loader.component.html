@@ -1,0 +1,8 @@
+
+<div class="icon-container">
+
+   <div *ngIf="style && animation" [ngClass]="[style, animation]"></div>
+   <div *ngIf="style && !animation" [ngClass]="[style]"></div>
+
+    <p *ngIf="text">{{text}}</p>
+</div>

@@ -1,0 +1,85 @@
+
+<div class="header">
+    <h1>Loaders</h1>
+    <theme-changer-component></theme-changer-component>
+</div>
+
+<div class="content">
+
+    <div class="container">
+        <h2>fa-icon-loader-component</h2>
+
+        <fa-icon-loader-component
+            [faIcon]="faSpinner"
+            [size]="45">
+        </fa-icon-loader-component>
+
+        <fa-icon-loader-component
+            [faIcon]="faSpinner"
+            [color]="'#63cdc3'"
+            [text]="'Daten werden geladen...'">
+        </fa-icon-loader-component>
+
+        <fa-icon-loader-component
+            [color]="'#0054bd'"
+            [faIcon]="faCircleNotch">
+        </fa-icon-loader-component>
+
+        <fa-icon-loader-component
+            [faIcon]="faCircleNotch"
+            [text]="'Daten werden geladen...'">
+        </fa-icon-loader-component>    
+    </div>   
+
+    <div class="container">
+        <h2>loader-component (style loader)</h2>
+        <loader-component
+            [style]="'loader'"
+            [animation]="'linear'">
+        </loader-component>
+
+        <loader-component
+            [style]="'loader'"
+            [animation]="'ease'">
+        </loader-component>
+
+        <loader-component
+            [style]="'loader'"
+            [animation]="'ease'"
+            [text]="'Daten werden geladen...'">
+        </loader-component>
+    </div>   
+
+    <div class="container">
+        <h2>loader-component (style loader-2)</h2>
+        <loader-component
+            [style]="'loader-2'"
+            [animation]="'ease'">
+        </loader-component>
+
+        <loader-component
+            [style]="'loader-2'"
+            [animation]="'linear'">
+        </loader-component>
+
+        <loader-component
+            [style]="'loader-2'"
+            [animation]="'linear'"
+            [text]="'Daten werden geladen...'">
+        </loader-component>
+    </div>   
+
+    <div class="container">
+        <h2>loader-component (style loader-3)</h2>
+        <loader-component
+            [style]="'loader-3'">
+        </loader-component>
+
+        <loader-component
+            [style]="'loader-3'"
+            [text]="'Daten werden geladen...'">
+        </loader-component>
+    </div> 
+
+
+</div>

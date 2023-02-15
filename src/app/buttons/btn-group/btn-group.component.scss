@@ -20,7 +20,7 @@ button {
   font-weight: 300;
   font-size: $font-size;
   border: $borderWidth solid var(--primary-color);
-  background: white;
+  background: transparent;
   color: var(--primary-color);
   cursor: pointer;
   margin-right: -$borderWidth;
@@ -47,10 +47,10 @@ button {
 
   &:hover, &.active{
     background-color: var(--primary-color);
-    color: white;
+    color: var(--fa-icon-color);
 
     fa-icon{
-        color: white;
+        color: var(--fa-icon-color);
     }
   }
 

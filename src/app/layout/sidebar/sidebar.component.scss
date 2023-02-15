@@ -1,21 +1,27 @@
 @import 'src/content/_baseVariables';
 
 
+:host{
+  box-sizing: border-box;
+}
+
 .sidebar{
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 0;
+  bottom: 50px;
   width: $sidebar-with;
-  background: white;
+  background: transparent;
   border-right: 1px solid #ddd;
   margin: 0;
   padding: 10px;
   z-index: 10;
+  box-sizing: border-box;
 
   li{
     padding: 5px; 
     cursor: pointer;
+    color: var(--text-color);
     border-bottom: 1px solid #ddd;
     font-size: 1.2em;
 
@@ -27,6 +33,29 @@
   .active{
     color: var(--primary-color);
   }
+}
+
+button{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.9em;
+    text-align: center;
+    height: 50px;
+    width: $sidebar-with;
+    border: none;
+    border-top: 1px solid #ddddddAA;
+    border-right: 1px solid #ddddddAA;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+
+    fa-icon{
+        color:var(--text-color);
+    }
+
+    &:hover{
+      filter: brightness(0.9);
+    }
 }
 
 

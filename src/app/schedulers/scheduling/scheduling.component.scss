@@ -1,11 +1,12 @@
 @import 'src/content/_baseVariables';
 
 $border-color: #ccc;
-$header-bg-color: #fbfbfb;
+$header-bg-color: rgb(000,000, 000, 0.03); // #fbfbfb;
 $first-cell-width: 175px;
 $row-height: 40px;
 $btnHeight: 45px;
 $borderRadius: 4px;
+$primary-color-light: rgb(0,189, 171, 0.15);
 
 /******* machine-state-colors *******/
 $normal-state-color:$primary-color;
@@ -50,12 +51,12 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
         font-weight: 300;
         font-size: $font-size;
         background: var(--primary-color);
-        color: $gray;
+        color: var(--gray);
         cursor: pointer;
         border-radius: $borderRadius;
       
         fa-icon{
-          color: white;
+          color: var(--fa-icon-color);
         }
       
         span{
@@ -93,7 +94,7 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
             padding: 5px 10px;
             box-sizing: border-box; 
             text-align: left;
-            background-color: white;
+            background-color: var(--bg-color);
             flex: 0 0 $first-cell-width;
             border-top: 1px solid $border-color;
             border-bottom: 1px solid $border-color;

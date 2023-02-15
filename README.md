@@ -5,6 +5,7 @@ This project is a collection of Angular standalone components and it was generat
 
 ![](./src/assets/overview.JPG)
 
+
 ## Development
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

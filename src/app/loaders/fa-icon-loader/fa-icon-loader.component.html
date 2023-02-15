@@ -1,0 +1,13 @@
+
+<div class="icon-container">
+
+    <fa-icon *ngIf="faIcon" 
+    [style.font-size.px]="size"
+    [style.color]="color"
+    [icon]="faIcon" 
+    [spin]="true"></fa-icon>
+
+    <p *ngIf="text"
+    [style.color]="color">{{text}}</p>
+
+</div>
