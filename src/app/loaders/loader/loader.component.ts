@@ -14,7 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class LoaderComponent {
 
-  @Input() style?: string;
+  @Input() type?: string;
   //example -> linear, ease
   @Input() animation?: string;  
 

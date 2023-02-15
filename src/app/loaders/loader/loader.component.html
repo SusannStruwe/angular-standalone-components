@@ -1,13 +1,13 @@
 
 <div class="icon-container">
 
-   <div *ngIf="style && animation" [ngClass]="[style, animation]">
+   <div *ngIf="type && animation" [ngClass]="[type, animation]">
         <span></span>
         <span></span>
         <span></span>
    </div>
 
-   <div *ngIf="style && !animation" [ngClass]="[style]">
+   <div *ngIf="type && !animation" [ngClass]="[type]">
         <span></span>
         <span></span>
         <span></span>
