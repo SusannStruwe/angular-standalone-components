@@ -32,7 +32,7 @@ $carousel-bar-height: 40px;
     padding: 15px;
 
     h1, p{
-      color: $text-color;
+      color: var(--text-color);
     }
 
     h1{

@@ -14,7 +14,7 @@ button {
   font-size: 1.2em;
 
   fa-icon{
-    color: $gray;
+    color: var(--gray);
   }
 
   &:hover {
@@ -25,5 +25,6 @@ button {
 
 .container{
   min-width: 650px;
+  justify-content: center;
 }
 

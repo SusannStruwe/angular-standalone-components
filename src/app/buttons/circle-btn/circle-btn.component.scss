@@ -18,7 +18,7 @@ button {
   transition: background 0.6s ease;
 
   fa-icon{
-    color: $gray;
+    color: var(--gray);
   }
 
   &:hover,&.active {

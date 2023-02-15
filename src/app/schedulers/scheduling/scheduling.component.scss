@@ -1,12 +1,12 @@
 @import 'src/content/_baseVariables';
 
 $border-color: #ccc;
-$header-bg-color: #fbfbfb;
-$cell-width: 10%;
+$header-bg-color: rgb(000,000, 000, 0.03); // #fbfbfb;
 $first-cell-width: 175px;
 $row-height: 40px;
 $btnHeight: 45px;
 $borderRadius: 4px;
+$primary-color-light: rgb(0,189, 171, 0.15);
 
 /******* machine-state-colors *******/
 $normal-state-color:$primary-color;
@@ -32,7 +32,7 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
     // padding will be subtracted from the width
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
-     box-sizing: border-box; 
+    box-sizing: border-box; 
 }
 
 .navigation-bar{
@@ -51,12 +51,12 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
         font-weight: 300;
         font-size: $font-size;
         background: var(--primary-color);
-        color: $gray;
+        color: var(--gray);
         cursor: pointer;
         border-radius: $borderRadius;
       
         fa-icon{
-          color: white;
+          color: var(--fa-icon-color);
         }
       
         span{
@@ -91,9 +91,10 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
     & > div {
               
         &:first-of-type{
-            padding: 5px;
+            padding: 5px 10px;
+            box-sizing: border-box; 
             text-align: left;
-            background-color: white;
+            background-color: var(--bg-color);
             flex: 0 0 $first-cell-width;
             border-top: 1px solid $border-color;
             border-bottom: 1px solid $border-color;
@@ -124,22 +125,19 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
         left: 0;
 
         & > div{
-            flex-grow: 1;
-            padding: 5px;
+            flex-basis: 100%;
             overflow: hidden;
-            width: $cell-width;
             border-top: 1px solid $border-color;
-
-            &:nth-child(even){
-                border-left: 1px solid $border-color;
-                border-right: 1px solid $border-color;
-            }
+            border-right: 1px solid $border-color;
     
+            // element before active
+            &:has(+.active) {
+                border-right-color: $primary-color;
+            }
             &.active{
                 font-weight: 600;
                 background-color: $primary-color-light;
                 border-top: 1px solid $primary-color;
-                border-left: 1px solid $primary-color;
                 border-right: 1px solid $primary-color;
             }
             &:last-of-type{
@@ -171,19 +169,15 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
         position: relative;
 
         & > div{
-            flex-grow: 1;
-            padding: 5px 0px 5px 10px;
-            width: $cell-width;
+            flex-basis: 100%;
             min-height: $row-height;
             line-height: $row-height;
             border-bottom: 1px solid $border-color;
-
-            &:nth-child(odd){
-                border-left: 1px solid $border-color;
-                border-right: 1px solid $border-color;
-            }
+            border-right: 1px solid $border-color;
 
             &:first-of-type{
+                padding: 5px 10px;
+                box-sizing: border-box; 
                 text-align: left;
                 flex: 0 0 $first-cell-width;
                 border-left: 1px solid $border-color;
@@ -194,10 +188,12 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
             &:last-of-type{
                 border-right: 1px solid $border-color;
             }
-
+            // element before active
+            &:has(+.active) {
+                border-right-color: $primary-color;
+            }
             &.active{
                 background-color: $primary-color-light;
-                border-left: 1px solid $primary-color;
                 border-right: 1px solid $primary-color;
             }
         }
@@ -208,15 +204,14 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
         top: 8px;
         left: 100px;
         z-index: 10;
-        height: 25px;
-        line-height: 27px;
-        margin-left: calc($first-cell-width + 12px);
-        padding: 5px 7px;
+        margin-left: calc($first-cell-width - 1px);
+        padding: 5px 5px;
         border-radius: 5px;
         overflow: hidden;
         text-overflow: ellipsis;
         color: white;
         cursor: pointer;
+        box-sizing: border-box; 
 
         &.no-left-radius{
             border-top-left-radius: 0px;

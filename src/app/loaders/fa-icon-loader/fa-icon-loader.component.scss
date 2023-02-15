@@ -1,0 +1,24 @@
+@import 'src/content/_baseVariables';
+
+:host{
+    display: inline-block;
+    margin: 5px;
+}
+
+.icon-container{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+
+    fa-icon{
+        font-size: 40px;
+        color: var(--primary-color);
+    }
+    
+    p{
+        color: var(--primary-color);
+        font-size: 18px;
+        font-weight: 400;
+    }
+}
+

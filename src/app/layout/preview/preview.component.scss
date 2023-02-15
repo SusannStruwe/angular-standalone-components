@@ -1,46 +1,6 @@
 @import 'src/content/_baseVariables';
 
 .content{
-    position: absolute;
-    left: calc($sidebar-with + 20px);
     top: 0px;
-    bottom: 0;
-    right: 0;
-    overflow: scroll;
-    padding: 20px;
-    background: transparent;
-  
-    display: flex;
-    flex-direction: column;
     align-items: center;
-  
-    .card-container{
-        display: flex;
-        flex-direction: row;
-
-        .card{
-            background: white;
-            width: 300px;
-            height: 300px;
-            overflow: hidden;
-            margin: 1em;
-            display: flex;
-            align-items: end;
-            cursor: pointer;
-
-            .title{
-                text-align: left;
-                padding: 10px 20px;
-            }
-
-            &:hover{
-                box-shadow: none;
-                border: 1px solid var(--primary-color);
-            }
-        }
-    }
-
-    img{
-        width: 60%;
-    }
-  }
+}

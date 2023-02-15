@@ -20,7 +20,7 @@ export class BorderBtnComponent {
   // example --> primary or gray
   @Input() color: string = "primary";
   // example --> filling or shining
-  @Input() style: string = "shining";
+  @Input() hoverStyle: string = "shining";
   // example --> spin or not
   @Input() spinning?: boolean;
   // example --> active or not

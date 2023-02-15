@@ -1,29 +1,49 @@
 @import 'src/content/_baseVariables';
 
 $border-width: 2px;
+$img-height: 65%;
+$title-height:15%;
+$desc-height: 20%;
+
+:host{
+  display: inline-block;
+  margin: 5px;
+}
 
 .card{
   display: inline-flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: space-between;
   cursor: pointer;
   margin: 5px;
   position: relative;
   width: 300px;
   height: 300px;
   overflow: hidden;
-  background: transparent;
+  background: white;
   box-sizing: border-box;
   position: relative;
 
+  & > div, img {
+    height: $img-height;
+  }
+
+  & > h1 {
+    height: $title-height;
+  } 
+
+  & > p {
+    height: $desc-height;
+  } 
+
   img{
     overflow: hidden;
+    object-fit: cover;
   }
 
   .bg-color{
     background: var(--primary-color);
     width: 100%;
-    height: 100%;
   }
 
   .title{

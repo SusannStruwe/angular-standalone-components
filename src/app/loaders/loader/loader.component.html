@@ -1,0 +1,17 @@
+
+<div class="icon-container">
+
+   <div *ngIf="type && animation" [ngClass]="[type, animation]">
+        <span></span>
+        <span></span>
+        <span></span>
+   </div>
+
+   <div *ngIf="type && !animation" [ngClass]="[type]">
+        <span></span>
+        <span></span>
+        <span></span>
+   </div>
+
+    <p *ngIf="text">{{text}}</p>
+</div>

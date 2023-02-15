@@ -30,4 +30,14 @@
       [routerLinkActive]="'active'"> Schedulers
     </li>
 
+    <li
+    [routerLink]="'loaders'"
+    [routerLinkActive]="'active'"> Loaders
+  </li>
+
 </ul>
+
+<button (click)="toogleTemplate()">
+  <fa-icon [icon]="faBrush"></fa-icon>
+  Toogle Theme
+ </button>

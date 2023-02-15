@@ -15,11 +15,11 @@ button {
   font-weight: 300;
   font-size: $font-size;
   background: white;
-  color: $gray;
+  color: var(--gray);
   cursor: pointer;
 
   fa-icon{
-    color: $gray;
+    color: var(--gray);
   }
 
   span{
@@ -35,7 +35,7 @@ Shining
 .shining {
   background: transparent;
   box-sizing: border-box;
-  box-shadow: inset 0 0 0 2px $gray;
+  box-shadow: inset 0 0 0 2px var(--gray);
   transition: color 0.25s;
 
   &::before,
@@ -127,16 +127,16 @@ Filling
   transition: background-size .5s, color .5s;
 
   fa-icon{
-    color:var(--primary-color);
+    color: var(--primary-color);
   }
 
   &:hover,&.active{
     &:not([disabled]){
       background-size: 100% 100%;
-      color: $gray;
+      color: var(--gray);
     
       fa-icon{
-        color: $gray;
+        color: var(--gray);
       }
     }
   }
@@ -144,12 +144,12 @@ Filling
 
 
 .filling.gray{
-  border: 2px solid $gray;
-  color: $gray;
-  background-image: linear-gradient($gray, $gray);
+  border: 2px solid var(--gray);
+  color: var(--gray);
+  background-image: linear-gradient(var(--gray), var(--gray));
 
   fa-icon{
-    color: $gray;
+    color: var(--gray);
   }
 
   &:hover,&.active{

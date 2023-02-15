@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'schedulers',
     loadComponent: () => import('./schedulers/schedulers.component').then(m => m.SchedulersComponent),
+  },
+  {
+    path: 'loaders',
+    loadComponent: () => import('./loaders/loaders.component').then(m => m.LoadersComponent),
   }
 ];
 
