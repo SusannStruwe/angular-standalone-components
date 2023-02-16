@@ -23,10 +23,10 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
 
 
 :host{
-    margin: auto;
+    margin: 20px auto;
     display: inline-block;
-    width: 1300px;
-    min-height: 300px;
+    width: 100%;
+    min-height: 400px;
 
     // will force the browser to calculate the width according to the "outer"-width of the div, 
     // padding will be subtracted from the width
@@ -129,6 +129,7 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
             overflow: hidden;
             border-top: 1px solid $border-color;
             border-right: 1px solid $border-color;
+            text-align: center;
     
             // element before active
             &:has(+.active) {
