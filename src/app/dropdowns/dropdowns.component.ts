@@ -17,7 +17,7 @@ import { MultiSelectItem, MultiSelectComponent } from './multi-select/multi-sele
 })
 export class DropdownsComponent {
 
-  items: MultiSelectItem[] = [ {text:'Apfel'}, {text:'Birne'}, {text:'Orange'}];
+  items: MultiSelectItem[] = [ {text:'Apfel'}, {text:'Birne'}, {text:'Orange'}, {text: 'Heidelbeeren'}];
   faFilter = faFilter;
   placeholder = "Liste filtern...";
   

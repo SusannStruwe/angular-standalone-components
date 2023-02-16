@@ -41,15 +41,23 @@ button{
   padding: 5px;
   position: absolute;
   top: calc($btnHeight + 5px);
-  left: 5px;
+  min-width: 150px;
+  width: max-content;
+  height: auto;
   background: white;
   z-index: 9;
-  height: auto;
-  min-width: 150px;
   box-sizing: border-box;
   transform: scaleY(0);    
   transform-origin: top;
   transition: transform 0.2s ease-in-out;
+
+  &.left{
+    left: 5px;
+  }
+
+  &.right{
+    right: 5px;
+  }
 
   &.show{
     transform: scaleY(1);
@@ -84,6 +92,7 @@ button{
       border-bottom: 1px solid #ddd;
       text-align: left;
       min-height: 25px;
+      box-sizing: border-box;
 
       input[type=checkbox]{
         margin-right: 10px;
@@ -120,6 +129,7 @@ button{
 
       .text{
         padding-left: 35px;
+        padding-right: 10px;
         line-height: 30px;
       }
   

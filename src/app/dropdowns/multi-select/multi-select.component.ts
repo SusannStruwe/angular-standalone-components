@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -38,16 +38,33 @@ export class MultiSelectComponent {
   @ViewChild('filterInput') filterInput?: ElementRef;
   show: boolean = false;
 
+  @ViewChild('btn') btn?: ElementRef<HTMLDivElement>;
+  @ViewChild('menu') menu?: ElementRef<HTMLDivElement>;
+
   constructor(
+    private changeDetector: ChangeDetectorRef,
   ) {}
 
   ngOnInit():void{
     this.itemsBefore = JSON.parse(JSON.stringify(this.items));
+    this.changeDetector.detectChanges();
   }
-
 
   toggleFilter(): void {
     this.show = !this.show;
+  }
+
+  aligmentLeft() : boolean {
+    let boundingMenu= this.menu?.nativeElement.getBoundingClientRect();
+    let boundingBtn = this.btn?.nativeElement.getBoundingClientRect();
+
+    if(boundingBtn && boundingMenu){
+      let right = document.body.scrollWidth - boundingBtn.right;
+      //as long as there is enough space on the right, align it to the left
+      return right >  boundingMenu.width;
+    }else{
+      return false;
+    }
   }
 
   handleClickOutside(): void {

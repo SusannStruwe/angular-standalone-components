@@ -1,7 +1,8 @@
 <div class="dropdown" 
 (clickOutside)="handleClickOutside()">
 
-    <button class="header-btn" 
+
+    <button #btn class="header-btn" 
         [ngClass]="show ? 'selected' : ''"
         (click)="toggleFilter()">
         <fa-icon *ngIf="faIcon" 
@@ -9,8 +10,9 @@
         <span *ngIf="buttonText">{{buttonText}}</span>
     </button>
     
-    <div class="menu shadow" 
-        [class.show]="show" >
+    <div #menu class="menu shadow" 
+        [class.show]="show"
+        [ngClass]="aligmentLeft() ? 'left': 'right'">
 
         <input *ngIf="withFilter"
         type="text" 
