@@ -9,6 +9,10 @@ const routes: Routes = [
     loadComponent: () => import('./buttons/buttons.component').then(m => m.ButtonsComponent),
   },
   {
+    path: 'dropdowns',
+    loadComponent: () => import('./dropdowns/dropdowns.component').then(m => m.DropdownsComponent),
+  },
+  {
     path: 'carousels',
     loadComponent: () => import('./carousels/carousels.component').then(m => m.CarouselsComponent),
   },

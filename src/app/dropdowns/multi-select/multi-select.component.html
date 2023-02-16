@@ -1,0 +1,37 @@
+<div class="dropdown" 
+(clickOutside)="handleClickOutside()">
+
+    <button class="header-btn" 
+        [ngClass]="show ? 'selected' : ''"
+        (click)="toggleFilter()">
+        <fa-icon *ngIf="faIcon" 
+        [icon]="faIcon"></fa-icon>
+        <span *ngIf="buttonText">{{buttonText}}</span>
+    </button>
+    
+    <div class="menu shadow" 
+        [class.show]="show" >
+
+        <input *ngIf="withFilter"
+        type="text" 
+        [(ngModel)]="filter" 
+        (ngModelChange)="filterAndSort()" 
+        class="form-control" 
+        placeholder="{{filterPlaceholder}}" #filterInput />
+        <ul>
+            <li (click)="selectElement(item)" 
+            *ngFor="let item of items">
+                <input type="checkbox" 
+                [checked]="isInFilterArray(item)" /> 
+                <span class="checkmark"></span>
+                <span class="text">{{ item.text }}</span>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+
+
+
+    
