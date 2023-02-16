@@ -11,6 +11,24 @@
         </card-component>
 
         <card-component
+            [routerLink]="'dropdowns'"
+            [routerLinkActive]="'active'"
+            [imageUrl]="'./../../assets/preview/dropdowns.JPG'"
+            [title]="'dropdowns'">
+        </card-component>
+
+        <card-component
+            [routerLink]="'loaders'"
+            [routerLinkActive]="'active'"
+            [imageUrl]="'./../../assets/preview/loaders.JPG'"
+            [title]="'Loaders'">
+        </card-component>
+       
+    </div>
+   
+    <div class="card-container">
+
+        <card-component
             [routerLink]="'carousels'"
             [routerLinkActive]="'active'"
             [imageUrl]="'./../../assets/preview/carousels.JPG'"
@@ -23,15 +41,17 @@
             [imageUrl]="'./../../assets/preview/datepickers.JPG'"
             [title]="'Datepickers'">
         </card-component>
-    </div>
-   
-    <div class="card-container">
+
         <card-component
             [routerLink]="'cards'"
             [routerLinkActive]="'active'"
             [imageUrl]="'./../../assets/preview/cards.JPG'"
             [title]="'Cards'">
         </card-component>
+
+    </div>
+
+    <div class="card-container">
 
         <card-component
             [routerLink]="'schedulers'"
@@ -40,11 +60,6 @@
             [title]="'Schedulers'">
         </card-component>
 
-        <card-component
-            [routerLink]="'loaders'"
-            [routerLinkActive]="'active'"
-            [imageUrl]="'./../../assets/preview/loaders.JPG'"
-            [title]="'Loaders'">
-        </card-component>
     </div>
+
 </div>

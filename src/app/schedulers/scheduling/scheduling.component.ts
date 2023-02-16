@@ -5,8 +5,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SchedulerEvent, SchedulerRow, TimeSpan } from '../scheduler-model';
 import * as moment from 'moment';
 import { BtnGoupComponent } from 'src/app/buttons/btn-group/btn-group.component';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faRotate } from '@fortawesome/free-solid-svg-icons';
 import { LOCALE_ID } from '@angular/core';
+
 
 registerLocaleData(localeDe);
 const WEEK_DAY_FORMAT = 'DD';
@@ -41,6 +42,7 @@ export class SchedulingComponent {
   endDate: Date = moment().endOf('day').toDate();
   faArrowLeft = faChevronLeft;
   faArrowRight = faChevronRight;
+  faRefresh = faRotate;
 
   constructor(private cdr: ChangeDetectorRef) { }
 
@@ -188,9 +190,6 @@ export class SchedulingComponent {
 
   //Get width from cell
   getCellWidth():number{
-    console.log(this.timeSpan);
-    console.log(this.cellWidth?.nativeElement.offsetWidth);
-    console.log(this.cellWidth?.nativeElement.getBoundingClientRect().width);
     if(this.cellWidth){
       return this.cellWidth.nativeElement.getBoundingClientRect().width;
     }else{

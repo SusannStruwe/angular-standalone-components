@@ -79,7 +79,7 @@ p {
 
 i, fa-icon{
   color: white;
-  font-size: $font-size;
+  font-size: 1.1em;
 }
 
 a {
@@ -95,6 +95,7 @@ a {
 
 fa-icon{
   display: contents;
+  font-size: 1.0em;
   color: var(--fa-icon-color);
 }
 
