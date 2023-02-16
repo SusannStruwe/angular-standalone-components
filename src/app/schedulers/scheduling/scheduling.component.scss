@@ -12,7 +12,7 @@ $primary-color-light: rgb(0,189, 171, 0.15);
 $normal-state-color:$primary-color;
 $normal-state-color-dark: darken($normal-state-color, 5%);
 
-$acting-state-color: #5699e4; 
+$acting-state-color: #72b5f5; 
 $acting-state-color-dark: darken($acting-state-color, 5%);
 
 $critical-state-color: #f58b20; 
@@ -46,10 +46,10 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
         position: relative;
         height: $btnHeight;
         margin: 0px 5px;
-        padding: 10px 30px;
+        padding: 10px 25px;
         border: 0;
         font-weight: 300;
-        font-size: $font-size;
+        font-size: 1.2em;
         background: var(--primary-color);
         color: var(--gray);
         cursor: pointer;
@@ -205,12 +205,15 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
         top: 8px;
         left: 100px;
         z-index: 10;
+        height: 34px;
+        line-height: 25px;
         margin-left: calc($first-cell-width - 1px);
         padding: 5px 5px;
         border-radius: 5px;
         overflow: hidden;
         text-overflow: ellipsis;
-        color: white;
+        text-align: center;
+        color: var(--fa-icon-color);
         cursor: pointer;
         box-sizing: border-box; 
 
@@ -224,6 +227,22 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
 
 .started{
     background-color: $normal-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $normal-state-color-dark,
+            $normal-state-color-dark 10px,
+            $normal-state-color 10px,
+            $normal-state-color 20px
+        );
+    }
+    &:hover{
+        filter: brightness(0.9);
+    }
+}
+
+.started-2{
+    background-color: darken($normal-state-color, 10%);
     &.striped{
         background: repeating-linear-gradient(
             135deg,

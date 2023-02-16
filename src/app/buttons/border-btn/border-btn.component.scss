@@ -10,7 +10,7 @@ button {
   position: relative;
   height: $btnHeight;
   margin: 5px;
-  padding: 10px 30px;
+  padding: 10px 25px;
   border: 0;
   font-weight: 300;
   font-size: $font-size;
@@ -133,10 +133,10 @@ Filling
   &:hover,&.active{
     &:not([disabled]){
       background-size: 100% 100%;
-      color: var(--gray);
+      color: var(--fa-icon-color);
     
       fa-icon{
-        color: var(--gray);
+        color: var(--fa-icon-color);
       }
     }
   }
