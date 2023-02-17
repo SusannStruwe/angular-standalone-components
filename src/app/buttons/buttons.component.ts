@@ -5,7 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faLinkedinIn, faTwitter, faXing } from '@fortawesome/free-brands-svg-icons';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { ThemeChangerComponent } from '../layout/theme-changer/theme-changer.component';
-import { BorderBtnComponent } from './border-btn/border-btn.component';
+import { BorderBtnComponent, HoverStyle } from './border-btn/border-btn.component';
 import { BtnGoupComponent } from './btn-group/btn-group.component';
 import { CircleBtnComponent } from './circle-btn/circle-btn.component';
 
@@ -32,8 +32,8 @@ export class ButtonsComponent {
   faTwitter = faTwitter;
   faLoader = faCircleNotch;
 
-  shiningStyle = "shining";
-  fillingStyle = "filling";
+  shiningStyle = HoverStyle.SHINING;
+  fillingStyle = HoverStyle.FILLING;
 
   buttons = [
     {text:"left", icon: faXing},

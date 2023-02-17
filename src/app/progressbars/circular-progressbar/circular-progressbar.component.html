@@ -1,0 +1,16 @@
+ 
+<div class="progress-bar"
+     [style.background]="getProgress()"
+     [class.bordered]="bordered"
+     [style.border-color]="progressColor">
+
+     <span class="inner-content"
+     [style.width]="'calc(100% - '+progressWidth+'px)'"
+     [style.height]="'calc(100% - '+progressWidth+'px)'"
+     [style.border-color]="progressColor">
+         
+     </span>
+
+     <span class="text"
+     [style.font-size.em]="fontSize">{{percentage}} {{unit}}</span>
+</div>

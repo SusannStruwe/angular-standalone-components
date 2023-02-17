@@ -1,15 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { ClickOutsideDirective } from 'src/app/config/directives/click-outside.directive';
-
-
-export class MultiSelectItem {
-  constructor(
-      public text: string) {}
-}
+import { SelectItem } from '../select-model';
 
 
 @Component({
@@ -26,18 +21,20 @@ export class MultiSelectItem {
 })
 export class MultiSelectComponent {
 
-  @Input() items: MultiSelectItem[] = [];
+  @Input() items: SelectItem[] = [];
   @Input() buttonText: string = "";
   @Input() faIcon?: IconDefinition;
   @Input() withFilter?: boolean;
   @Input() filterPlaceholder?: string;
 
-  itemsBefore: MultiSelectItem[] | null = [];
-  filteredItems: MultiSelectItem[] | null = [];
-  filter = '';
-  @ViewChild('filterInput') filterInput?: ElementRef;
+  @Output() itemsSelected = new EventEmitter<SelectItem[]>();
+  
+  itemsBefore: SelectItem[] = [];
+  selectedItems: SelectItem[] = [];
+  filter:string = '';
   show: boolean = false;
 
+  @ViewChild('filterInput') filterInput?: ElementRef<HTMLDivElement>;
   @ViewChild('btn') btn?: ElementRef<HTMLDivElement>;
   @ViewChild('menu') menu?: ElementRef<HTMLDivElement>;
 
@@ -73,27 +70,27 @@ export class MultiSelectComponent {
     }
   }
 
-  selectElement(item: MultiSelectItem): void {
+  selectElement(item: SelectItem): void {
     if (!this.isInFilterArray(item)) {
-      this.filteredItems?.push(item);
+      this.selectedItems?.push(item);
     } else {
-      this.filteredItems = this.filteredItems?.filter(el => el.text !== item.text)!;
+      this.selectedItems = this.selectedItems?.filter(el => el.text !== item.text)!;
     }
-    //emitter itemSelected
+    this.itemsSelected.emit(this.selectedItems);
   }
 
-  getSortedFilterList(list: MultiSelectItem[]): MultiSelectItem[] {
+  getSortedFilterList(list: SelectItem[]): SelectItem[] {
     list = list.sort((a, b) => a.text.localeCompare(b.text));
     return list;
   }
 
-  isInFilterArray(item: MultiSelectItem): boolean {
-    return this.filteredItems!.some((el: MultiSelectItem) => el.text === item.text);
+  isInFilterArray(item: SelectItem): boolean {
+    return this.selectedItems!.some((el: SelectItem) => el.text === item.text);
   }
 
   filterAndSort(): void {
     this.items = this.itemsBefore!.filter(
-      (item: MultiSelectItem) => !this.filter || item.text.toLowerCase().includes(this.filter.toLowerCase())
+      (item: SelectItem) => !this.filter || item.text.toLowerCase().includes(this.filter.toLowerCase())
     );
   }
 }

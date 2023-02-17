@@ -1,0 +1,86 @@
+
+<div class="header">
+    <h1>Selects</h1>
+    <theme-changer-component></theme-changer-component>
+</div>
+
+<div class="content">
+
+    <div class="container">
+        <h2>multi-select-component</h2>
+
+        <p class="output">Output: <span *ngFor="let item of selectedItems">{{item.text}} </span> </p>
+
+        <multi-select-component
+        [items]="items"
+        [faIcon]="faFilter"
+        [buttonText]="'Früchte'"
+        [withFilter]="true"
+        [filterPlaceholder]="placeholder"
+        (itemsSelected)="selectItems($event)"
+        ></multi-select-component>
+
+        <multi-select-component
+        [items]="items"
+        [faIcon]="faFilter"
+        [withFilter]="false"
+        ></multi-select-component>
+        
+    </div>
+
+
+    <div class="container">
+        <h2>select-component</h2>
+
+        <p class="output">Output: {{selectedItem?.text}}  </p>
+
+        <select-component
+        [items]="items"
+        [faIcon]="faFilter"
+        [buttonText]="'Früchte'"
+        [withFilter]="true"
+        [filterPlaceholder]="placeholder"
+        (itemSelected)="selectItem($event)"
+        ></select-component>
+
+        <select-component
+        [items]="items"
+        [faIcon]="faFilter"
+        [withFilter]="false"
+        ></select-component>
+        
+    </div>
+
+    <div class="container">
+        <h2>custom-select-component</h2>
+
+        <custom-select-component>
+            <div header>
+                <border-btn-component
+                [hoverStyle]="fillingStyle"
+                [disabled] = "false"
+                [faIcon]="faBars">
+                </border-btn-component>
+            </div>
+            <div body>
+                <p>Put your content inside</p>
+            </div>
+        </custom-select-component>
+
+        <custom-select-component>
+            <div header>
+                <border-btn-component
+                [hoverStyle]="shiningStyle"
+                [disabled] = "false"
+                [faIcon]="faElipsis">
+                </border-btn-component>
+            </div>
+            <div body>
+                <p>Put your content inside</p>
+            </div>
+        </custom-select-component>
+        
+    </div>
+
+   
+</div>

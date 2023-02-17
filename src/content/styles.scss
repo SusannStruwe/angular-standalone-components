@@ -12,6 +12,7 @@ body{
   --bg-color: white;
   --header-bg-color: #fbfbfb;
   --fa-icon-color: white;
+  --border-color: 000,000,000; 
 }
 
 body.dark-theme {
@@ -23,6 +24,7 @@ body.dark-theme {
   --bg-color: #111;
   --header-bg-color: #000;
   --fa-icon-color: #333;
+  --border-color: 255,255,255;
 }
 
 html,

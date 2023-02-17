@@ -1,0 +1,19 @@
+<div class="dropdown" 
+(clickOutside)="handleClickOutside()">
+
+    <div #btn (click)="toggleFilter()">
+        <ng-content select="[header]"></ng-content>
+    </div>
+    
+    <div #menu class="menu shadow"
+        [class.show]="show"
+        [style.top.px]="getBtnHeight()"
+        [ngClass]="aligmentLeft() ? 'left': 'right'">
+        <ng-content select="[body]"></ng-content>
+    </div>
+</div>
+
+
+
+
+    

@@ -9,8 +9,8 @@ const routes: Routes = [
     loadComponent: () => import('./buttons/buttons.component').then(m => m.ButtonsComponent),
   },
   {
-    path: 'dropdowns',
-    loadComponent: () => import('./dropdowns/dropdowns.component').then(m => m.DropdownsComponent),
+    path: 'selects',
+    loadComponent: () => import('./selects/selects.component').then(m => m.SelectsComponent),
   },
   {
     path: 'carousels',
@@ -31,7 +31,12 @@ const routes: Routes = [
   {
     path: 'loaders',
     loadComponent: () => import('./loaders/loaders.component').then(m => m.LoadersComponent),
-  }
+  },
+  {
+    path: 'progressbars',
+    loadComponent: () => import('./progressbars/progressbars.component').then(m => m.ProgressbarsComponent),
+  },
+  
 ];
 
 @NgModule({

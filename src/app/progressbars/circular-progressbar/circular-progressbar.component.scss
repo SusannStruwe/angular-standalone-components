@@ -1,0 +1,51 @@
+@import 'src/content/_baseVariables';
+
+
+:host{
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 10px;
+  height: 150px;
+  width: 150px;
+}
+
+.progress-bar {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  float: left;
+  background:conic-gradient(var(--primary-color) 5%, #ddd 5%);
+  transition: background 1s linear;
+
+  .inner-content {
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    background-color: var(--bg-color);
+    border-radius: 50%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  }
+
+  .text {
+    position: absolute;
+    color: var(--text-color);
+    width: 100%; 
+    font-size: 1.5em;
+    z-index: 4;
+  }
+
+  &.bordered{
+    border: 1px solid var(--primary-color);
+  
+    .inner-content {
+      border: 1px solid var(--primary-color);
+    }
+  }
+}
+
+
+
