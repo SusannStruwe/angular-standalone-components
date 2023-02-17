@@ -1,6 +1,6 @@
 
 <div class="header">
-    <h1>Dropdowns</h1>
+    <h1>Selects</h1>
     <theme-changer-component></theme-changer-component>
 </div>
 
@@ -48,6 +48,37 @@
         [faIcon]="faFilter"
         [withFilter]="false"
         ></select-component>
+        
+    </div>
+
+    <div class="container">
+        <h2>custom-select-component</h2>
+
+        <custom-select-component>
+            <div header>
+                <border-btn-component
+                [hoverStyle]="fillingStyle"
+                [disabled] = "false"
+                [faIcon]="faBars">
+                </border-btn-component>
+            </div>
+            <div body>
+                <p>Put your content inside</p>
+            </div>
+        </custom-select-component>
+
+        <custom-select-component>
+            <div header>
+                <border-btn-component
+                [hoverStyle]="shiningStyle"
+                [disabled] = "false"
+                [faIcon]="faElipsis">
+                </border-btn-component>
+            </div>
+            <div body>
+                <p>Put your content inside</p>
+            </div>
+        </custom-select-component>
         
     </div>
 
