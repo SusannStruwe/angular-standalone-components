@@ -29,6 +29,13 @@
     <div class="card-container">
 
         <card-component
+            [routerLink]="'progressbars'"
+            [routerLinkActive]="'active'"
+            [imageUrl]="'./../../assets/preview/progressbars.JPG'"
+            [title]="'Progressbars'">
+        </card-component>
+
+        <card-component
             [routerLink]="'carousels'"
             [routerLinkActive]="'active'"
             [imageUrl]="'./../../assets/preview/carousels.JPG'"
@@ -42,16 +49,16 @@
             [title]="'Datepickers'">
         </card-component>
 
+    </div>
+
+    <div class="card-container">
+
         <card-component
             [routerLink]="'cards'"
             [routerLinkActive]="'active'"
             [imageUrl]="'./../../assets/preview/cards.JPG'"
             [title]="'Cards'">
         </card-component>
-
-    </div>
-
-    <div class="card-container">
 
         <card-component
             [routerLink]="'schedulers'"

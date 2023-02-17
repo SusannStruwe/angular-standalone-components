@@ -1,0 +1,93 @@
+
+<div class="header">
+    <h1>Progressbars</h1>
+    <theme-changer-component></theme-changer-component>
+</div>
+
+<div class="content">
+
+    <div class="container">
+        <h2>circular-progressbar-component</h2>
+
+        <div>
+            <button *ngIf="!isRunning"
+                (click)="runProgress()">
+                <fa-icon [icon]="faPlay"></fa-icon>
+            </button>
+            <button *ngIf="isRunning"
+                (click)="stopProgress()">
+                <fa-icon [icon]="faPause"></fa-icon>
+            </button>
+            <circular-progressbar-component
+            [percentage]="progress"
+            [progressWidth]="10"
+            ></circular-progressbar-component>
+        </div>
+      
+
+        <circular-progressbar-component
+        [percentage]="10"
+        [unit]="'Stück'"
+        [progressColor]="'red'"
+        [style.width.px]="200"
+        [style.height.px]="200"
+        ></circular-progressbar-component>
+
+        <circular-progressbar-component
+        [percentage]="50"
+        [unit]="'€'"
+        [progressColor]="'yellow'"
+        [progressWidth]="40"
+        [fontSize]="4"
+        [style.width.px]="300"
+        [style.height.px]="300"
+        ></circular-progressbar-component>
+        
+    </div>
+
+    <div class="container">
+        <h2>circular-progressbar-component(bordered)</h2>
+
+        <div>
+            <button *ngIf="!isRunning"
+                (click)="runProgress()">
+                <fa-icon [icon]="faPlay"></fa-icon>
+            </button>
+            <button *ngIf="isRunning"
+                (click)="stopProgress()">
+                <fa-icon [icon]="faPause"></fa-icon>
+            </button>
+            <circular-progressbar-component
+            [percentage]="progress"
+            [progressWidth]="10"
+            [progressBgColor]="'white'"
+            [bordered]="true"
+            ></circular-progressbar-component>
+        </div>
+      
+
+        <circular-progressbar-component
+        [percentage]="10"
+        [unit]="'Stück'"
+        [progressColor]="'red'"
+        [progressBgColor]="'white'"
+        [bordered]="true"
+        [style.width.px]="200"
+        [style.height.px]="200"
+        ></circular-progressbar-component>
+
+        <circular-progressbar-component
+        [percentage]="50"
+        [unit]="'€'"
+        [progressColor]="'#0b5e56'"
+        [progressBgColor]="'white'"
+        [bordered]="true"
+        [progressWidth]="40"
+        [fontSize]="4"
+        [style.width.px]="300"
+        [style.height.px]="300"
+        ></circular-progressbar-component>
+        
+    </div>
+
+</div>

@@ -31,7 +31,12 @@ const routes: Routes = [
   {
     path: 'loaders',
     loadComponent: () => import('./loaders/loaders.component').then(m => m.LoadersComponent),
-  }
+  },
+  {
+    path: 'progressbars',
+    loadComponent: () => import('./progressbars/progressbars.component').then(m => m.ProgressbarsComponent),
+  },
+  
 ];
 
 @NgModule({
