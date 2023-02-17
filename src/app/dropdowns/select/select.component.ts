@@ -8,7 +8,7 @@ import { SelectItem } from '../select-model';
 
 
 @Component({
-  selector: 'multi-select-component',
+  selector: 'select-component',
   standalone: true,
   imports:[
     CommonModule, 
@@ -16,10 +16,10 @@ import { SelectItem } from '../select-model';
     FormsModule, 
     ClickOutsideDirective
   ],
-  templateUrl: './multi-select.component.html',
-  styleUrls: ['./multi-select.component.scss']
+  templateUrl: './select.component.html',
+  styleUrls: ['./select.component.scss']
 })
-export class MultiSelectComponent {
+export class SelectComponent {
 
   @Input() items: SelectItem[] = [];
   @Input() buttonText: string = "";
@@ -27,11 +27,11 @@ export class MultiSelectComponent {
   @Input() withFilter?: boolean;
   @Input() filterPlaceholder?: string;
 
-  @Output() itemsSelected = new EventEmitter<SelectItem[]>();
+  @Output() itemSelected = new EventEmitter<SelectItem>();
   
   itemsBefore: SelectItem[] = [];
-  selectedItems: SelectItem[] = [];
-  filter:string = '';
+  selectedItem?: SelectItem;
+  filter: string = '';
   show: boolean = false;
 
   @ViewChild('filterInput') filterInput?: ElementRef<HTMLDivElement>;
@@ -71,12 +71,8 @@ export class MultiSelectComponent {
   }
 
   selectElement(item: SelectItem): void {
-    if (!this.isInFilterArray(item)) {
-      this.selectedItems?.push(item);
-    } else {
-      this.selectedItems = this.selectedItems?.filter(el => el.text !== item.text)!;
-    }
-    this.itemsSelected.emit(this.selectedItems);
+    this.selectedItem = item;
+    this.itemSelected.emit(this.selectedItem);
   }
 
   getSortedFilterList(list: SelectItem[]): SelectItem[] {
@@ -84,9 +80,6 @@ export class MultiSelectComponent {
     return list;
   }
 
-  isInFilterArray(item: SelectItem): boolean {
-    return this.selectedItems!.some((el: SelectItem) => el.text === item.text);
-  }
 
   filterAndSort(): void {
     this.items = this.itemsBefore!.filter(
