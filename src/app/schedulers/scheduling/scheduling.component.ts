@@ -1,6 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SchedulerEvent, SchedulerRow, TimeSpan } from '../scheduler-model';
 import * as moment from 'moment';
@@ -22,7 +22,8 @@ const WEEK_DAY_FORMAT = 'DD';
     BtnGoupComponent
   ],
   templateUrl: './scheduling.component.html',
-  styleUrls: ['./scheduling.component.scss']
+  styleUrls: ['./scheduling.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SchedulingComponent {
   
@@ -44,6 +45,8 @@ export class SchedulingComponent {
   faArrowRight = faChevronRight;
   faRefresh = faRotate;
 
+
+
   constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(){
@@ -54,6 +57,7 @@ export class SchedulingComponent {
   ngAfterViewChecked(){
     this.cdr.detectChanges();
   }
+
 
   next():void{
     switch(this.timeSpan){
@@ -152,6 +156,7 @@ export class SchedulingComponent {
     return columns;
   }
 
+
   //Calculates scheduler event left position
   getSchedulerEventLeftPosition(eventStartDate: Date):number{
     const cellWidth = this.getCellWidth();
@@ -188,7 +193,9 @@ export class SchedulingComponent {
     return case1 || case2 || case3 || case4;
   }
 
+
   //Get width from cell
+  @HostListener('window:resize', ['$event'])
   getCellWidth():number{
     if(this.cellWidth){
       return this.cellWidth.nativeElement.getBoundingClientRect().width;
@@ -223,7 +230,11 @@ export class SchedulingComponent {
   getHours(): string[] {
     const header: string[] = [];
     for (let i = 0; i < 24; i ++) {
-      header.push(`${this.leadingZero(i % 24)}:00`);
+      if(this.cellWidth?.nativeElement.getBoundingClientRect().width< 35.5){
+        header.push(`${this.leadingZero(i % 24)}`);
+      }else{
+        header.push(`${this.leadingZero(i % 24)}:00`);
+      }
     }
     return header;
   }
