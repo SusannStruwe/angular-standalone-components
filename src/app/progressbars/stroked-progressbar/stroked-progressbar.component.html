@@ -1,0 +1,11 @@
+<div class="stroked-progress-bar"
+[style.stroke-dasharray]="strokeDasharray">
+     <svg>
+          <line x1="0" y1="0" x2="100%" y2="0"
+           [style.stroke]="progressBgColor"
+           [style.stroke-width]="strokeWidth"/>
+           <line x1="0" y1="0" [attr.x2]="getIndicatorWidth()" y2="0"
+           [style.stroke]="progressColor"
+           [style.stroke-width]="strokeWidth"/>
+     </svg>
+</div>

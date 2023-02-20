@@ -77,6 +77,7 @@
                 <fa-icon [icon]="faPause"></fa-icon>
             </button>
             <rectangle-progressbar-component
+            [style.width.px]="350"
             [percentage]="progress"
             [progressBgColor]="'transparent'"
             [bordered]="true"
@@ -127,6 +128,46 @@
         [gradient]="true"
         [progressBgColor]="'transparent'"
         ></rectangle-progressbar-component>
+    </div>
+
+
+
+    <div class="container">
+        <h2>stroked-progressbar-component</h2>
+        <div class="flex-row"
+            [style.justify-content]="'center'">
+            <button *ngIf="!isRunning"
+                (click)="runProgress()">
+                <fa-icon [icon]="faPlay"></fa-icon>
+            </button>
+            <button *ngIf="isRunning"
+                (click)="stopProgress()">
+                <fa-icon [icon]="faPause"></fa-icon>
+            </button>
+            <stroked-progressbar-component
+            [percentage]="progress"
+            [progressBgColor]="'#d2f5f1'"
+            [progressColor]="'#00bdab'"
+            ></stroked-progressbar-component>
+        </div>
+        <stroked-progressbar-component
+        [style.width.px]="200"
+        [strokeWidth]="50"
+        [strokeDasharray]="'15 5'"
+        [percentage]="33"
+        [progressBgColor]="'#ddd'"
+        [progressColor]="'red'"
+        ></stroked-progressbar-component>
+
+        <stroked-progressbar-component
+        [style.width.px]="450"
+        [strokeWidth]="60"
+        [strokeDasharray]="'15 5'"
+        [percentage]="75"
+        [progressBgColor]="'#f9dcb6'"
+        [progressColor]="'#ff8f00'"
+        ></stroked-progressbar-component>
+
     </div>
 
 

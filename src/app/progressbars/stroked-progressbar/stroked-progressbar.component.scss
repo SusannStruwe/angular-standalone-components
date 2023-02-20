@@ -1,0 +1,28 @@
+@import 'src/content/_baseVariables';
+
+$normal-state-color: $primary-color;
+$normal-state-color-dark: darken($normal-state-color, 5%);
+$critical-state-color: #f58b20; 
+
+:host{
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.stroked-progress-bar{
+  stroke-dasharray: 5;
+  stroke-width: 30;
+  display: inline-block;
+  margin: auto;
+  width: 100%;
+  height: 40px;
+  resize: both;
+
+  svg{
+    width: 100%;
+    height: 100%;
+  }
+}

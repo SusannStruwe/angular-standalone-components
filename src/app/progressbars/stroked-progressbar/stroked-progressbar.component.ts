@@ -6,17 +6,17 @@ import { SassHelperComponent } from 'src/app/config/sass-helper.component';
 
 
 @Component({
-  selector: 'rectangle-progressbar-component',
+  selector: 'stroked-progressbar-component',
   standalone: true,
   imports:[
     CommonModule, 
     FontAwesomeModule,
     SassHelperComponent
   ],
-  templateUrl: './rectangle-progressbar.component.html',
-  styleUrls: ['./rectangle-progressbar.component.scss']
+  templateUrl: './stroked-progressbar.component.html',
+  styleUrls: ['./stroked-progressbar.component.scss']
 })
-export class RectangleProgressbarComponent {
+export class StrokedProgressbarComponent {
 
   @Input() percentage:number = 0;
 
@@ -24,13 +24,16 @@ export class RectangleProgressbarComponent {
 
   @Input() progressBgColor: string = "#ddd";  
 
-  @Input() height: number = 35; //pixel
+  @Input() width: number = 200; //pixel
 
-  @Input() bordered: boolean = false;
+  @Input() strokeWidth: number = 30; //pixel
 
-  @Input() striped: boolean = false;  
-
-  @Input() gradient: boolean = false;
+  @Input() strokeDasharray: string = '5'; //pixel
 
   constructor() { }
+
+  getIndicatorWidth():string{
+    return this.percentage+ '%';
+  }
+
 }

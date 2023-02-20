@@ -7,6 +7,7 @@ import { BorderBtnComponent } from '../buttons/border-btn/border-btn.component';
 import { ThemeChangerComponent } from '../layout/theme-changer/theme-changer.component';
 import { CircularProgressbarComponent } from './circular-progressbar/circular-progressbar.component';
 import { RectangleProgressbarComponent } from './rectangle-progressbar/rectangle-progressbar.component';
+import { StrokedProgressbarComponent } from './stroked-progressbar/stroked-progressbar.component';
 
 @Component({
   selector: 'progressbars-component',
@@ -18,7 +19,8 @@ import { RectangleProgressbarComponent } from './rectangle-progressbar/rectangle
     FontAwesomeModule,
     ThemeChangerComponent,
     CircularProgressbarComponent,
-    RectangleProgressbarComponent
+    RectangleProgressbarComponent,
+    StrokedProgressbarComponent
   ],
   templateUrl: './progressbars.component.html',
   styleUrls: ['./progressbars.component.scss']
