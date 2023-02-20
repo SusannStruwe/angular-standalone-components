@@ -30,9 +30,16 @@ export class CircularProgressbarComponent {
 
   @Input() bordered: boolean = false;  
 
+  @Input() roundedCorner: boolean = false;  
+
+
   constructor() { }
 
   getProgress():string{
     return `conic-gradient(${this.progressColor} ${this.percentage}%, ${this.progressBgColor} ${this.percentage}%)`;
+  }
+
+  getRoundedProgress():number{
+    return 100 - ((this.percentage/100) * 100);
   }
 }

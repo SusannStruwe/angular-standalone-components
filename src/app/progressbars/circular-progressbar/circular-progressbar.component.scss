@@ -16,7 +16,6 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  float: left;
   background:conic-gradient(var(--primary-color) 5%, #ddd 5%);
   transition: background 1s linear;
 
@@ -49,5 +48,47 @@
 
 
 
+$progress-bar-stroke-width: 1.8;
+$progress-bar-size: 300px;
+
+.rounded-progress-bar{
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    height: $progress-bar-size;
+    transform: rotate(-90deg);
+    width: $progress-bar-size;
+  
+    .progress-background {
+      fill: none;
+      stroke: #e2eff0;
+      stroke-width: $progress-bar-stroke-width;
+    }
+    
+    .progress-indicator{
+      fill: none;
+      stroke: #78bec7;
+      stroke-dasharray: 100 100;
+      stroke-dashoffset: 100;
+      stroke-linecap: round;
+      stroke-width: $progress-bar-stroke-width;
+      transition: stroke-dashoffset 1s ease-in-out;
+    }
+  }
+
+  .text {
+    position: absolute;
+    color: var(--text-color);
+    margin: auto;
+    font-size: 1.5em;
+    z-index: 4;
+  }
+
+}
 
 

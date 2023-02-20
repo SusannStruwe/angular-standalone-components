@@ -132,7 +132,8 @@
 
     <div class="container">
         <h2>circular-progressbar-component</h2>
-        <div>
+        <div class="flex-row"
+        [style.justify-content]="'center'">
             <button *ngIf="!isRunning"
                 (click)="runProgress()">
                 <fa-icon [icon]="faPlay"></fa-icon>
@@ -156,7 +157,7 @@
         ></circular-progressbar-component>
 
         <circular-progressbar-component
-        [percentage]="50"
+        [percentage]="40"
         [unit]="'€'"
         [progressColor]="'#ff8f00'"
         [progressWidth]="40"
@@ -168,7 +169,8 @@
 
     <div class="container">
         <h2>circular-progressbar-component(bordered)</h2>
-        <div>
+        <div class="flex-row"
+        [style.justify-content]="'center'">
             <button *ngIf="!isRunning"
                 (click)="runProgress()">
                 <fa-icon [icon]="faPlay"></fa-icon>
@@ -205,6 +207,38 @@
         [fontSize]="4"
         [style.width.px]="300"
         [style.height.px]="300"
+        ></circular-progressbar-component>
+    </div>
+
+
+    <div class="container">
+        <h2>circular-progressbar-component(roundedCorner)</h2>
+        <div class="flex-row"
+        [style.justify-content]="'center'">
+            <button *ngIf="!isRunning"
+                (click)="runProgress()">
+                <fa-icon [icon]="faPlay"></fa-icon>
+            </button>
+            <button *ngIf="isRunning"
+                (click)="stopProgress()">
+                <fa-icon [icon]="faPause"></fa-icon>
+            </button>
+            <circular-progressbar-component
+            [percentage]="progress"
+            [progressBgColor]="'#111'"
+            [roundedCorner]="true"
+            ></circular-progressbar-component>
+        </div>
+      
+        <circular-progressbar-component
+        [percentage]="60"
+        [unit]="'€'"
+        [progressColor]="'#0b5e56'"
+        [progressBgColor]="'#d2f5f1'"
+        [fontSize]="4"
+        [style.width.px]="300"
+        [style.height.px]="300"
+        [roundedCorner]="true"
         ></circular-progressbar-component>
     </div>
 

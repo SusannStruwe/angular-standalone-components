@@ -40,6 +40,10 @@ $width: 200px;
     &.striped{
       background: repeating-linear-gradient(135deg,rgb(000, 000, 000, 0.1),rgb(000, 000, 000, 0.1) 10px,transparent 10px, transparent 20px);
     }
+
+    &.striped-2{
+      background: repeating-linear-gradient(90deg,rgb(000, 000, 000, 0.1),rgb(000, 000, 000, 0.1) 10px,var(--bg-color) 10px, var(--bg-color) 20px);
+    }
   }
 
   &.bordered{

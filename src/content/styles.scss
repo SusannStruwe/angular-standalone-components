@@ -126,8 +126,7 @@ fa-icon{
   background: transparent;
   display: flex;
   flex-direction: column;
-  
-
+ 
   .container{
     display: table;
     margin: 5px auto;
@@ -135,6 +134,8 @@ fa-icon{
     max-width: 600px;
     border: 1px solid #ddd;
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 

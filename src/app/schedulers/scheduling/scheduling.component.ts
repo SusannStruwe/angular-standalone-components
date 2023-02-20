@@ -64,7 +64,6 @@ export class SchedulingComponent {
     this.cdr.detectChanges();
   }
 
-
   next():void{
     switch(this.timeSpan){
       case  TimeSpan.MONTH: 

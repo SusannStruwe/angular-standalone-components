@@ -10,7 +10,6 @@
         <h2>scheduling-component</h2>
         <div class="flex-row">
             <scheduling-component
-            
                 [schedulerRows]="schedulerRows"
                 [timeSpan]="timeSpanWeek"
                 (schedulerEventSelected)="schedulerEventSelected($event)">
@@ -21,12 +20,12 @@
     <div class="container">
         <h2>scheduling-component (striped scheduler events)</h2>
         <div class="flex-row">
-            <!--<scheduling-component
+            <scheduling-component
                 [style.width.px]="'1300'"
                 [schedulerRows]="schedulerRows2"
                 [timeSpan]="timeSpanMonth"
                 (schedulerEventSelected)="schedulerEventSelected($event)">
-            </scheduling-component>-->
+            </scheduling-component>
         </div>
     </div>
 
