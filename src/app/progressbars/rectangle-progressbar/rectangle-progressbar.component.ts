@@ -27,6 +27,9 @@ export class RectangleProgressbarComponent {
   @Input() bordered: boolean = false;
 
   @Input() striped: boolean = false;  
+  
+  @Input() gradient: boolean = false;  
+  
 
   constructor() { }
 }

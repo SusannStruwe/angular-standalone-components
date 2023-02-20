@@ -31,7 +31,7 @@ export class SchedulingComponent {
   @Input() timeSpan: TimeSpan = TimeSpan.DAY;
   @Output() schedulerEventSelected = new EventEmitter<SchedulerEvent>();
 
-  @ViewChild('cellWidth') cellWidth?: ElementRef; 
+  @ViewChild('cellWidth') cellWidthRef?: ElementRef; 
 
   buttons = [
     {text:"Tag", value: TimeSpan.DAY},
@@ -44,7 +44,7 @@ export class SchedulingComponent {
   faArrowLeft = faChevronLeft;
   faArrowRight = faChevronRight;
   faRefresh = faRotate;
-
+  cellWidth: number = 0;
 
 
   constructor(private cdr: ChangeDetectorRef) { }
@@ -54,7 +54,13 @@ export class SchedulingComponent {
     this.activeTimeSpanBtn = this.buttons.filter((btn:any) => btn.value === this.timeSpan)[0].text;
   }
 
+  @HostListener('window:resize', ['$event'])
   ngAfterViewChecked(){
+    if(this.cellWidthRef){
+      this.cellWidth =  this.cellWidthRef.nativeElement.getBoundingClientRect().width;
+    }else{
+      this.cellWidth = 0;
+    }
     this.cdr.detectChanges();
   }
 
@@ -159,10 +165,9 @@ export class SchedulingComponent {
 
   //Calculates scheduler event left position
   getSchedulerEventLeftPosition(eventStartDate: Date):number{
-    const cellWidth = this.getCellWidth();
     if(moment(eventStartDate).isSameOrAfter(this.startDate)){
       const duration = moment.duration(moment(eventStartDate).diff(moment(this.startDate)));
-      return  Math.trunc(duration.asMinutes() * cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440));
+      return  Math.trunc(duration.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440));
     }else{
       return 0;
     }
@@ -171,14 +176,13 @@ export class SchedulingComponent {
   //Calculates scheduler event width
   getSchedulerEventWidthPosition(event: SchedulerEvent):number{
     if(this.isBetween(event)){
-      const cellWidth = this.getCellWidth();
       let duration: moment.Duration;
       if(moment(event.startDate).isBefore(this.startDate)){
         duration = moment.duration(moment(event.endDate).diff(moment(this.startDate)));
       }else{
         duration = moment.duration(moment(event.endDate).diff(moment(event.startDate)));
       }
-      return Math.trunc((duration.asMinutes() * cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440)));
+      return Math.trunc((duration.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440)));
     }else{
       return 0;
     }
@@ -193,16 +197,6 @@ export class SchedulingComponent {
     return case1 || case2 || case3 || case4;
   }
 
-
-  //Get width from cell
-  @HostListener('window:resize', ['$event'])
-  getCellWidth():number{
-    if(this.cellWidth){
-      return this.cellWidth.nativeElement.getBoundingClientRect().width;
-    }else{
-      return 0;
-    }
-  }
 
   //Get class style as string
   getClassStyle(schedulerEvent: SchedulerEvent):string{
@@ -230,7 +224,8 @@ export class SchedulingComponent {
   getHours(): string[] {
     const header: string[] = [];
     for (let i = 0; i < 24; i ++) {
-      if(this.cellWidth?.nativeElement.getBoundingClientRect().width< 35.5){
+      //header.push(`${this.leadingZero(i % 24)}:00`);
+      if(this.cellWidth < 35.5){
         header.push(`${this.leadingZero(i % 24)}`);
       }else{
         header.push(`${this.leadingZero(i % 24)}:00`);

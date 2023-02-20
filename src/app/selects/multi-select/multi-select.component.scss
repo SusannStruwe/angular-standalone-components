@@ -105,6 +105,10 @@ button{
         width: 0;
       }
 
+      &:last-of-type{
+        border-bottom:none;
+      }
+
       /* Create a custom checkbox */
       .checkmark {
         position: absolute;

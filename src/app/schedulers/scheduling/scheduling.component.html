@@ -68,7 +68,7 @@
                 </div>
             </div>
             <!-- foreground -->
-            <div  *ngFor="let schedulerEvent of schedulerRow.schedulerEvents" >
+           <div  *ngFor="let schedulerEvent of schedulerRow.schedulerEvents" >
                 <div *ngIf="isBetween(schedulerEvent)"            
                     class="scheduler-event"
                     [ngClass]="getClassStyle(schedulerEvent)"
@@ -77,7 +77,6 @@
                     (click)="schedulerEventClicked(schedulerEvent)">{{schedulerEvent.label}}
                 </div>
             </div>
-            
         </div>
     </div>
 

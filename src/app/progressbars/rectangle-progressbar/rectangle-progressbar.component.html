@@ -5,10 +5,12 @@
      [style.border-color]="progressColor"
      [style.background-color]="progressBgColor">
 
-     <div class="bar"
+     <div
      [style.background]="progressColor"
+     [style.background-size]="'250px 100%'"
+     [class.gradient]="gradient"
      [style.width.%]="percentage"></div>
 
-     <div *ngIf="striped" class="bar striped"
+     <div *ngIf="striped" class="striped"
      [style.width.%]="percentage"></div>
 </div>

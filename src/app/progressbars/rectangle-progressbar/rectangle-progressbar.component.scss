@@ -2,13 +2,15 @@
 
 $normal-state-color: $primary-color;
 $normal-state-color-dark: darken($normal-state-color, 5%);
+$critical-state-color: #f58b20; 
+$width: 200px;
 
 :host{
   display: inline-block;
   box-sizing: border-box;
   margin: 10px;
   height: auto;
-  width: 150px;
+  width: $width;
 }
 
 .progress-bar {
@@ -20,7 +22,7 @@ $normal-state-color-dark: darken($normal-state-color, 5%);
   float: left;
   background:#ddd;
 
-  .bar{
+  & > div {
     position: absolute;
     background: var(--primary-color);
     height: 100%;
@@ -29,14 +31,14 @@ $normal-state-color-dark: darken($normal-state-color, 5%);
     width: 20px;
     transition: background 1s linear;
 
+    &.gradient{
+      width: 0%;
+      background-image: linear-gradient(to right, $critical-state-color, $normal-state-color) !important;
+      background-size: $width 100% !important;
+    }
+
     &.striped{
-      background: repeating-linear-gradient(
-          135deg,
-          rgb(000, 000, 000, 0.1),
-          rgb(000, 000, 000, 0.1) 10px,
-          transparent 10px,
-          transparent 20px
-      ) !important;
+      background: repeating-linear-gradient(135deg,rgb(000, 000, 000, 0.1),rgb(000, 000, 000, 0.1) 10px,transparent 10px, transparent 20px);
     }
   }
 
@@ -44,10 +46,4 @@ $normal-state-color-dark: darken($normal-state-color, 5%);
     border: 1px solid var(--primary-color);
   }
 
-
 }
-
-
-
-
-

@@ -101,6 +101,34 @@
         ></rectangle-progressbar-component>
     </div>
 
+    <div class="container">
+        <h2>rectangle-progressbar-component(gradient)</h2>
+        <div class="flex-row"
+            [style.justify-content]="'center'">
+            <button *ngIf="!isRunning"
+                (click)="runProgress()">
+                <fa-icon [icon]="faPlay"></fa-icon>
+            </button>
+            <button *ngIf="isRunning"
+                (click)="stopProgress()">
+                <fa-icon [icon]="faPause"></fa-icon>
+            </button>
+            <rectangle-progressbar-component
+            [percentage]="progress"
+            [bordered]="true"
+            [gradient]="true"
+            [progressBgColor]="'transparent'"
+            ></rectangle-progressbar-component>
+        </div>
+
+        <rectangle-progressbar-component
+        [percentage]="30"
+        [bordered]="true"
+        [gradient]="true"
+        [progressBgColor]="'transparent'"
+        ></rectangle-progressbar-component>
+    </div>
+
 
     <div class="container">
         <h2>circular-progressbar-component</h2>
