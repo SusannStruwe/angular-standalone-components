@@ -6,6 +6,7 @@ import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { BorderBtnComponent } from '../buttons/border-btn/border-btn.component';
 import { ThemeChangerComponent } from '../layout/theme-changer/theme-changer.component';
 import { CircularProgressbarComponent } from './circular-progressbar/circular-progressbar.component';
+import { RectangleProgressbarComponent } from './rectangle-progressbar/rectangle-progressbar.component';
 
 @Component({
   selector: 'progressbars-component',
@@ -16,7 +17,8 @@ import { CircularProgressbarComponent } from './circular-progressbar/circular-pr
     BorderBtnComponent,
     FontAwesomeModule,
     ThemeChangerComponent,
-    CircularProgressbarComponent
+    CircularProgressbarComponent,
+    RectangleProgressbarComponent
   ],
   templateUrl: './progressbars.component.html',
   styleUrls: ['./progressbars.component.scss']

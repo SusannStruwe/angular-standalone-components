@@ -1,0 +1,14 @@
+ 
+<div class="progress-bar"
+     [style.height.px]="height"
+     [class.bordered]="bordered"
+     [style.border-color]="progressColor"
+     [style.background-color]="progressBgColor">
+
+     <div class="bar"
+     [style.background]="progressColor"
+     [style.width.%]="percentage"></div>
+
+     <div *ngIf="striped" class="bar striped"
+     [style.width.%]="percentage"></div>
+</div>
