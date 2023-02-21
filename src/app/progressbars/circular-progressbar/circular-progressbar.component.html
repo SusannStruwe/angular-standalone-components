@@ -1,5 +1,5 @@
  
-<div class="progress-bar"
+<div *ngIf="!roundedCorner" class="circular-progress-bar"
      [style.background]="getProgress()"
      [class.bordered]="bordered"
      [style.border-color]="progressColor">
@@ -8,9 +8,24 @@
      [style.width]="'calc(100% - '+progressWidth+'px)'"
      [style.height]="'calc(100% - '+progressWidth+'px)'"
      [style.border-color]="progressColor">
-         
      </span>
 
+     <span class="text"
+     [style.font-size.em]="fontSize">{{percentage}} {{unit}}</span>
+</div>
+
+
+<div *ngIf="roundedCorner" class="rounded-progress-bar">
+     <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 34 34">
+          <circle cx="16" cy="16" r="15.9155"
+          class="progress-background"
+          [style.stroke]="progressBgColor" />
+     
+          <circle cx="16" cy="16" r="15.9155"
+          class="progress-indicator"
+          [style.stroke]="progressColor"
+          [style.stroke-dashoffset]="getRoundedProgress()"/>
+     </svg>
      <span class="text"
      [style.font-size.em]="fontSize">{{percentage}} {{unit}}</span>
 </div>

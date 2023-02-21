@@ -27,25 +27,28 @@
         <!--first row-->
         <div></div>
         <span class="flex-column">
-            <!--time span title-->
+
+            <!--first line - time span title-->
             <div>
                 <h2 *ngIf="timeSpan !=='day'" [style.min-width]="'290px'">{{startDate | date:'dd.' }} - {{endDate | date:'dd. MMMM yyyy'}}</h2>
                 <h2 *ngIf="timeSpan ==='day'"  [style.min-width]="'200px'">{{endDate | date:'dd. MMMM yyyy'}}</h2>
             </div>
-            <!--week days-->
+
+            <!--second line - week days-->
             <div class="flex-row" *ngIf="timeSpan !== 'day'">
-                <div *ngFor="let item of getWeekDays(); let i = index"
-                    [class.active]="isCurrent(item)">{{item | date:'EE'}}
+                <div *ngFor="let item of getWeekDays();"
+                    [class.active]="isCurrent(item)">{{item | date:'EE' | slice:0:2}}
                 </div>
             </div>
-            <!--week day-->
+            <!--second line - week day-->
             <div class="flex-row" 
                 *ngIf="timeSpan === 'day'">
                 <div>{{startDate | date:'EEEE'}}</div>
             </div>
-            <!--days or hours-->
+
+            <!--third line - days or hours-->
             <div class="flex-row">
-                <div *ngFor="let item of getColumns(); let i = index"
+                <div *ngFor="let item of getColumns();"
                     [class.active]="isCurrent(item)">{{item}}
                 </div>
             </div>
@@ -53,11 +56,11 @@
     </div>
 
     <!--content-->
-    <div class="scheduler-content">
+    <div class="scheduler-content" id="scheduler-content-row">
         <div class="scheduler-content-row"
             *ngFor="let schedulerRow of schedulerRows">
              <!-- background -->
-            <div class="background">
+            <div class="background" id="background">
                 <div>{{schedulerRow.label}}</div>
                 <div #cellWidth
                     *ngFor="let item of getColumns()"
@@ -65,16 +68,15 @@
                 </div>
             </div>
             <!-- foreground -->
-            <div  *ngFor="let schedulerEvent of schedulerRow.schedulerEvents" >
-                <div class="scheduler-event"
-                    *ngIf="isBetween(schedulerEvent)"
+           <div  *ngFor="let schedulerEvent of schedulerRow.schedulerEvents" >
+                <div *ngIf="isBetween(schedulerEvent)"            
+                    class="scheduler-event"
                     [ngClass]="getClassStyle(schedulerEvent)"
                     [style.left.px]="getSchedulerEventLeftPosition(schedulerEvent.startDate)"
                     [style.width.px]="getSchedulerEventWidthPosition(schedulerEvent)"
                     (click)="schedulerEventClicked(schedulerEvent)">{{schedulerEvent.label}}
                 </div>
             </div>
-            
         </div>
     </div>
 

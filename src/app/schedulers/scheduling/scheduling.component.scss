@@ -125,11 +125,14 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
         left: 0;
 
         & > div{
+            box-sizing: border-box;
             flex-basis: 100%;
-            overflow: hidden;
             border-top: 1px solid $border-color;
             border-right: 1px solid $border-color;
             text-align: center;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
     
             // element before active
             &:has(+.active) {

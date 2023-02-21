@@ -1,13 +1,20 @@
 @import 'src/content/_baseVariables';
 
+
+.content{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+}
+
 .container{
-    min-width: 450px;
-    min-height: 320px;
+    min-height: 300px;
 }
 
 button{
     position: relative;
     height: $btnHeight;
+    width: 65px;
     margin: 0px 5px;
     padding: 10px 25px;
     border: 0;

@@ -1,6 +1,6 @@
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SchedulerEvent, SchedulerRow, TimeSpan } from '../scheduler-model';
 import * as moment from 'moment';
@@ -22,7 +22,8 @@ const WEEK_DAY_FORMAT = 'DD';
     BtnGoupComponent
   ],
   templateUrl: './scheduling.component.html',
-  styleUrls: ['./scheduling.component.scss']
+  styleUrls: ['./scheduling.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SchedulingComponent {
   
@@ -30,7 +31,7 @@ export class SchedulingComponent {
   @Input() timeSpan: TimeSpan = TimeSpan.DAY;
   @Output() schedulerEventSelected = new EventEmitter<SchedulerEvent>();
 
-  @ViewChild('cellWidth') cellWidth?: ElementRef; 
+  @ViewChild('cellWidth') cellWidthRef?: ElementRef; 
 
   buttons = [
     {text:"Tag", value: TimeSpan.DAY},
@@ -43,6 +44,8 @@ export class SchedulingComponent {
   faArrowLeft = faChevronLeft;
   faArrowRight = faChevronRight;
   faRefresh = faRotate;
+  cellWidth: number = 0;
+
 
   constructor(private cdr: ChangeDetectorRef) { }
 
@@ -51,7 +54,13 @@ export class SchedulingComponent {
     this.activeTimeSpanBtn = this.buttons.filter((btn:any) => btn.value === this.timeSpan)[0].text;
   }
 
+  @HostListener('window:resize', ['$event'])
   ngAfterViewChecked(){
+    if(this.cellWidthRef){
+      this.cellWidth =  this.cellWidthRef.nativeElement.getBoundingClientRect().width;
+    }else{
+      this.cellWidth = 0;
+    }
     this.cdr.detectChanges();
   }
 
@@ -152,12 +161,12 @@ export class SchedulingComponent {
     return columns;
   }
 
+
   //Calculates scheduler event left position
   getSchedulerEventLeftPosition(eventStartDate: Date):number{
-    const cellWidth = this.getCellWidth();
     if(moment(eventStartDate).isSameOrAfter(this.startDate)){
       const duration = moment.duration(moment(eventStartDate).diff(moment(this.startDate)));
-      return  Math.trunc(duration.asMinutes() * cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440));
+      return  Math.trunc(duration.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440));
     }else{
       return 0;
     }
@@ -166,14 +175,13 @@ export class SchedulingComponent {
   //Calculates scheduler event width
   getSchedulerEventWidthPosition(event: SchedulerEvent):number{
     if(this.isBetween(event)){
-      const cellWidth = this.getCellWidth();
       let duration: moment.Duration;
       if(moment(event.startDate).isBefore(this.startDate)){
         duration = moment.duration(moment(event.endDate).diff(moment(this.startDate)));
       }else{
         duration = moment.duration(moment(event.endDate).diff(moment(event.startDate)));
       }
-      return Math.trunc((duration.asMinutes() * cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440)));
+      return Math.trunc((duration.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440)));
     }else{
       return 0;
     }
@@ -188,14 +196,6 @@ export class SchedulingComponent {
     return case1 || case2 || case3 || case4;
   }
 
-  //Get width from cell
-  getCellWidth():number{
-    if(this.cellWidth){
-      return this.cellWidth.nativeElement.getBoundingClientRect().width;
-    }else{
-      return 0;
-    }
-  }
 
   //Get class style as string
   getClassStyle(schedulerEvent: SchedulerEvent):string{
@@ -223,7 +223,12 @@ export class SchedulingComponent {
   getHours(): string[] {
     const header: string[] = [];
     for (let i = 0; i < 24; i ++) {
-      header.push(`${this.leadingZero(i % 24)}:00`);
+      //header.push(`${this.leadingZero(i % 24)}:00`);
+      if(this.cellWidth < 35.5){
+        header.push(`${this.leadingZero(i % 24)}`);
+      }else{
+        header.push(`${this.leadingZero(i % 24)}:00`);
+      }
     }
     return header;
   }
