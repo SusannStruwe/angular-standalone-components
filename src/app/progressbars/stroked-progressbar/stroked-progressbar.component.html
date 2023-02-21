@@ -25,13 +25,17 @@
 
      <div class="circular-progress-bar"
           [style.background]="getProgress()">
-          <span class="inner-content"
-               [style.top.px]="strokeWidth"
-               [style.left.px]="strokeWidth"
-               [style.right.px]="strokeWidth"
-               [style.bottom.px]="strokeWidth"></span>
-          <span class="text" [style.font-size.em]="fontSize">{{percentage}} {{unit}}</span>
      </div>
+
+     <span class="inner-content"
+     [style.top.px]="strokeWidth"
+     [style.left.px]="strokeWidth"
+     [style.right.px]="strokeWidth"
+     [style.bottom.px]="strokeWidth"></span>
+
+     <span class="text" 
+     [style.font-size.em]="fontSize"
+     [style.top.px]="radius">{{percentage}} {{unit}}</span>
 </div>
 
 

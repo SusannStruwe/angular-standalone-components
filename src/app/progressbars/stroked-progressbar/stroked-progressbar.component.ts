@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SassHelperComponent } from 'src/app/config/sass-helper.component';
 
 
 export enum StrokeForm {
@@ -14,8 +13,7 @@ export enum StrokeForm {
   standalone: true,
   imports:[
     CommonModule, 
-    FontAwesomeModule,
-    SassHelperComponent
+    FontAwesomeModule
   ],
   templateUrl: './stroked-progressbar.component.html',
   styleUrls: ['./stroked-progressbar.component.scss']
@@ -30,7 +28,7 @@ export class StrokedProgressbarComponent {
 
   @Input() unit:string = '%';
 
-  @Input() fontSize:number = 1.5;
+  @Input() fontSize:number = 2;
 
   @Input() size: number = 250; //pixel
 
@@ -40,11 +38,9 @@ export class StrokedProgressbarComponent {
 
   @Input() form: StrokeForm = StrokeForm.RECTANGLE;
 
-  circleSize: number = 100;
+  circleSize: number = 125;
   radius:number = 90;
   bgColor: string| null = null;
-
-  @ViewChild(SassHelperComponent) sassHelper?: SassHelperComponent;
 
   constructor() { }
 
@@ -53,19 +49,14 @@ export class StrokedProgressbarComponent {
     this.radius = this.circleSize - this.strokeWidth/2;
   }
 
-  ngAfterViewInit (){
-    if(this.sassHelper){
-      this.bgColor = this.sassHelper.readProperty('bg-color');
-      console.log(this.bgColor);
-    }
-  }
-
   getIndicatorWidth():string{
     return this.percentage+ '%';
   }
 
   getProgress():string{
-    return `conic-gradient(transparent ${this.percentage}%, rgb(255,255,255,0.7) ${this.percentage}%)`;
+    let bodyStyles = window.getComputedStyle(document.body);
+    this.bgColor = bodyStyles.getPropertyValue('--bg-color');
+    return `conic-gradient(transparent ${this.percentage}%, ${this.bgColor} ${this.percentage}%)`;
   }
 
 }
