@@ -7,7 +7,7 @@ import { BorderBtnComponent } from '../buttons/border-btn/border-btn.component';
 import { ThemeChangerComponent } from '../layout/theme-changer/theme-changer.component';
 import { CircularProgressbarComponent } from './circular-progressbar/circular-progressbar.component';
 import { RectangleProgressbarComponent } from './rectangle-progressbar/rectangle-progressbar.component';
-import { StrokedProgressbarComponent } from './stroked-progressbar/stroked-progressbar.component';
+import { StrokedProgressbarComponent, StrokeForm } from './stroked-progressbar/stroked-progressbar.component';
 
 @Component({
   selector: 'progressbars-component',
@@ -33,6 +33,8 @@ export class ProgressbarsComponent {
   progress: number = 90;
   isRunning: boolean = false;
   intervalId?:any;
+
+  strokeFormCircle: StrokeForm = StrokeForm.CIRCLE;
   
   constructor() { }
 

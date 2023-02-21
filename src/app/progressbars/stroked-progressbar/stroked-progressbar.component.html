@@ -1,5 +1,6 @@
-<div class="stroked-progress-bar"
-[style.stroke-dasharray]="strokeDasharray">
+<div *ngIf="form ==='rectangle'" 
+     class="stroked-rectangle-progress-bar"
+     [style.stroke-dasharray]="strokeDasharray">
      <svg>
           <line x1="0" y1="0" x2="100%" y2="0"
            [style.stroke]="progressBgColor"
@@ -9,3 +10,28 @@
            [style.stroke-width]="strokeWidth"/>
      </svg>
 </div>
+
+<div *ngIf="form ==='circle'" 
+     class="stroked-circular-progress-bar"
+     [style.width.px]="size" 
+     [style.height.px]="size">
+
+     <svg xmlns="http://www.w3.org/2000/svg">
+          <circle [attr.cy]="circleSize" [attr.cx]="circleSize" [attr.r]="radius"
+          [style.stroke-dasharray]="strokeDasharray"
+          [style.stroke]="progressColor"
+          [style.stroke-width]="strokeWidth"></circle>
+     </svg>
+
+     <div class="circular-progress-bar"
+          [style.background]="getProgress()">
+          <span class="inner-content"
+               [style.top.px]="strokeWidth"
+               [style.left.px]="strokeWidth"
+               [style.right.px]="strokeWidth"
+               [style.bottom.px]="strokeWidth"></span>
+          <span class="text" [style.font-size.em]="fontSize">{{percentage}} {{unit}}</span>
+     </div>
+</div>
+
+

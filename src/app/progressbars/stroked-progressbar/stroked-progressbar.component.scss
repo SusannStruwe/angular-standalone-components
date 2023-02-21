@@ -9,10 +9,9 @@ $critical-state-color: #f58b20;
   box-sizing: border-box;
   margin: 10px;
   position: relative;
-  display: inline-block;
 }
 
-.stroked-progress-bar{
+.stroked-rectangle-progress-bar{
   stroke-dasharray: 5;
   stroke-width: 30;
   display: inline-block;
@@ -25,4 +24,69 @@ $critical-state-color: #f58b20;
     width: 100%;
     height: 100%;
   }
+}
+
+
+.stroked-circular-progress-bar{
+  position: relative;
+  padding: 1px;
+
+  svg{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+  }
+    
+  circle {
+    stroke-width: 30;
+    stroke-dasharray: 7 4;
+    stroke: var(--primary-color);
+    fill: none;
+  }
+
+  .circular-progress-bar {
+    position: absolute;
+    top:0;
+    left:0;
+    height: 101%;
+    width: 101%;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background:conic-gradient(var(--primary-color) 5%, #ddd 5%);
+    transition: background 1s linear;
+      
+    .inner-content {
+      position: absolute;
+      top: 35px;
+      right: 37px;
+      bottom: 37px;
+      left: 35px;
+      background-color: var(--bg-color);
+      border-radius: 50%;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+
+    .text {
+      position: absolute;
+      color: var(--text-color);
+      width: 100%; 
+      font-size: 1.5em;
+      z-index: 4;
+    }
+  }
+}
+
+
+.pie{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient( 
+     red 6deg, orange 6deg 18deg, yellow 18deg 45deg, 
+     green 45deg 110deg, blue 110deg 200deg, purple 200deg);
+  clip-path: circle(100%);
 }

@@ -131,9 +131,8 @@
     </div>
 
 
-
     <div class="container">
-        <h2>stroked-progressbar-component</h2>
+        <h2>stroked-progressbar-component (form rectangle)</h2>
         <div class="flex-row"
             [style.justify-content]="'center'">
             <button *ngIf="!isRunning"
@@ -167,7 +166,49 @@
         [progressBgColor]="'#f9dcb6'"
         [progressColor]="'#ff8f00'"
         ></stroked-progressbar-component>
+    </div>
 
+
+    <div class="container" [style.min-height.px]="700">
+        <h2>stroked-progressbar-component (form circle)</h2>
+        <div class="flex-row"
+            [style.justify-content]="'center'">
+            <button *ngIf="!isRunning"
+                (click)="runProgress()">
+                <fa-icon [icon]="faPlay"></fa-icon>
+            </button>
+            <button *ngIf="isRunning"
+                (click)="stopProgress()">
+                <fa-icon [icon]="faPause"></fa-icon>
+            </button>
+            <stroked-progressbar-component
+            [percentage]="progress"
+            [progressBgColor]="'#d2f5f1'"
+            [progressColor]="'#00bdab'"
+            [form]="strokeFormCircle"
+            ></stroked-progressbar-component>
+        </div>
+        <stroked-progressbar-component
+        [size]="200"
+        [strokeWidth]="30"
+        [strokeDasharray]="'15 4'"
+        [percentage]="33"
+        [progressBgColor]="'#ddd'"
+        [progressColor]="'red'"
+        [fontSize]="2.5"
+        [form]="strokeFormCircle"
+        ></stroked-progressbar-component>
+
+        <stroked-progressbar-component
+        [size]="250"
+        [strokeWidth]="40"
+        [strokeDasharray]="'15 5'"
+        [percentage]="75"
+        [progressBgColor]="'#f9dcb6'"
+        [progressColor]="'#ff8f00'"
+        [fontSize]="3"
+        [form]="strokeFormCircle"
+        ></stroked-progressbar-component>
     </div>
 
 

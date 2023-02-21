@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SassHelperComponent } from 'src/app/config/sass-helper.component';
-
 
 
 @Component({
@@ -10,8 +8,7 @@ import { SassHelperComponent } from 'src/app/config/sass-helper.component';
   standalone: true,
   imports:[
     CommonModule, 
-    FontAwesomeModule,
-    SassHelperComponent
+    FontAwesomeModule
   ],
   templateUrl: './rectangle-progressbar.component.html',
   styleUrls: ['./rectangle-progressbar.component.scss']
