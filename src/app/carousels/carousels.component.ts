@@ -13,8 +13,8 @@ import { CarouselComponent } from './carousel/carousel.component';
 export class CarouselsComponent {
 
   slides = [
-    { src: "./../../assets/Bild1.jpg" },
-    { src: "./../../assets/Bild2.jpg" }
+    { src: "assets/Bild1.jpg" },
+    { src: "assets/Bild2.jpg" }
   ];
   textArray= [
     { title: "Überschrift 1", desc:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua." },
