@@ -20,7 +20,7 @@ import { faArrowLeft, faArrowRight, faChevronLeft, faChevronRight } from '@forta
 })
 export class CarouselComponent {
   
-  // example --> slides = [ { src: "./../../assets/image.png" } ]
+  // example --> slides = [ { src: "assets/image.png" } ]
   @Input() slides?: any[];
   // example --> textArray = [ { title: "Title 1", desc: "Beschreibung" } ]
   @Input() textArray?: any[];
