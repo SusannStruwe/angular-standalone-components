@@ -1,0 +1,36 @@
+@import 'src/content/_baseVariables';
+
+
+:host{
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 10px;
+  height: 200px;
+  width: 200px;
+}
+
+
+svg {
+  margin: 0 auto;
+  transform: rotate(-90deg);
+  background: #ddd;
+  border-radius: 50%;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+circle {
+  fill: #ddd;
+  stroke: var(--primary-color);
+  stroke-width: 75;
+  stroke-dasharray: 15 360;
+  transition: stroke-dasharray 3s ease;
+}
+
+.pie {
+  width: 400px;
+  height: 400px;
+  background-image: conic-gradient(blue 0deg 172deg, red 172deg 249deg, yellow 249deg 313deg, green 313deg 333deg, lightgreen 333deg 347deg, gold 347deg 350deg, pink 350deg 360deg);
+  border-radius: 50%
+}
