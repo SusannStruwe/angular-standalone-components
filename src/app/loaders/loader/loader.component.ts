@@ -2,6 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+export enum LoaderStyle {
+  SPINNER = 'spinner',
+  SPINNER2 = 'spinner-2',
+  DOT_LOADER = 'dot-loader',
+  DOT_LOADER2 = 'dot-loader-2'
+}
+
 @Component({
   selector: 'loader-component',
   standalone: true,
@@ -14,7 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class LoaderComponent {
 
-  @Input() type?: string;
+  @Input() loaderStyle?: LoaderStyle;
   //example -> linear, ease
   @Input() animation?: string;  
 

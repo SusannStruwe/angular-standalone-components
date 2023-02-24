@@ -28,17 +28,17 @@ export class StrokedProgressbarComponent {
 
   @Input() unit:string = '%';
 
-  @Input() fontSize:number = 2;
+  @Input() fontSize:number = 1.5;
 
-  @Input() size: number = 250; //pixel
+  @Input() size: number = 200; //pixel
 
   @Input() strokeWidth: number = 30; //pixel
 
-  @Input() strokeDasharray: string = '5'; //pixel
+  @Input() strokeDasharray: string = '7'; //pixel
 
   @Input() form: StrokeForm = StrokeForm.RECTANGLE;
 
-  circleSize: number = 125;
+  circleSize: number = 100;
   radius:number = 90;
   bgColor: string = 'white';
 

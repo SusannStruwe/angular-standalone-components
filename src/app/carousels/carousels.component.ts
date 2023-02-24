@@ -1,7 +1,7 @@
 
 import { Component } from '@angular/core';
 import { ThemeChangerComponent } from '../layout/theme-changer/theme-changer.component';
-import { CarouselComponent } from './carousel/carousel.component';
+import { CarouselComponent, CarouselStyle } from './carousel/carousel.component';
 
 @Component({
   selector: 'carousels-component',
@@ -20,6 +20,11 @@ export class CarouselsComponent {
     { title: "Überschrift 1", desc:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua." },
     { title: "Überschrift 2", desc:"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua." }
   ]
+
+  fullscreenLeftRight = CarouselStyle.FULLSCREEN_LEFT_RIGHT;
+  fullscreenOverlayLeftRight = CarouselStyle.FULLSCREEN_OVERLAY_LEFT_RIGHT;
+  fullscreenCircle = CarouselStyle.FULLSCREEN_CIRCLE;
+  splitCircle = CarouselStyle.SPLIT_CIRCLE;
 
   constructor() { }
 
