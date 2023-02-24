@@ -78,26 +78,14 @@ $desc-height: 20%;
 /************************************
 Shining
 **************************************/
-
 .shining {
-  background: transparent;
-  box-sizing: border-box;
   transition: color 0.25s;
 
   &::before,
   &::after {
-    box-sizing: inherit;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 2px solid transparent;
+    border: $border-width solid transparent;
     width: 0;
     height: 0;
-
-    fa-icon{
-      color: var(--primary-color);
-    }
   }
 
   &::before {
@@ -110,23 +98,8 @@ Shining
     right: 0;
   }
 
-
-  &:hover,&.active{
-    &:not([disabled]){
-      color: var(--primary-color);
-    
-      fa-icon{
-        color: var(--primary-color);
-      }
-    }
-  }
-
-  &:hover::before,
-  &:hover::after,
-  &.active::before,
-  &.active::after{
-    width: 100%;
-    height: 100%;
+  &:hover{
+    color: var(--primary-color);
 
     fa-icon{
       color: var(--primary-color);
@@ -134,23 +107,33 @@ Shining
   }
 
   &:hover::before, 
-  &.active::before{
+  &:hover::after{
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover::before{
     border-top-color: var(--primary-color); 
     border-right-color: var(--primary-color);
     transition:
     width 0.25s ease-out, 
-    height 0.25s ease-out 0.25s; 
+    height 0.25s ease-out 0.25s;
+  
+    fa-icon{
+      color: var(--primary-color);
+    }
   }
 
-  &:hover::after,
-  &.active::after{
+  &:hover::after{
     border-bottom-color: var(--primary-color); 
     border-left-color: var(--primary-color);
     transition:
-    border-color 0s ease-out 0.5s, 
-    width 0.25s ease-out 0.5s, 
+    border-color 0s ease-out 0.5s,
+    width 0.25s ease-out 0.5s,
     height 0.25s ease-out 0.75s;
+  
+    fa-icon{
+      color: var(--primary-color);
+    }
   }
-
 }
-
