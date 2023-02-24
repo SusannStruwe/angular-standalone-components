@@ -2,7 +2,23 @@
 <ul class="sidebar">
 
     <li class="default"
-    [routerLink]="'/'"> Components
+    [routerLink]="'home'"
+    [routerLinkActive]="'active'"> Components
+    </li>
+
+    <li
+    [routerLink]="'cards'"
+    [routerLinkActive]="'active'"> Cards
+    </li>
+
+    <li
+    [routerLink]="'carousels'"
+    [routerLinkActive]="'active'"> Carousels
+    </li>
+
+    <li
+    [routerLink]="'charts'"
+    [routerLinkActive]="'active'"> Charts
     </li>
 
     <li
@@ -11,8 +27,8 @@
     </li>
 
     <li
-      [routerLink]="'selects'"
-      [routerLinkActive]="'active'"> Selects
+    [routerLink]="'datepickers'"
+    [routerLinkActive]="'active'"> Datepickers
     </li>
     
     <li
@@ -25,27 +41,15 @@
       [routerLinkActive]="'active'"> Progressbars
     </li>
 
-
-    <li
-    [routerLink]="'carousels'"
-    [routerLinkActive]="'active'"> Carousels
-    </li>
-
-    <li
-    [routerLink]="'datepickers'"
-    [routerLinkActive]="'active'"> Datepickers
-    </li>
-
-    <li
-    [routerLink]="'cards'"
-    [routerLinkActive]="'active'"> Cards
-    </li>
-
     <li
       [routerLink]="'schedulers'"
       [routerLinkActive]="'active'"> Schedulers
     </li>
 
+    <li
+      [routerLink]="'selects'"
+      [routerLinkActive]="'active'"> Selects
+    </li>
 
 </ul>
 

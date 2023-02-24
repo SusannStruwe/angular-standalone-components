@@ -2,8 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '' },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
   // { path: '**', component: PageNotFoundComponent },
+  {
+    path: 'home',
+    loadComponent: () => import('./layout/preview/preview.component').then(m => m.PreviewComponent),
+  },
   {
     path: 'buttons',
     loadComponent: () => import('./buttons/buttons.component').then(m => m.ButtonsComponent),
@@ -36,6 +40,11 @@ const routes: Routes = [
     path: 'progressbars',
     loadComponent: () => import('./progressbars/progressbars.component').then(m => m.ProgressbarsComponent),
   },
+  {
+    path: 'charts',
+    loadComponent: () => import('./charts/charts.component').then(m => m.ChartsComponent),
+  },
+  
   
 ];
 

@@ -1,0 +1,40 @@
+@import 'src/content/_baseVariables';
+
+
+.content{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+}
+
+.container{
+    min-height: 300px;
+}
+
+button{
+    position: relative;
+    height: $btnHeight;
+    width: 65px;
+    margin: 0px 5px;
+    padding: 10px 25px;
+    border: 0;
+    font-weight: 300;
+    font-size: 1.2em;
+    background: var(--primary-color);
+    color: var(--fa-icon-color);
+    cursor: pointer;
+    border-radius: $borderRadius;
+    z-index: 10;
+  
+    fa-icon{
+      color: var(--fa-icon-color);
+    }
+  
+    span{
+      margin: 0px 5px;
+    }
+    
+    &:hover{
+        filter: brightness(0.9);
+    }
+  }

@@ -40,7 +40,7 @@ export class StrokedProgressbarComponent {
 
   circleSize: number = 125;
   radius:number = 90;
-  bgColor: string| null = null;
+  bgColor: string = 'white';
 
   constructor() { }
 
@@ -55,7 +55,8 @@ export class StrokedProgressbarComponent {
 
   getProgress():string{
     let bodyStyles = window.getComputedStyle(document.body);
-    this.bgColor = bodyStyles.getPropertyValue('--bg-color');
+    if(bodyStyles.getPropertyValue('--bg-color')) this.bgColor = bodyStyles.getPropertyValue('--bg-color');
+
     return `conic-gradient(transparent ${this.percentage}%, ${this.bgColor} ${this.percentage}%)`;
   }
 
