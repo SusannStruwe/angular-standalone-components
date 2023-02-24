@@ -1,5 +1,5 @@
 <!-- carousel type 1-->
-<div class="carousel" *ngIf="slides && type == 1">
+<div class="carousel" *ngIf="slides && carouselStyle == 1">
   <button aria-label="control-prev" class="control prev" (click)="previousSlide()">
     <fa-icon [icon]="faChevronLeft"></fa-icon>
   </button>
@@ -18,7 +18,7 @@
 
 
 <!-- carousel type 2-->
-<div class="carousel overlaying" *ngIf="slides && type == 2">
+<div class="carousel overlaying" *ngIf="slides && carouselStyle == 2">
   <div class="carousel-item"
   [style.height.px]="height">
       <img
@@ -39,7 +39,7 @@
 </div>
 
 <!-- carousel type 3-->
-<div class="carousel flex-column" *ngIf="slides && type == 3">
+<div class="carousel flex-column" *ngIf="slides && carouselStyle == 3">
   <div class="carousel-item"
   [style.height.px]="height">
     <img
@@ -58,7 +58,7 @@
 
 
 <!-- carousel type 4-->
-<div class="carousel flex-column" *ngIf="slides && type == 4">
+<div class="carousel flex-column" *ngIf="slides && carouselStyle == 4">
   <div class="carousel-item flex-row"
     [class.reverse]="textPosition=='right'">
     <div class="text" *ngIf="textArray">

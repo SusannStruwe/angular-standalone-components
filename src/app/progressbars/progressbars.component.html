@@ -169,7 +169,7 @@
     </div>
 
 
-    <div class="container" [style.min-height.px]="700">
+    <div class="container" [style.min-height.px]="600">
         <h2>stroked-progressbar-component (form circle)</h2>
         <div class="flex-row"
             [style.justify-content]="'center'">
@@ -188,7 +188,7 @@
             ></stroked-progressbar-component>
         </div>
         <stroked-progressbar-component
-        [size]="200"
+        [size]="150"
         [strokeWidth]="30"
         [strokeDasharray]="'15 4'"
         [percentage]="33"
@@ -197,12 +197,12 @@
         ></stroked-progressbar-component>
 
         <stroked-progressbar-component
-        [size]="250"
+        [size]="200"
         [strokeWidth]="40"
         [strokeDasharray]="'15 5'"
         [percentage]="75"
         [progressColor]="'#ff8f00'"
-        [fontSize]="3"
+        [fontSize]="2"
         [form]="strokeFormCircle"
         ></stroked-progressbar-component>
     </div>
@@ -226,14 +226,6 @@
             ></circular-progressbar-component>
         </div>
     
-        <circular-progressbar-component
-        [percentage]="10"
-        [unit]="'Stück'"
-        [progressColor]="'red'"
-        [style.width.px]="200"
-        [style.height.px]="200"
-        ></circular-progressbar-component>
-
         <circular-progressbar-component
         [percentage]="40"
         [unit]="'€'"
@@ -264,16 +256,6 @@
             [bordered]="true"
             ></circular-progressbar-component>
         </div>
-      
-        <circular-progressbar-component
-        [percentage]="10"
-        [unit]="'Stück'"
-        [progressColor]="'red'"
-        [progressBgColor]="'white'"
-        [bordered]="true"
-        [style.width.px]="200"
-        [style.height.px]="200"
-        ></circular-progressbar-component>
 
         <circular-progressbar-component
         [percentage]="50"

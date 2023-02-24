@@ -4,7 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 
-export enum CarouselType {
+export enum CarouselStyle {
   FULLSCREEN_LEFT_RIGHT = 1,
   FULLSCREEN_OVERLAY_LEFT_RIGHT = 2,
   FULLSCREEN_CIRCLE = 3,
@@ -37,7 +37,7 @@ export class CarouselComponent {
   // to use different sizes
   @Input() height?: number;
   // example --> type = 1
-  @Input() type?: CarouselType;
+  @Input() carouselStyle?: CarouselStyle;
   
   @Input() diashow?: boolean;
 
@@ -51,7 +51,7 @@ export class CarouselComponent {
   constructor() {}
 
   ngOnInit(){
-    if(this.type && this.type != 1 && this.diashow){
+    if(this.carouselStyle && this.carouselStyle != 1 && this.diashow){
       this.setInterval();
     }
   }
