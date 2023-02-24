@@ -1,8 +1,8 @@
 @import 'src/content/_baseVariables';
 
-/*
+/*****************************************
 CSS Variables -> --fa-icon-color for changing theme
-*/
+********************************************/
 
 $primary-color-light: rgba(0,189,171, 0.7); //rgb(var(--primary-color), 0.7);
 $primary-color-lighter: rgba(0,189,171, 0.5);
@@ -33,6 +33,10 @@ $primary-color-lightest: rgba(0,189,171, 0.2);
     }
 }
 
+
+/************************************
+Spinner
+**************************************/
 .spinner {
     border: 8px solid #f3f3f3; 
     border-top: 8px solid var(--primary-color); 
@@ -42,6 +46,9 @@ $primary-color-lightest: rgba(0,189,171, 0.2);
     margin: auto;
 }
 
+/************************************
+Spinner 2
+**************************************/
 .spinner-2 {
     border: 8px solid transparent; 
     border-top: 8px solid var(--primary-color);
@@ -60,6 +67,10 @@ $primary-color-lightest: rgba(0,189,171, 0.2);
     animation: loading 1s ease infinite;
 }
 
+
+/************************************
+Dot Loader
+**************************************/
 .dot-loader {
   position: relative;
   flex-direction: column;
@@ -80,6 +91,9 @@ $primary-color-lightest: rgba(0,189,171, 0.2);
     }
 }
 
+/************************************
+Dot Loader 2
+**************************************/
 .dot-loader-2{
   margin: 10px auto 0;
   width: auto;

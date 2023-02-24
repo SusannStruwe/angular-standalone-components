@@ -1,16 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input} from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faArrowLeft, faArrowRight, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
+
+export enum CarouselType {
+  FULLSCREEN_LEFT_RIGHT = 1,
+  FULLSCREEN_OVERLAY_LEFT_RIGHT = 2,
+  FULLSCREEN_CIRCLE = 3,
+  SPLIT_CIRCLE = 4
+}
 
 /**
- * Type = 1: fullscreen slides without text and navigation buttons on the left and right
- * Type = 2: fullscreen slides without text and circle buttons on the bottom
- * Type = 3: splits slides and text horizontally and circle buttons on the bottom
- * 
-
+ * FULLSCREEN_LEFT_RIGHT: fullscreen slides with navigation buttons on the left and right
+ * FULLSCREEN_OVERLAY_LEFT_RIGHT: fullscreen slides with overlaying navigation buttons on the left and right
+ * FULLSCREEN_CIRCLE: fullscreen slides with circle buttons on the bottom
+ * SPLIT_CIRCLE: splits slides and text horizontally + circle buttons on the bottom
  */
+
+
 @Component({
   selector: 'carousel-component',
   standalone: true,
@@ -27,9 +35,9 @@ export class CarouselComponent {
    // example --> left or right
   @Input() textPosition?: string;
   // to use different sizes
-  @Input() maxHeight?: number;
+  @Input() height?: number;
   // example --> type = 1
-  @Input() type?: number;
+  @Input() type?: CarouselType;
   
   @Input() diashow?: boolean;
 

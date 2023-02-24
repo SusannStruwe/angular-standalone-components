@@ -1,13 +1,13 @@
 @import 'src/content/_baseVariables';
 
+
+/******************************
+CSS Variables -> --primary-color, --fa-icon-color, ---bg-color for changing theme
+******************************/
+
 $btnHeight: 45px;
 $borderRadius: 4px;
 $primary-color-light: rgb(0,189, 171, 0.10);
-
-/*
-CSS Variables -> --primary-color, --fa-icon-color, ---bg-color for changing theme
-*/
-
 
 :host{
   display: inline-block;
