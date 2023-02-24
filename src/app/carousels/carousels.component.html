@@ -7,35 +7,47 @@
 <div class="content">
 
     <div class="container">
-        <h2>carousel-component (type 1)</h2>
+        <h2>carousel-component (carouseltype fullscreen_left_right)</h2>
         <carousel-component 
             [slides]="slides" 
             [textArray]="textArray"
-            [maxHeight]="300"
+            [height]="300"
             [type]="1" 
             [diashow]="true">
         </carousel-component>
     </div>
 
+
     <div class="container">
-        <h2>carousel-component (type 2)</h2>
+        <h2>carousel-component (carouseltype fullscreen_overlay_left_right)</h2>
         <carousel-component 
             [slides]="slides" 
             [textArray]="textArray"
-            [maxHeight]="300"
+            [height]="300"
             [type]="2" 
             [diashow]="true">
         </carousel-component>
     </div>
 
     <div class="container">
-        <h2>carousel-component (type 3)</h2>
+        <h2>carousel-component (carouseltype fullscreen_circle)</h2>
+        <carousel-component 
+            [slides]="slides" 
+            [textArray]="textArray"
+            [height]="300"
+            [type]="3" 
+            [diashow]="true">
+        </carousel-component>
+    </div>
+
+    <div class="container">
+        <h2>carousel-component (carouseltype split_circle)</h2>
         <carousel-component 
             [slides]="slides" 
             [textArray]="textArray"
             [textPosition]="'left'"
-            [maxHeight]="215"
-            [type]="3" 
+            [height]="215"
+            [type]="4" 
             [diashow]="true">
         </carousel-component>
     </div>

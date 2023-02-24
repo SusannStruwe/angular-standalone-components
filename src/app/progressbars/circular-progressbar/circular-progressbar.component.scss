@@ -1,5 +1,8 @@
 @import 'src/content/_baseVariables';
 
+/*
+CSS Variables -> --primary-color, --text-color for changing theme
+*/
 
 :host{
   display: inline-block;
@@ -27,7 +30,7 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: $box-shadow;
   }
 
   .text {
@@ -67,13 +70,13 @@ $progress-bar-stroke-width: 1.8;
   
     .progress-background {
       fill: none;
-      stroke: #e2eff0;
+      stroke: lighten($primary-color, 57%);
       stroke-width: $progress-bar-stroke-width;
     }
     
     .progress-indicator{
       fill: none;
-      stroke: #78bec7;
+      stroke: var(--primary-color);
       stroke-dasharray: 100 100;
       stroke-dashoffset: 100;
       stroke-linecap: round;

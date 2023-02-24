@@ -1,5 +1,9 @@
 @import 'src/content/_baseVariables';
 
+/*
+CSS Variables -> --gray for changing theme
+*/
+
 $light-gray-color: #ddd;
 
 :host{
@@ -23,7 +27,6 @@ button {
 
   &:hover,&.active {
     filter: brightness(0.8);
-    // background: var(--primary-color) !important;
   }
 }
 

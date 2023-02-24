@@ -1,9 +1,13 @@
 @import 'src/content/_baseVariables';
 
+
 $normal-state-color: $primary-color;
 $normal-state-color-dark: darken($normal-state-color, 5%);
 $critical-state-color: #f58b20; 
 $width: 200px;
+/*
+CSS Variables -> --primary-color for changing theme
+*/
 
 :host{
   display: inline-block;

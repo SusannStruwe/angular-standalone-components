@@ -3,11 +3,12 @@
   <button aria-label="control-prev" class="control prev" (click)="previousSlide()">
     <fa-icon [icon]="faChevronLeft"></fa-icon>
   </button>
-  <div class="carousel-item">
+  <div class="carousel-item"
+  [style.height.px]="height">
       <img
       class="slide"
-      [style.max-height]="maxHeight+'px'"
       [src]="slides[currentSlideIndex].src"
+      [alt]="textArray? textArray[currentSlideIndex].title: ''"
       />
   </div>
   <button aria-label="control-next" class="control next" (click)="nextSlide()">
@@ -17,12 +18,34 @@
 
 
 <!-- carousel type 2-->
-<div class="carousel flex-column" *ngIf="slides && type == 2">
-  <div class="carousel-item">
+<div class="carousel overlaying" *ngIf="slides && type == 2">
+  <div class="carousel-item"
+  [style.height.px]="height">
+      <img
+      class="slide"
+      [src]="slides[currentSlideIndex].src"
+      [alt]="textArray? textArray[currentSlideIndex].title: ''"
+      />
+  </div>
+  <div class="control-items">
+    <button aria-label="control-prev" class="control prev" (click)="previousSlide()">
+      <fa-icon [icon]="faChevronLeft"></fa-icon>
+    </button>
+    <button aria-label="control-next" class="control next" (click)="nextSlide()">
+      <fa-icon [icon]="faChevronRight"></fa-icon>
+    </button>
+  </div>
+
+</div>
+
+<!-- carousel type 3-->
+<div class="carousel flex-column" *ngIf="slides && type == 3">
+  <div class="carousel-item"
+  [style.height.px]="height">
     <img
     class="slide"
-    [style.max-height]="maxHeight+'px'"
     [src]="slides[currentSlideIndex].src"
+    [alt]="textArray? textArray[currentSlideIndex].title: ''"
     />
   </div>
   <div class="carousel-bar">
@@ -34,8 +57,8 @@
 </div>
 
 
-<!-- carousel type 3-->
-<div class="carousel flex-column" *ngIf="slides && type == 3">
+<!-- carousel type 4-->
+<div class="carousel flex-column" *ngIf="slides && type == 4">
   <div class="carousel-item flex-row"
     [class.reverse]="textPosition=='right'">
     <div class="text" *ngIf="textArray">
@@ -44,8 +67,9 @@
     </div>
     <img
     class="slide"
-    [style.max-height]="maxHeight+'px'"
+    [style.height.px]="height"
     [src]="slides[currentSlideIndex].src"
+    [alt]="textArray? textArray[currentSlideIndex].title: ''"
     />
   </div>
   <div class="carousel-bar">

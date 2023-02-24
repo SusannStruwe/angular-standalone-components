@@ -1,5 +1,13 @@
 @import 'src/content/_baseVariables';
 
+/*****************************************
+CSS Variables -> --fa-icon-color for changing theme
+********************************************/
+
+$primary-color-light: rgba(0,189,171, 0.7); //rgb(var(--primary-color), 0.7);
+$primary-color-lighter: rgba(0,189,171, 0.5);
+$primary-color-lightest: rgba(0,189,171, 0.2);
+
 :host{
     display: inline-block;
     margin: 5px;
@@ -25,6 +33,10 @@
     }
 }
 
+
+/************************************
+Spinner
+**************************************/
 .spinner {
     border: 8px solid #f3f3f3; 
     border-top: 8px solid var(--primary-color); 
@@ -34,6 +46,9 @@
     margin: auto;
 }
 
+/************************************
+Spinner 2
+**************************************/
 .spinner-2 {
     border: 8px solid transparent; 
     border-top: 8px solid var(--primary-color);
@@ -52,6 +67,10 @@
     animation: loading 1s ease infinite;
 }
 
+
+/************************************
+Dot Loader
+**************************************/
 .dot-loader {
   position: relative;
   flex-direction: column;
@@ -68,10 +87,13 @@
       width: 1em;
       height: 1em;
       border-radius: 50%;
-      animation: mulShdSpin 1.1s infinite ease;
+      animation: dotSpin 1.1s infinite ease;
     }
 }
 
+/************************************
+Dot Loader 2
+**************************************/
 .dot-loader-2{
   margin: 10px auto 0;
   width: auto;
@@ -99,31 +121,31 @@
   }
 }
 
-@keyframes mulShdSpin {
+@keyframes dotSpin {
     0%,
     100% {
-      box-shadow: 0em -2.6em 0em 0em var(--primary-color), 1.8em -1.8em 0 0em rgba(0,189,171, 0.2), 2.5em 0em 0 0em rgba(0,189,171, 0.2), 1.75em 1.75em 0 0em rgba(0,189,171, 0.2), 0em 2.5em 0 0em rgba(0,189,171, 0.2), -1.8em 1.8em 0 0em rgba(0,189,171, 0.2), -2.6em 0em 0 0em rgba(0,189,171, 0.5), -1.8em -1.8em 0 0em rgba(0,189,171, 0.7);
+      box-shadow: 0em -2.6em 0em 0em var(--primary-color), 1.8em -1.8em 0 0em $primary-color-lightest, 2.5em 0em 0 0em $primary-color-lightest, 1.75em 1.75em 0 0em $primary-color-lightest, 0em 2.5em 0 0em $primary-color-lightest, -1.8em 1.8em 0 0em $primary-color-lightest, -2.6em 0em 0 0em $primary-color-lighter, -1.8em -1.8em 0 0em $primary-color-light;
     }
     12.5% {
-      box-shadow: 0em -2.6em 0em 0em rgba(0,189,171, 0.7), 1.8em -1.8em 0 0em var(--primary-color), 2.5em 0em 0 0em rgba(0,189,171, 0.2), 1.75em 1.75em 0 0em rgba(0,189,171, 0.2), 0em 2.5em 0 0em rgba(0,189,171, 0.2), -1.8em 1.8em 0 0em rgba(0,189,171, 0.2), -2.6em 0em 0 0em rgba(0,189,171, 0.2), -1.8em -1.8em 0 0em rgba(0,189,171, 0.5);
+      box-shadow: 0em -2.6em 0em 0em $primary-color-light, 1.8em -1.8em 0 0em var(--primary-color), 2.5em 0em 0 0em $primary-color-lightest, 1.75em 1.75em 0 0em $primary-color-lightest, 0em 2.5em 0 0em $primary-color-lightest, -1.8em 1.8em 0 0em $primary-color-lightest, -2.6em 0em 0 0em $primary-color-lightest, -1.8em -1.8em 0 0em $primary-color-lighter;
     }
     25% {
-      box-shadow: 0em -2.6em 0em 0em rgba(0,189,171, 0.5), 1.8em -1.8em 0 0em rgba(0,189,171, 0.7), 2.5em 0em 0 0em var(--primary-color), 1.75em 1.75em 0 0em rgba(0,189,171, 0.2), 0em 2.5em 0 0em rgba(0,189,171, 0.2), -1.8em 1.8em 0 0em rgba(0,189,171, 0.2), -2.6em 0em 0 0em rgba(0,189,171, 0.2), -1.8em -1.8em 0 0em rgba(0,189,171, 0.2);
+      box-shadow: 0em -2.6em 0em 0em $primary-color-lighter, 1.8em -1.8em 0 0em $primary-color-light, 2.5em 0em 0 0em var(--primary-color), 1.75em 1.75em 0 0em $primary-color-lightest, 0em 2.5em 0 0em $primary-color-lightest, -1.8em 1.8em 0 0em $primary-color-lightest, -2.6em 0em 0 0em $primary-color-lightest, -1.8em -1.8em 0 0em $primary-color-lightest;
     }
     37.5% {
-      box-shadow: 0em -2.6em 0em 0em rgba(0,189,171, 0.2), 1.8em -1.8em 0 0em rgba(0,189,171, 0.5), 2.5em 0em 0 0em rgba(0,189,171, 0.7), 1.75em 1.75em 0 0em var(--primary-color), 0em 2.5em 0 0em rgba(0,189,171, 0.2), -1.8em 1.8em 0 0em rgba(0,189,171, 0.2), -2.6em 0em 0 0em rgba(0,189,171, 0.2), -1.8em -1.8em 0 0em rgba(0,189,171, 0.2);
+      box-shadow: 0em -2.6em 0em 0em $primary-color-lightest, 1.8em -1.8em 0 0em $primary-color-lighter, 2.5em 0em 0 0em $primary-color-light, 1.75em 1.75em 0 0em var(--primary-color), 0em 2.5em 0 0em $primary-color-lightest, -1.8em 1.8em 0 0em $primary-color-lightest, -2.6em 0em 0 0em $primary-color-lightest, -1.8em -1.8em 0 0em $primary-color-lightest;
     }
     50% {
-      box-shadow: 0em -2.6em 0em 0em rgba(0,189,171, 0.2), 1.8em -1.8em 0 0em rgba(0,189,171, 0.2), 2.5em 0em 0 0em rgba(0,189,171, 0.5), 1.75em 1.75em 0 0em rgba(0,189,171, 0.7), 0em 2.5em 0 0em var(--primary-color), -1.8em 1.8em 0 0em rgba(0,189,171, 0.2), -2.6em 0em 0 0em rgba(0,189,171, 0.2), -1.8em -1.8em 0 0em rgba(0,189,171, 0.2);
+      box-shadow: 0em -2.6em 0em 0em $primary-color-lightest, 1.8em -1.8em 0 0em $primary-color-lightest, 2.5em 0em 0 0em $primary-color-lighter, 1.75em 1.75em 0 0em $primary-color-light, 0em 2.5em 0 0em var(--primary-color), -1.8em 1.8em 0 0em $primary-color-lightest, -2.6em 0em 0 0em $primary-color-lightest, -1.8em -1.8em 0 0em $primary-color-lightest;
     }
     62.5% {
-      box-shadow: 0em -2.6em 0em 0em rgba(0,189,171, 0.2), 1.8em -1.8em 0 0em rgba(0,189,171, 0.2), 2.5em 0em 0 0em rgba(0,189,171, 0.2), 1.75em 1.75em 0 0em rgba(0,189,171, 0.5), 0em 2.5em 0 0em rgba(0,189,171, 0.7), -1.8em 1.8em 0 0em var(--primary-color), -2.6em 0em 0 0em rgba(0,189,171, 0.2), -1.8em -1.8em 0 0em rgba(0,189,171, 0.2);
+      box-shadow: 0em -2.6em 0em 0em $primary-color-lightest, 1.8em -1.8em 0 0em $primary-color-lightest, 2.5em 0em 0 0em $primary-color-lightest, 1.75em 1.75em 0 0em $primary-color-lighter, 0em 2.5em 0 0em $primary-color-light, -1.8em 1.8em 0 0em var(--primary-color), -2.6em 0em 0 0em $primary-color-lightest, -1.8em -1.8em 0 0em $primary-color-lightest;
     }
     75% {
-      box-shadow: 0em -2.6em 0em 0em rgba(0,189,171, 0.2), 1.8em -1.8em 0 0em rgba(0,189,171, 0.2), 2.5em 0em 0 0em rgba(0,189,171, 0.2), 1.75em 1.75em 0 0em rgba(0,189,171, 0.2), 0em 2.5em 0 0em rgba(0,189,171, 0.5), -1.8em 1.8em 0 0em rgba(0,189,171, 0.7), -2.6em 0em 0 0em var(--primary-color), -1.8em -1.8em 0 0em rgba(0,189,171, 0.2);
+      box-shadow: 0em -2.6em 0em 0em $primary-color-lightest, 1.8em -1.8em 0 0em $primary-color-lightest, 2.5em 0em 0 0em $primary-color-lightest, 1.75em 1.75em 0 0em $primary-color-lightest, 0em 2.5em 0 0em $primary-color-lighter, -1.8em 1.8em 0 0em $primary-color-light, -2.6em 0em 0 0em var(--primary-color), -1.8em -1.8em 0 0em $primary-color-lightest;
     }
     87.5% {
-      box-shadow: 0em -2.6em 0em 0em rgba(0,189,171, 0.2), 1.8em -1.8em 0 0em rgba(0,189,171, 0.2), 2.5em 0em 0 0em rgba(0,189,171, 0.2), 1.75em 1.75em 0 0em rgba(0,189,171, 0.2), 0em 2.5em 0 0em rgba(0,189,171, 0.2), -1.8em 1.8em 0 0em rgba(0,189,171, 0.5), -2.6em 0em 0 0em rgba(0,189,171, 0.7), -1.8em -1.8em 0 0em var(--primary-color);
+      box-shadow: 0em -2.6em 0em 0em $primary-color-lightest, 1.8em -1.8em 0 0em $primary-color-lightest, 2.5em 0em 0 0em $primary-color-lightest, 1.75em 1.75em 0 0em $primary-color-lightest, 0em 2.5em 0 0em $primary-color-lightest, -1.8em 1.8em 0 0em $primary-color-lighter, -2.6em 0em 0 0em $primary-color-light, -1.8em -1.8em 0 0em var(--primary-color);
     }
 }
 
