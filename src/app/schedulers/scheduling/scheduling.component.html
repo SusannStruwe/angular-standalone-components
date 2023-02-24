@@ -56,11 +56,11 @@
     </div>
 
     <!--content-->
-    <div class="scheduler-content" id="scheduler-content-row">
+    <div id="scheduler-content" class="scheduler-content">
         <div class="scheduler-content-row"
             *ngFor="let schedulerRow of schedulerRows">
              <!-- background -->
-            <div class="background" id="background">
+            <div class="background">
                 <div>{{schedulerRow.label}}</div>
                 <div #cellWidth
                     *ngFor="let item of getColumns()"
