@@ -1,5 +1,9 @@
 @import 'src/content/_baseVariables';
 
+/*
+CSS Variables -> --primary-color for changing theme
+*/
+
 $btnHeight: 45px;
 $borderRadius: 4px;
 $borderWidth: 2px;
@@ -55,7 +59,6 @@ button {
   }
 
   &:hover{
-    // background-color: var(--primary-color-dark);
     filter: brightness(0.9);
   }
 }

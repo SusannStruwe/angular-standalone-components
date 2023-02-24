@@ -1,6 +1,10 @@
 @import 'src/content/_baseVariables';
 
 
+/*
+CSS Variables -> --primary-color, --fa-icon-color for changing theme
+*/
+
 $carousel-bar-height: 40px;
 // =========================
 // Carousel
@@ -24,7 +28,7 @@ $carousel-bar-height: 40px;
   .slide {
     width: 90%;
     height: 100%;
-    object-fit: contain; //cover;
+    object-fit: contain;
   }
 
   .text{
@@ -82,7 +86,6 @@ $carousel-bar-height: 40px;
   justify-content: center;
   align-items: center;
 
-  /* flex item width */
   .text,.slide{
     width: 50%;
   }
@@ -105,7 +108,7 @@ $carousel-bar-height: 40px;
 // =========================
 .control {
   border: none;
-  outline: 0; // remove blue outline border, but make sure they are still focussable for accessibility
+  outline: 0; 
   color: var(--fa-icon-color);
   font-weight: 600;
   opacity: 0.8;

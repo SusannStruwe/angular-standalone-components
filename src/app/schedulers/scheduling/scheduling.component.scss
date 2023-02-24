@@ -1,7 +1,7 @@
 @import 'src/content/_baseVariables';
 
 $border-color: #ccc;
-$header-bg-color: rgb(000,000, 000, 0.03); // #fbfbfb;
+$header-bg-color: rgb(000,000, 000, 0.03);
 $first-cell-width: 175px;
 $row-height: 40px;
 $btnHeight: 45px;
@@ -21,15 +21,15 @@ $critical-state-color-dark: darken($critical-state-color, 5%);
 $paused-state-color: #aaa; 
 $paused-state-color-dark: darken($paused-state-color, 5%);
 
+/*
+CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
+*/
 
 :host{
     margin: 20px auto;
     display: inline-block;
     width: 100%;
     min-height: 400px;
-
-    // will force the browser to calculate the width according to the "outer"-width of the div, 
-    // padding will be subtracted from the width
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
     box-sizing: border-box; 
@@ -136,13 +136,13 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
     
             // element before active
             &:has(+.active) {
-                border-right-color: $primary-color;
+                border-right-color: var(--primary-color);
             }
             &.active{
                 font-weight: 600;
                 background-color: $primary-color-light;
-                border-top: 1px solid $primary-color;
-                border-right: 1px solid $primary-color;
+                border-top: 1px solid var(--primary-color);
+                border-right: 1px solid var(--primary-color);
             }
             &:last-of-type{
                 border-right: none;
@@ -194,11 +194,11 @@ $paused-state-color-dark: darken($paused-state-color, 5%);
             }
             // element before active
             &:has(+.active) {
-                border-right-color: $primary-color;
+                border-right-color: var(--primary-color);
             }
             &.active{
                 background-color: $primary-color-light;
-                border-right: 1px solid $primary-color;
+                border-right: 1px solid var(--primary-color);
             }
         }
     }
