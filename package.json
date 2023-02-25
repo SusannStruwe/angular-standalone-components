@@ -8,7 +8,6 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "build:prod": "ng build --configuration production",
-    "build:ghpages": "ng build --configuration production --output-path docs --base-href /angular-component-library/",
     "deploy": "ng deploy --base-href=/angular-component-library/",
     "update": "ng update @angular/cli @angular/core"
   },
