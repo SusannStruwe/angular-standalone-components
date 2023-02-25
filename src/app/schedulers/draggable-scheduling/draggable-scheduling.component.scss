@@ -1,0 +1,347 @@
+@import 'src/content/_baseVariables';
+
+$border-color: #ccc;
+$header-bg-color: rgb(000,000, 000, 0.03);
+$first-cell-width: 175px;
+$row-height: 50px;
+$btnHeight: 45px;
+$borderRadius: 4px;
+$primary-color-light: rgb(0,189, 171, 0.15);
+
+/******* machine-state-colors *******/
+$normal-state-color:$primary-color;
+$normal-state-color-dark: darken($normal-state-color, 5%);
+
+$acting-state-color: #72b5f5; 
+$acting-state-color-dark: darken($acting-state-color, 5%);
+
+$critical-state-color: #f58b20; 
+$critical-state-color-dark: darken($critical-state-color, 5%);
+
+$paused-state-color: #aaa; 
+$paused-state-color-dark: darken($paused-state-color, 5%);
+
+/***************************
+CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
+**************************/
+
+:host{
+    margin: 20px auto;
+    display: inline-block;
+    width: 100%;
+    min-height: 400px;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box; 
+}
+
+.navigation-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 5px;
+
+    button{
+        position: relative;
+        height: $btnHeight;
+        margin: 0px 5px;
+        padding: 10px 25px;
+        border: 0;
+        font-weight: 300;
+        font-size: 1.2em;
+        background: var(--primary-color);
+        color: var(--gray);
+        cursor: pointer;
+        border-radius: $borderRadius;
+      
+        fa-icon{
+          color: var(--fa-icon-color);
+        }
+      
+        span{
+          margin: 0px 5px;
+        }
+        &:hover{
+            filter: brightness(0.9);
+        }
+    }
+}
+
+
+
+/***************************
+ Scheduler
+**************************/
+.scheduler{
+    position: relative;
+    display: flex-inline;
+    flex-direction: row;
+    width: 100%;
+}
+
+/***************************
+ Scheduler Header
+**************************/
+.scheduler-header{
+    display: flex;
+    flex-direction: row;
+    font-weight: 400;
+    font-size: 0.9em;
+    background-color: $header-bg-color;
+    border-bottom: 1px solid #aaa;
+    position: relative;
+    top: 0;
+    left: 0;
+
+    & > div {
+              
+        &:first-of-type{
+            padding: 5px 10px;
+            box-sizing: border-box; 
+            text-align: left;
+            background-color: var(--bg-color);
+            flex: 0 0 $first-cell-width;
+            border-top: 1px solid $border-color;
+            border-bottom: 1px solid $border-color;
+            border-right: 2px solid $border-color;
+            border-left: 1px solid $border-color;
+        }
+    }
+
+    h2{
+        margin: 10px 10px;
+    }
+
+    .flex-column{
+        width: 100%;
+        & > div{
+            border-right:1px solid $border-color;
+        }
+        &:first-of-type{
+            border-top: 1px solid $border-color;
+        }
+    }
+
+    .flex-row{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        top: 0;
+        left: 0;
+
+        & > div{
+            box-sizing: border-box;
+            flex-basis: 100%;
+            border-top: 1px solid $border-color;
+            border-right: 1px solid $border-color;
+            text-align: center;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+            // element before active
+            &:has(+.active) {
+                border-right-color: var(--primary-color);
+            }
+            &.active{
+                font-weight: 600;
+                background-color: $primary-color-light;
+                border-top: 1px solid var(--primary-color);
+                border-right: 1px solid var(--primary-color);
+            }
+            &:last-of-type{
+                border-right: none;
+            }
+        }
+
+        &:last-of-type{
+            border-bottom: 1px solid $border-color;
+        }
+    }
+}
+
+
+/***************************
+ Scheduler Body
+**************************/
+.scheduler-content{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.background{
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    z-index: 10;
+
+    .scheduler-content-row{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        z-index: 10;
+        box-sizing: border-box;
+    
+        & > div{
+            flex-basis: 100%;
+            border-bottom: 1px solid $border-color;
+            border-right: 1px solid $border-color;
+            box-sizing: border-box;
+            height: $row-height;
+            line-height: $row-height;
+    
+            &:first-of-type{
+                padding: 5px 10px;
+                text-align: left;
+                flex: 0 0 $first-cell-width;
+                border-left: 1px solid $border-color;
+                border-right: 2px solid $border-color;
+                font-weight: 400;
+            }
+    
+            &:last-of-type{
+                border-right: 1px solid $border-color;
+            }
+            // element before active
+            &:has(+.active) {
+                border-right-color: var(--primary-color);
+            }
+            &.active{
+                background-color: $primary-color-light;
+                border-right: 1px solid var(--primary-color);
+            }
+        }
+    }
+}
+
+
+ 
+.foreground{
+    position: absolute;
+    top:0;
+    left: calc($first-cell-width - 1px);
+    right: 0;
+    z-index: 20;
+    overflow: hidden;
+
+    .scheduler-content-row{
+        position: relative;
+        z-index: 20;
+        height: $row-height;
+        line-height: $row-height;
+    
+        .scheduler-event{
+            position: absolute;
+            top: 8px;
+            z-index: 100;
+            height: 34px;
+            line-height: 25px;
+            padding: 5px 5px;
+            border-radius: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            color: var(--fa-icon-color);
+            cursor: pointer;
+            box-sizing: border-box; 
+            //transform: none !important;
+    
+            &.no-left-radius{
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+            }
+        }
+    }
+
+}
+
+
+
+.started{
+    background-color: $normal-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $normal-state-color-dark,
+            $normal-state-color-dark 10px,
+            $normal-state-color 10px,
+            $normal-state-color 20px
+        );
+    }
+    &:hover{
+        filter: brightness(0.9);
+    }
+}
+
+.started-2{
+    background-color: darken($normal-state-color, 10%);
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $normal-state-color-dark,
+            $normal-state-color-dark 10px,
+            $normal-state-color 10px,
+            $normal-state-color 20px
+        );
+    }
+    &:hover{
+        filter: brightness(0.9);
+    }
+}
+
+.maintain{
+    background-color: $acting-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $acting-state-color-dark,
+            $acting-state-color-dark 10px,
+            $acting-state-color 10px,
+            $acting-state-color 20px
+        );
+    }
+    &:hover{
+        filter: brightness(0.9);
+    }
+}
+.paused{
+    background-color: $paused-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $paused-state-color-dark,
+            $paused-state-color-dark 10px,
+            $paused-state-color 10px,
+            $paused-state-color 20px
+        );
+    }
+    &:hover{
+        filter: brightness(0.9);
+    }
+}
+
+.disrupted{
+    background-color: $critical-state-color;
+    &.striped{
+        background: repeating-linear-gradient(
+            135deg,
+            $critical-state-color-dark,
+            $critical-state-color-dark 10px,
+            $critical-state-color 10px,
+            $critical-state-color 20px
+        );
+    }
+    &:hover{
+        filter: brightness(0.9);
+    }
+}
+
+.planned{
+    background-color: #777;
+}
+.finished{
+    background-color: #aaa;
+}
+

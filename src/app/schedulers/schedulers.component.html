@@ -6,15 +6,28 @@
 
 <div class="content">
 
+    <div class="container">
+        <h2>draggable-scheduling-component</h2>
+        <div class="flex-row">
+            <draggable-scheduling-component
+                [schedulerRows]="schedulerRows"
+                [timeSpan]="timeSpanWeek"
+                (schedulerEventSelected)="schedulerEventSelected1($event)">
+            </draggable-scheduling-component>
+        </div>
+        <p>Selected: {{selectedSchedulerEvent1?.label}}</p>
+    </div>
+
   <div class="container">
         <h2>scheduling-component</h2>
         <div class="flex-row">
             <scheduling-component
                 [schedulerRows]="schedulerRows"
                 [timeSpan]="timeSpanWeek"
-                (schedulerEventSelected)="schedulerEventSelected($event)">
+                (schedulerEventSelected)="schedulerEventSelected2($event)">
             </scheduling-component>
         </div>
+        <p>Selected: {{selectedSchedulerEvent2?.label}}</p>
     </div>
 
     <div class="container">
@@ -24,9 +37,10 @@
                 [style.width.px]="'1300'"
                 [schedulerRows]="schedulerRows2"
                 [timeSpan]="timeSpanMonth"
-                (schedulerEventSelected)="schedulerEventSelected($event)">
+                (schedulerEventSelected)="schedulerEventSelected3($event)">
             </scheduling-component>
         </div>
+        <p>Selected: {{selectedSchedulerEvent3?.label}}</p>
     </div>
 
 </div>
