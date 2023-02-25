@@ -8,7 +8,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "build:prod": "ng build --configuration production",
-    "build:ghpages": "ng build --configuration production --base-href=/angular-component-library/",
+    "build:ghpages": "ng build --configuration production --output-path docs --base-href /angular-component-library/",
+    "deploy": "ng deploy --base-href=/angular-component-library/",
     "update": "ng update @angular/cli @angular/core"
   },
   "private": false,
@@ -37,6 +38,7 @@
     "@angular-devkit/build-angular": "^15.1.5",
     "@angular/cli": "~15.1.5",
     "@angular/compiler-cli": "^15.1.4",
+    "angular-cli-ghpages": "^1.0.5",
     "typescript": "~4.8.4"
   }
 }
