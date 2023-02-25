@@ -15,8 +15,9 @@ $input-height: 35px;
 
 input{
     height: $input-height;
-    min-width: 170px;
+    min-width: 160px;
     font-size: 1.2em;
+    text-align: left;
     outline: none;
     font-family: $font-family;
     border: 1px solid $gray-color;
