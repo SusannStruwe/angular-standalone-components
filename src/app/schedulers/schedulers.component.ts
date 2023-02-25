@@ -51,7 +51,7 @@ export class SchedulersComponent {
   }
 
   schedulerRowsUpdated(items: SchedulerRow[]):void{
-    console.log(this.schedulerRows);
+    // console.log(this.schedulerRows);
   }
 
   getSampleData(striped: boolean):SchedulerRow[]{
