@@ -57,29 +57,40 @@
 
     <!--content-->
     <div id="scheduler-content" class="scheduler-content">
-        <div class="scheduler-content-row"
-            *ngFor="let schedulerRow of schedulerRows">
-             <!-- background -->
-            <div class="background">
+
+        <div class="background">
+            <div class="scheduler-content-row"
+            *ngFor="let schedulerRow of schedulerRows; let r = index">
                 <div>{{schedulerRow.label}}</div>
-                <div #cellWidth
-                    *ngFor="let item of getColumns()"
-                    [class.active]="isCurrent(item)">
-                </div>
-            </div>
-            <!-- foreground -->
-           <div  *ngFor="let schedulerEvent of schedulerRow.schedulerEvents" >
-                <div *ngIf="isBetween(schedulerEvent)"            
-                    class="scheduler-event"
-                    [ngClass]="getClassStyle(schedulerEvent)"
-                    [style.left.px]="getSchedulerEventLeftPosition(schedulerEvent.startDate)"
-                    [style.width.px]="getSchedulerEventWidthPosition(schedulerEvent)"
-                    (click)="schedulerEventClicked(schedulerEvent)"> 
-                    <span><b> {{schedulerEvent.label}} </b> | </span>
-                    <span><small>{{schedulerEvent.startDate| date:'shortTime'}}-{{schedulerEvent.endDate | date:'shortTime'}} Uhr</small></span>
+                
+                <div #cell
+                *ngFor="let item of getColumns()"
+                [class.active]="isCurrent(item)">
                 </div>
             </div>
         </div>
+
+        <div class="foreground">
+            <div class="scheduler-content-row"
+            *ngFor="let schedulerRow of schedulerRows; let r = index">
+    
+                <div *ngFor="let schedulerEvent of schedulerRow.schedulerEvents; let i = index">
+                    <div id="{{i+'-'+schedulerEvent.label}}"
+                        *ngIf="isBetween(schedulerEvent)"       
+                        [tooltip]="schedulerEvent.label"
+                        [attr.rowIndex]="r"
+                        [attr.columnIndex]="i"
+                        class="scheduler-event"
+                        [ngClass]="getClassStyle(schedulerEvent)"
+                        [ngStyle]="getStyle(schedulerEvent)"
+                        (click)="schedulerEventClicked(schedulerEvent)">
+                        <span><b> {{schedulerEvent.label}} </b> | </span>
+                        <span><small>{{schedulerEvent.startDate| date:'shortTime'}}-{{schedulerEvent.endDate | date:'shortTime'}} Uhr</small></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>

@@ -3,7 +3,7 @@
 $border-color: #ccc;
 $header-bg-color: rgb(000,000, 000, 0.03);
 $first-cell-width: 175px;
-$row-height: 40px;
+$row-height: 50px;
 $btnHeight: 45px;
 $borderRadius: 4px;
 $primary-color-light: rgb(0,189, 171, 0.15);
@@ -21,9 +21,10 @@ $critical-state-color-dark: darken($critical-state-color, 5%);
 $paused-state-color: #aaa; 
 $paused-state-color-dark: darken($paused-state-color, 5%);
 
-/*
+
+/***************************
 CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
-*/
+**************************/
 
 :host{
     margin: 20px auto;
@@ -69,6 +70,10 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
 }
 
 
+
+/***************************
+ Scheduler
+**************************/
 .scheduler{
     position: relative;
     display: flex-inline;
@@ -76,7 +81,9 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
     width: 100%;
 }
 
-
+/***************************
+ Scheduler Header
+**************************/
 .scheduler-header{
     display: flex;
     flex-direction: row;
@@ -133,7 +140,6 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
             text-overflow: ellipsis;
             overflow: hidden;
 
-    
             // element before active
             &:has(+.active) {
                 border-right-color: var(--primary-color);
@@ -156,39 +162,46 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
 }
 
 
+/***************************
+ Scheduler Body
+**************************/
 .scheduler-content{
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
-.scheduler-content-row{
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
+.background{
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    z-index: 10;
 
-    .background{
+    .scheduler-content-row{
+        position: relative;
         display: flex;
         flex-direction: row;
-        position: relative;
-
+        z-index: 10;
+        box-sizing: border-box;
+    
         & > div{
             flex-basis: 100%;
-            min-height: $row-height;
-            line-height: $row-height;
             border-bottom: 1px solid $border-color;
             border-right: 1px solid $border-color;
-
+            box-sizing: border-box;
+            height: $row-height;
+            line-height: $row-height;
+    
             &:first-of-type{
                 padding: 5px 10px;
-                box-sizing: border-box; 
                 text-align: left;
                 flex: 0 0 $first-cell-width;
                 border-left: 1px solid $border-color;
                 border-right: 2px solid $border-color;
                 font-weight: 400;
             }
-
+    
             &:last-of-type{
                 border-right: 1px solid $border-color;
             }
@@ -202,30 +215,49 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
             }
         }
     }
+}
 
-    .scheduler-event{
-        position: absolute;
-        top: 8px;
-        left: 100px;
-        z-index: 10;
-        height: 34px;
-        line-height: 25px;
-        margin-left: calc($first-cell-width - 1px);
-        padding: 5px 5px;
-        border-radius: 5px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: center;
-        color: var(--fa-icon-color);
-        cursor: pointer;
-        box-sizing: border-box; 
 
-        &.no-left-radius{
-            border-top-left-radius: 0px;
-            border-bottom-left-radius: 0px;
+ 
+.foreground{
+    position: absolute;
+    top:0;
+    left: calc($first-cell-width - 1px);
+    right: 0;
+    z-index: 20;
+    overflow: hidden;
+
+    .scheduler-content-row{
+        position: relative;
+        z-index: 20;
+        height: $row-height;
+        line-height: $row-height;
+    
+        .scheduler-event{
+            position: absolute;
+            top: 8px;
+            z-index: 100;
+            height: 34px;
+            line-height: 25px;
+            padding: 5px 5px;
+            border-radius: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+            color: var(--fa-icon-color);
+            cursor: pointer;
+            box-sizing: border-box; 
+            //transform: none !important;
+    
+            &.no-left-radius{
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+            }
         }
     }
+
 }
+
 
 
 .started{

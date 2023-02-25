@@ -21,7 +21,7 @@ import { SchedulingComponent } from './scheduling/scheduling.component';
 export class SchedulersComponent {
 
   schedulerRows: SchedulerRow[] = [];
-  timeSpanWeek: TimeSpan = TimeSpan.DAY;
+  timeSpanWeek: TimeSpan = TimeSpan.WEEK;
 
   schedulerRows2: SchedulerRow[] = [];
   timeSpanMonth: TimeSpan = TimeSpan.MONTH;

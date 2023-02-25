@@ -36,7 +36,6 @@ export class DraggableSchedulingComponent {
   @Output() schedulerEventSelected = new EventEmitter<SchedulerEvent>();
 
   @ViewChild('cell') cellRef?: ElementRef; 
-  @ViewChild('contentWidth') contentWidthRef?: ElementRef;
 
   buttons = [
     {text:"Tag", value: TimeSpan.DAY},
@@ -65,9 +64,6 @@ export class DraggableSchedulingComponent {
     if(this.cellRef){
       this.cellWidth =  this.cellRef.nativeElement.getBoundingClientRect().width;
       this.cellHeight = this.cellRef.nativeElement.getBoundingClientRect().height;
-    }
-    if(this.contentWidthRef){
-      this.contentWidth = this.contentWidthRef.nativeElement.getBoundingClientRect().width;
     }
     this.cdr.detectChanges();
   }

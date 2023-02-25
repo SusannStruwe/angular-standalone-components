@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { BtnGoupComponent } from 'src/app/buttons/btn-group/btn-group.component';
 import { faChevronLeft, faChevronRight, faRotate } from '@fortawesome/free-solid-svg-icons';
 import { LOCALE_ID } from '@angular/core';
+import { TooltipDirective } from 'src/app/config/directives/tooltip-directive';
 
 
 registerLocaleData(localeDe);
@@ -19,7 +20,8 @@ const WEEK_DAY_FORMAT = 'DD';
   imports:[
     CommonModule, 
     FontAwesomeModule, 
-    BtnGoupComponent
+    BtnGoupComponent,
+    TooltipDirective
   ],
   templateUrl: './scheduling.component.html',
   styleUrls: ['./scheduling.component.scss'],
@@ -31,7 +33,7 @@ export class SchedulingComponent {
   @Input() timeSpan: TimeSpan = TimeSpan.DAY;
   @Output() schedulerEventSelected = new EventEmitter<SchedulerEvent>();
 
-  @ViewChild('cellWidth') cellWidthRef?: ElementRef; 
+  @ViewChild('cell') cellRef?: ElementRef; 
 
   buttons = [
     {text:"Tag", value: TimeSpan.DAY},
@@ -45,7 +47,8 @@ export class SchedulingComponent {
   faArrowRight = faChevronRight;
   faRefresh = faRotate;
   cellWidth: number = 0;
-
+  cellHeight:number = 0;
+  contentWidth: number = 0;
 
   constructor(private cdr: ChangeDetectorRef) { }
 
@@ -56,10 +59,9 @@ export class SchedulingComponent {
 
   @HostListener('window:resize', ['$event'])
   ngAfterViewChecked(){
-    if(this.cellWidthRef){
-      this.cellWidth =  this.cellWidthRef.nativeElement.getBoundingClientRect().width;
-    }else{
-      this.cellWidth = 0;
+    if(this.cellRef){
+      this.cellWidth =  this.cellRef.nativeElement.getBoundingClientRect().width;
+      this.cellHeight = this.cellRef.nativeElement.getBoundingClientRect().height;
     }
     this.cdr.detectChanges();
   }
@@ -100,18 +102,24 @@ export class SchedulingComponent {
     this.cdr.detectChanges();
   }
 
-  //Click event from btn group
+  /*
+  Click event from btn group
+  */
   timeSpanBtnClicked(btn: any){
     this.setTimeSpan(btn.value as TimeSpan);
     this.cdr.detectChanges();
   }
 
-  //Click event from scheduler event
+  /*
+  Click event from scheduler event
+  */
   schedulerEventClicked(item:SchedulerEvent){
     this.schedulerEventSelected.emit(item);
   }
 
-  //Sets new timeSpan
+  /*
+  Sets new timeSpan
+  */
   setTimeSpan(timeSpan: TimeSpan):void{
     this.timeSpan = timeSpan;
     switch(this.timeSpan){
@@ -130,13 +138,14 @@ export class SchedulingComponent {
     }
   }
 
-  // Check if item is current day or hour
+  /*
+  Check if item is current day or hour
+  */
   isCurrent(item: string | Date):boolean{
     let current = new Date();
 
     if(item instanceof Date){
       return moment(item).isSame(current, 'day');
-
     }else{
       if(this.timeSpan == TimeSpan.DAY){
         return this.leadingZero(current.getHours()) +':00' == item && moment(this.startDate).isSame(current, 'day');
@@ -147,7 +156,9 @@ export class SchedulingComponent {
     }
   }
 
-  //Gets cell columns
+  /*
+  Gets cell columns
+  */
   getColumns() {
     let columns = [];
     switch(this.timeSpan){
@@ -161,52 +172,82 @@ export class SchedulingComponent {
     return columns;
   }
 
-
-  //Calculates scheduler event left position
-  getSchedulerEventLeftPosition(eventStartDate: Date):number{
-    if(moment(eventStartDate).isSameOrAfter(this.startDate)){
-      const duration = moment.duration(moment(eventStartDate).diff(moment(this.startDate)));
-      return  Math.trunc(duration.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440));
-    }else{
-      return 0;
-    }
-  }
-
-  //Calculates scheduler event width
-  getSchedulerEventWidthPosition(event: SchedulerEvent):number{
+  /*
+  Get foreground styles
+  */
+  getStyle(event: SchedulerEvent):any{
     if(this.isBetween(event)){
-      let duration: moment.Duration;
-      if(moment(event.startDate).isBefore(this.startDate)){
-        duration = moment.duration(moment(event.endDate).diff(moment(this.startDate)));
-      }else{
-        duration = moment.duration(moment(event.endDate).diff(moment(event.startDate)));
+      let durationWidth = moment.duration(moment(event.endDate).diff(moment(event.startDate)));
+      let width = Math.trunc((durationWidth.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440)));
+      let left: number | null = null;
+      let right:number | null = null;
+  
+      if(this.isInsideTimeSpan(event)){
+        const durationRight = moment.duration(moment(this.endDate).diff(moment(event.endDate)));
+        right =  Math.trunc(durationRight.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440));
+        const durationLeft = moment.duration(moment(event.startDate).diff(moment(this.startDate)));
+        left =  Math.trunc(durationLeft.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440));
       }
-      return Math.trunc((duration.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440)));
+      if(this.isOverlappingLeft(event)){
+        const durationRight = moment.duration(moment(this.endDate).diff(moment(event.endDate)));
+        right =  Math.trunc(durationRight.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440));
+      }
+      if(this.isOverlappingRight(event)){
+        const durationLeft = moment.duration(moment(event.startDate).diff(moment(this.startDate)));
+        left =  Math.trunc(durationLeft.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440));
+      }
+      if(this.isOverlappingLeftAndRight(event)){
+        const durationRight = moment.duration(moment(event.endDate).diff(moment(this.endDate)));
+        right =  (-1 * Math.trunc(durationRight.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440)));
+        const durationLeft = moment.duration(moment(this.startDate).diff(moment(event.startDate)));
+        left =  (-1 * Math.trunc(durationLeft.asMinutes() * this.cellWidth / (this.timeSpan == TimeSpan.DAY ? 60 : 1440)));
+      }
+ 
+      return {
+        left: left ? left + 'px' : 'auto',
+        right: right ? right + 'px': 'auto',
+        width: width + 'px'
+      };
+
     }else{
-      return 0;
+      return {}
     }
   }
-
-  // Checks scheduler event should be shown
+  
+  /*
+  Checks scheduler event should be shown
+  */
   isBetween(event: SchedulerEvent):boolean{
-    let case1 = moment(event.startDate).isBefore(this.startDate) && moment(event.endDate).isAfter(this.endDate);
-    let case2 = moment(event.startDate).isAfter(this.startDate) && moment(event.startDate).isBefore(this.endDate) && moment(event.endDate).isAfter(this.endDate);
-    let case3 = moment(event.startDate).isBefore(this.startDate) && moment(event.endDate).isAfter(this.startDate) && moment(event.endDate).isBefore(this.endDate);
-    let case4 = moment(event.startDate).isAfter(this.startDate) && moment(event.endDate).isBefore(this.endDate);
+    let case1 = this.isOverlappingLeftAndRight(event);
+    let case2 = this.isOverlappingRight(event);
+    let case3 = this.isOverlappingLeft(event);
+    let case4 = this.isInsideTimeSpan(event);
     return case1 || case2 || case3 || case4;
   }
 
-
-  //Get class style as string
-  getClassStyle(schedulerEvent: SchedulerEvent):string{
-    let startedPreviousDay = '';
-    if(this.getSchedulerEventLeftPosition(schedulerEvent.startDate) === 0){
-      startedPreviousDay = ' no-left-radius';
-    }
-    return `${schedulerEvent.classStyle}` + startedPreviousDay;
+  isInsideTimeSpan(event: SchedulerEvent):boolean{
+    return moment(event.startDate).isAfter(this.startDate) && moment(event.endDate).isBefore(this.endDate);
+  }
+  isOverlappingLeftAndRight(event: SchedulerEvent):boolean{
+    return moment(event.startDate).isBefore(this.startDate) && moment(event.endDate).isAfter(this.endDate);
+  }
+  isOverlappingRight(event: SchedulerEvent):boolean{
+    return moment(event.startDate).isAfter(this.startDate) && moment(event.startDate).isBefore(this.endDate) && moment(event.endDate).isAfter(this.endDate);
+  }
+  isOverlappingLeft(event: SchedulerEvent):boolean{
+    return moment(event.startDate).isBefore(this.startDate) && moment(event.endDate).isAfter(this.startDate) && moment(event.endDate).isBefore(this.endDate);
   }
 
-  // Generates array of days from current month or week
+  /*
+  Get class style as string
+  */
+  getClassStyle(schedulerEvent: SchedulerEvent):string{
+    return `${schedulerEvent.classStyle}`;
+  }
+
+  /*
+  Generates array of days from current month or week
+  */
   getDays(): string[]{
     const days = [];
     const dateStart = moment(this.startDate).startOf(this.timeSpan === TimeSpan.WEEK ? 'isoWeek' : this.timeSpan);
@@ -219,7 +260,9 @@ export class SchedulingComponent {
     return days;
   }
 
-  // Generates array of hours from current day
+  /*
+  Generates array of hours from current day
+  */
   getHours(): string[] {
     const header: string[] = [];
     for (let i = 0; i < 24; i ++) {
@@ -233,7 +276,9 @@ export class SchedulingComponent {
     return header;
   }
 
-  // Generates array of iso week days 
+  /*
+  Generates array of iso week days 
+  */
   getWeekDays(): Date[]{
     const days = [];
     const dateStart = moment(this.startDate).startOf(this.timeSpan === TimeSpan.WEEK ? 'isoWeek' : this.timeSpan);
@@ -246,7 +291,9 @@ export class SchedulingComponent {
     return days;
   }
 
-  //add leading zero to single digit numbers 
+  /*
+  Adds leading zero to single digit numbers 
+  */
   leadingZero(num: number): string {
     if (num < 10) return `0${num}`;
     else return `${num}`;
