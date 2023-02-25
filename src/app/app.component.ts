@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +9,8 @@ export class AppComponent {
 
   isDefaultRoute: boolean = true;
 
-  constructor(private router: Router){ }
+  constructor(){ }
 
-  ngOnInit(){
-    this.router.events.subscribe((event: any) => {
-      if (event instanceof NavigationEnd ) {
-        this.isDefaultRoute = event.url == "/";
-      }
-    });
-  }
+  ngOnInit(){ }
 
 }
