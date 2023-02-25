@@ -4,6 +4,7 @@ import localeDe from '@angular/common/locales/de';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
+import { Platform, PlatformModule } from '@angular/cdk/platform';
 
 registerLocaleData(localeDe);
 
@@ -14,20 +15,29 @@ registerLocaleData(localeDe);
   imports:[
     CommonModule, 
     FormsModule, 
-    FontAwesomeModule
+    FontAwesomeModule,
+    PlatformModule
   ],
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.scss']
 })
 export class DatePickerComponent {
 
-  faCalender = faCalendar;
-
   @Input() date?: Date;
   
   @Output() dateChanged = new EventEmitter<Date>();
 
-  constructor() { }
+  faCalender = faCalendar;
+  showOverlayBtn:boolean = true;
+
+  constructor(public platform: Platform) { }
+
+  ngOnInit(){
+    //hide overlay button on ios because it does not work
+    if (this.platform.IOS) {
+      this.showOverlayBtn = false;
+    }
+  }
 
   changeDate(event: Event): void{
     this.dateChanged.emit(this.date);

@@ -1,4 +1,3 @@
-
 import { DatePipe } from '@angular/common';
 import { Component, LOCALE_ID } from '@angular/core';
 import { ThemeChangerComponent } from '../layout/theme-changer/theme-changer.component';

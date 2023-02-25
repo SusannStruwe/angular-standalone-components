@@ -1,3 +1,4 @@
+import { Platform, PlatformModule } from '@angular/cdk/platform';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { Component, EventEmitter, Input, LOCALE_ID, Output } from '@angular/core';
@@ -14,21 +15,31 @@ registerLocaleData(localeDe);
   imports:[
     CommonModule, 
     FormsModule, 
-    FontAwesomeModule
+    FontAwesomeModule,
+    PlatformModule
   ],
   templateUrl: './date-range-picker.component.html',
   styleUrls: ['./date-range-picker.component.scss']
 })
 export class DateRangePickerComponent {
 
-  faCalender = faCalendar;
-
   @Input() startDate?: Date;
   @Input() endDate?: Date
+
   @Output() startDateChanged = new EventEmitter<Date>();
   @Output() endDateChanged = new EventEmitter<Date>();
-    
-  constructor() { }
+
+  faCalender = faCalendar;
+  showOverlayBtn:boolean = true;
+
+  constructor(public platform: Platform) { }
+
+  ngOnInit(){
+    //hide overlay button on ios because it does not work
+    if (this.platform.IOS) {
+      this.showOverlayBtn = false;
+    }
+  }
 
   changeStartDate(event: Event): void{
     this.startDateChanged.emit(this.startDate);

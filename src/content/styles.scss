@@ -56,7 +56,7 @@ h6 {
 h1{
   color: var(--primary-color);
   text-transform: uppercase;
-  font-size: 1.5em;
+  font-size: 1.6em;
 }
 
 h2{
@@ -152,7 +152,7 @@ fa-icon{
 }
 
 @media only screen and (max-width: 1100px) {
-  .content{
+  .content, .preview{
     grid-template-columns: 1fr 1fr !important;
   }
 }

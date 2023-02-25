@@ -1,11 +1,15 @@
 @import 'src/content/baseVariables';
 
-/*
+/****************
 CSS Variables -> --text-color, --bg-color, --primary-color, --fa-icon-color for changing theme
-*/
+**********************/
 
-$gray-color: #ddd;
 $input-height: 35px;
+
+:host{
+    position: relative;
+    display: inline-block;
+}
 
 .date-range-picker{
     display: flex;
@@ -21,47 +25,52 @@ $input-height: 35px;
         position: relative;
     }
 
-    input{
+    input[type="date"]{
         height: $input-height;
         min-width: 160px;
         font-size: 1.2em;
         outline: none;
         font-family: $font-family;
-        text-align: left;
-        border: 1px solid $gray-color;
+        border: 1px solid $border-color;
         border-radius: 0;
         padding: 2px 5px 2px 10px;
         cursor: pointer;
         color: var(--text-color);
         background: transparent;
     }
-}
 
-.btn-overlay{
-    height: $input-height;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: var(--bg-color);
-    border: 1px solid $gray-color;
-    padding: 2px 10px;
-    cursor: pointer;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    fa-icon{
-        color: var(--primary-color);
-        font-size: 1.5em;
-        display: contents;
-    }
-
-    &:hover{
-        background-color: var(--primary-color);
+    .btn-overlay{
+        height: $input-height;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: var(--bg-color);
+        border: 1px solid $border-color;
+        padding: 2px 10px;
+        cursor: pointer;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
         fa-icon{
-            color: var(--fa-icon-color);
+            color: var(--primary-color);
+            font-size: 1.5em;
+            display: contents;
+        }
+    
+        &:hover{
+            background-color: var(--primary-color);
+            fa-icon{
+                color: var(--fa-icon-color);
+            }
         }
     }
-    
+
+    input:focus, input:focus + .btn-overlay{
+        border-color: var(--primary-color);
+    }
+
 }
+
+
