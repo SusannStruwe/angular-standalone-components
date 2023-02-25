@@ -8,6 +8,7 @@ import { BtnGoupComponent } from 'src/app/buttons/btn-group/btn-group.component'
 import { faChevronLeft, faChevronRight, faRotate } from '@fortawesome/free-solid-svg-icons';
 import { LOCALE_ID } from '@angular/core';
 import { CdkDragEnd, DragDropModule } from '@angular/cdk/drag-drop';
+import { TooltipDirective } from 'src/app/config/directives/tooltip-directive';
 
 
 registerLocaleData(localeDe);
@@ -21,7 +22,8 @@ const WEEK_DAY_FORMAT = 'DD';
     CommonModule, 
     FontAwesomeModule, 
     BtnGoupComponent,
-    DragDropModule
+    DragDropModule,
+    TooltipDirective
   ],
   templateUrl: './draggable-scheduling.component.html',
   styleUrls: ['./draggable-scheduling.component.scss'],

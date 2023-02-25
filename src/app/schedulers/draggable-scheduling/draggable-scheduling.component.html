@@ -76,6 +76,7 @@
     
                 <div *ngFor="let schedulerEvent of schedulerRow.schedulerEvents; let i = index">
                     <div id="{{i+'-'+schedulerEvent.label}}"
+                        [tooltip]="schedulerEvent.label"
                         [attr.rowIndex]="r"
                         [attr.columnIndex]="i"
                         *ngIf="isBetween(schedulerEvent)"            
