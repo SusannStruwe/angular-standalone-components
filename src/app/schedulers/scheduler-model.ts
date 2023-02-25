@@ -7,6 +7,7 @@ export class SchedulerRow {
 
 export class SchedulerEvent {
     constructor(
+        public id: string,
         public label: string,
         public description: string | null,
         public startDate: Date,

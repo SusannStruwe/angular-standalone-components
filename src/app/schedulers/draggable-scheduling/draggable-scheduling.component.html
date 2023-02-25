@@ -76,14 +76,16 @@
     
                 <div *ngFor="let schedulerEvent of schedulerRow.schedulerEvents; let i = index">
                     <div id="{{i+'-'+schedulerEvent.label}}"
-                        *ngIf="isBetween(schedulerEvent)"       
                         [tooltip]="schedulerEvent.label"
                         [attr.rowIndex]="r"
                         [attr.columnIndex]="i"
+                        *ngIf="isBetween(schedulerEvent)"            
                         class="scheduler-event"
                         [ngClass]="getClassStyle(schedulerEvent)"
                         [ngStyle]="getStyle(schedulerEvent)"
-                        (click)="schedulerEventClicked(schedulerEvent)">
+                        (click)="schedulerEventClicked(schedulerEvent)"
+                        (cdkDragEnded)="onDropEnd($event)"
+                        cdkDrag >
                         <span><b> {{schedulerEvent.label}} </b> | </span>
                         <span><small>{{schedulerEvent.startDate| date:'shortTime'}}-{{schedulerEvent.endDate | date:'shortTime'}} Uhr</small></span>
                     </div>

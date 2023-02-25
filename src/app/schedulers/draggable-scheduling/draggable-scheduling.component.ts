@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { BtnGoupComponent } from 'src/app/buttons/btn-group/btn-group.component';
 import { faChevronLeft, faChevronRight, faRotate } from '@fortawesome/free-solid-svg-icons';
 import { LOCALE_ID } from '@angular/core';
+import { CdkDragEnd, DragDropModule } from '@angular/cdk/drag-drop';
 import { TooltipDirective } from 'src/app/config/directives/tooltip-directive';
 
 
@@ -14,25 +15,27 @@ registerLocaleData(localeDe);
 const WEEK_DAY_FORMAT = 'DD';
 
 @Component({
-  selector: 'scheduling-component',
+  selector: 'draggable-scheduling-component',
   standalone: true,
   providers:[{ provide: LOCALE_ID, useValue: 'de-DE'}],
   imports:[
     CommonModule, 
     FontAwesomeModule, 
     BtnGoupComponent,
+    DragDropModule,
     TooltipDirective
   ],
-  templateUrl: './scheduling.component.html',
-  styleUrls: ['./scheduling.component.scss'],
+  templateUrl: './draggable-scheduling.component.html',
+  styleUrls: ['./draggable-scheduling.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SchedulingComponent {
+export class DraggableSchedulingComponent {
   
   @Input() schedulerRows: SchedulerRow[] = [];
   @Input() timeSpan: TimeSpan = TimeSpan.DAY;
-  
+
   @Output() schedulerEventSelected = new EventEmitter<SchedulerEvent>();
+  @Output() schedulerRowsUpdated = new EventEmitter<SchedulerRow[]>();
 
   @ViewChild('cell') cellRef?: ElementRef; 
 
@@ -65,6 +68,19 @@ export class SchedulingComponent {
       this.cellHeight = this.cellRef.nativeElement.getBoundingClientRect().height;
     }
     this.cdr.detectChanges();
+  }
+
+  onDropEnd(event: CdkDragEnd<any>): void {
+    let rowIndex:number = Number(event.source.element.nativeElement.getAttribute('rowIndex'));
+    let columnIndex:number = Number(event.source.element.nativeElement.getAttribute('columnIndex'));
+    let droppedSchedulerEvent = this.schedulerRows[rowIndex].schedulerEvents[columnIndex];
+    let changedRow = Math.round(event.distance.y / this.cellHeight) + rowIndex;
+    let addedMinutes = event.distance.x * (this.timeSpan == TimeSpan.DAY ? 60 : 1440) / this.cellWidth;
+
+    if(changedRow <= this.schedulerRows.length && changedRow >= 0){
+      this.updateSchedulerRow(changedRow, rowIndex, droppedSchedulerEvent, addedMinutes);
+    }
+    event.source._dragRef.reset();
   }
 
   next():void{
@@ -171,6 +187,28 @@ export class SchedulingComponent {
         break;
     }
     return columns;
+  }
+
+  /*
+  Updated row after drag & drop
+  */
+  updateSchedulerRow(rowIndexAfter: number, rowIndexBefore:number, schedulerEvent: SchedulerEvent, minutes:number ):void{
+    //update schedulerEvent startDate
+    if(minutes < 0){
+      schedulerEvent.startDate = moment(schedulerEvent.startDate).subtract((-1*minutes), 'minutes').toDate();
+      schedulerEvent.endDate = moment(schedulerEvent.endDate).subtract((-1*minutes), 'minutes').toDate();
+    }else{
+      schedulerEvent.startDate = moment(schedulerEvent.startDate).add(minutes, 'minutes').toDate();
+      schedulerEvent.endDate = moment(schedulerEvent.endDate).add(minutes, 'minutes').toDate();
+    }
+    //update schedulerRows schedulerEvent
+    const eventsCopy:SchedulerEvent[] = JSON.parse(JSON.stringify(this.schedulerRows[rowIndexBefore].schedulerEvents));
+
+    //update schedulerRows schedulerEvent, remove and add
+    this.schedulerRows[rowIndexBefore].schedulerEvents = eventsCopy.filter(item => item.id !== schedulerEvent.id);
+    this.schedulerRows[rowIndexAfter].schedulerEvents.push(schedulerEvent);
+
+    this.schedulerRowsUpdated.emit(this.schedulerRows);
   }
 
   /*
