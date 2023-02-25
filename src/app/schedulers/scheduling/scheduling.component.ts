@@ -31,6 +31,7 @@ export class SchedulingComponent {
   
   @Input() schedulerRows: SchedulerRow[] = [];
   @Input() timeSpan: TimeSpan = TimeSpan.DAY;
+  
   @Output() schedulerEventSelected = new EventEmitter<SchedulerEvent>();
 
   @ViewChild('cell') cellRef?: ElementRef; 

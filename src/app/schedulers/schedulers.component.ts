@@ -19,6 +19,7 @@ import { SchedulingComponent } from './scheduling/scheduling.component';
   styleUrls: ['./schedulers.component.scss']
 })
 export class SchedulersComponent {
+  timeSpanDay: TimeSpan = TimeSpan.DAY;
 
   schedulerRows: SchedulerRow[] = [];
   timeSpanWeek: TimeSpan = TimeSpan.WEEK;
@@ -49,6 +50,9 @@ export class SchedulersComponent {
     this.selectedSchedulerEvent3 = item;
   }
 
+  schedulerRowsUpdated(items: SchedulerRow[]):void{
+    console.log(this.schedulerRows);
+  }
 
   getSampleData(striped: boolean):SchedulerRow[]{
     const schedulerRow: SchedulerRow = new SchedulerRow(

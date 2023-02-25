@@ -9,7 +9,7 @@ import { Directive, ElementRef, HostListener, Input } from "@angular/core";
 
     @Input() tooltip = ''; // The text for the tooltip to display
     @Input() placement? = 'bottom';
-    @Input() delay? = 500;
+    @Input() delay? = 1000;
   
     timer:any = 0;
     private tooltipEl: HTMLElement | null = null;

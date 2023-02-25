@@ -33,7 +33,9 @@ export class DraggableSchedulingComponent {
   
   @Input() schedulerRows: SchedulerRow[] = [];
   @Input() timeSpan: TimeSpan = TimeSpan.DAY;
+
   @Output() schedulerEventSelected = new EventEmitter<SchedulerEvent>();
+  @Output() schedulerRowsUpdated = new EventEmitter<SchedulerRow[]>();
 
   @ViewChild('cell') cellRef?: ElementRef; 
 
@@ -205,6 +207,8 @@ export class DraggableSchedulingComponent {
     //update schedulerRows schedulerEvent, remove and add
     this.schedulerRows[rowIndexBefore].schedulerEvents = eventsCopy.filter(item => item.id !== schedulerEvent.id);
     this.schedulerRows[rowIndexAfter].schedulerEvents.push(schedulerEvent);
+
+    this.schedulerRowsUpdated.emit(this.schedulerRows);
   }
 
   /*
