@@ -5,7 +5,8 @@
     [ngModel]="date | date: 'yyyy-MM-dd'"
     (ngModelChange)="changeDate(date = $event)"
     />
-    <div class="btn-overlay"
+    <div *ngIf="showOverlayBtn" 
+        class="btn-overlay"
         (click)="showDatePicker()">
         <fa-icon [icon]="faCalender"></fa-icon>
     </div>

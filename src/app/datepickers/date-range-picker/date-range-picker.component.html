@@ -6,11 +6,14 @@
         [ngModel]="startDate | date: 'yyyy-MM-dd'"
         (ngModelChange)="changeStartDate(startDate = $event)"
         />
-        <div class="btn-overlay"
+        <div *ngIf="showOverlayBtn" 
+            class="btn-overlay"
             (click)="showStartDatePicker()">
             <fa-icon [icon]="faCalender"></fa-icon>
         </div>
     </div>
+
+    <p>-</p>
 
     <div class="item">
         <input
@@ -19,7 +22,8 @@
         [ngModel]="endDate | date: 'yyyy-MM-dd'"
         (ngModelChange)="changeEndDate(endDate = $event)"
         />
-        <div class="btn-overlay"
+        <div *ngIf="showOverlayBtn" 
+            class="btn-overlay"
             (click)="showEndDatePicker()">
             <fa-icon [icon]="faCalender"></fa-icon>
         </div>

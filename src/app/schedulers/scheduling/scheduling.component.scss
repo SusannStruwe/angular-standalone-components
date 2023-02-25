@@ -1,6 +1,5 @@
 @import 'src/content/_baseVariables';
 
-$border-color: #ccc;
 $header-bg-color: rgb(000,000, 000, 0.03);
 $first-cell-width: 175px;
 $row-height: 50px;
@@ -30,6 +29,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
     margin: 20px auto;
     display: inline-block;
     width: 100%;
+    min-width: 780px;
     min-height: 400px;
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
