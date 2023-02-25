@@ -56,23 +56,23 @@ h6 {
 h1{
   color: var(--primary-color);
   text-transform: uppercase;
-  font-size: 1.8em;
+  font-size: 1.5em;
 }
 
 h2{
-  font-size: 1.6em;
-}
-
-h3{
   font-size: 1.4em;
 }
 
-h4{
+h3{
   font-size: 1.3em;
 }
 
-h5{
+h4{
   font-size: 1.2em;
+}
+
+h5{
+  font-size: 1.1em;
 }
 
 p {
@@ -116,7 +116,7 @@ fa-icon{
   border-bottom: 1px solid #ddd;
 }
 
-.content{
+.content, .preview{
   position: absolute;
   left: calc($sidebar-with);
   top: 80px;
@@ -150,3 +150,10 @@ fa-icon{
   flex-direction: row;
   align-items: center;
 }
+
+@media only screen and (max-width: 1100px) {
+  .content{
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+

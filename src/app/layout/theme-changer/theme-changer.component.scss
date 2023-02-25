@@ -10,19 +10,24 @@
     margin:0;
   }
 
-  .preview{
+  .flex-row{
+    position: relative;
+  }
+
+  .color-preview{
     position: absolute;
     width: 20px;
     height: 20px;
     border-radius: 3px;
     background: var(--primary-color);
     left: 5px;
-    top: 32px;
+    top: 10px;
   }
 
   input{
     height: 35px;
     border: 1px solid var(--primary-color);
+    border-radius: 0;
     font-size: 1.2em;
     outline: none;
     font-family: $font-family;
