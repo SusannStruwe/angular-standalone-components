@@ -74,7 +74,9 @@
                     [ngClass]="getClassStyle(schedulerEvent)"
                     [style.left.px]="getSchedulerEventLeftPosition(schedulerEvent.startDate)"
                     [style.width.px]="getSchedulerEventWidthPosition(schedulerEvent)"
-                    (click)="schedulerEventClicked(schedulerEvent)">{{schedulerEvent.label}}
+                    (click)="schedulerEventClicked(schedulerEvent)"> 
+                    <span><b> {{schedulerEvent.label}} </b> | </span>
+                    <span><small>{{schedulerEvent.startDate| date:'shortTime'}}-{{schedulerEvent.endDate | date:'shortTime'}} Uhr</small></span>
                 </div>
             </div>
         </div>
