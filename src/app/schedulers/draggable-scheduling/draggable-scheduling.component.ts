@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import { BtnGoupComponent } from 'src/app/buttons/btn-group/btn-group.component';
 import { faChevronLeft, faChevronRight, faRotate } from '@fortawesome/free-solid-svg-icons';
 import { LOCALE_ID } from '@angular/core';
-import { CdkDragEnd, CdkDragStart, DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkDragEnd, DragDropModule } from '@angular/cdk/drag-drop';
 
 
 registerLocaleData(localeDe);
@@ -71,7 +71,6 @@ export class DraggableSchedulingComponent {
   }
 
   onDropEnd(event: CdkDragEnd<any>): void {
-    // console.log(event.distance);
     let rowIndex:number = Number(event.source.element.nativeElement.getAttribute('rowIndex'));
     let columnIndex:number = Number(event.source.element.nativeElement.getAttribute('columnIndex'));
     let droppedSchedulerEvent = this.schedulerRows[rowIndex].schedulerEvents[columnIndex];
@@ -120,18 +119,24 @@ export class DraggableSchedulingComponent {
     this.cdr.detectChanges();
   }
 
-  //Click event from btn group
+  /*
+  Click event from btn group
+  */
   timeSpanBtnClicked(btn: any){
     this.setTimeSpan(btn.value as TimeSpan);
     this.cdr.detectChanges();
   }
 
-  //Click event from scheduler event
+  /*
+  Click event from scheduler event
+  */
   schedulerEventClicked(item:SchedulerEvent){
     this.schedulerEventSelected.emit(item);
   }
 
-  //Sets new timeSpan
+  /*
+  Sets new timeSpan
+  */
   setTimeSpan(timeSpan: TimeSpan):void{
     this.timeSpan = timeSpan;
     switch(this.timeSpan){
@@ -150,13 +155,14 @@ export class DraggableSchedulingComponent {
     }
   }
 
-  // Check if item is current day or hour
+  /*
+  Check if item is current day or hour
+  */
   isCurrent(item: string | Date):boolean{
     let current = new Date();
 
     if(item instanceof Date){
       return moment(item).isSame(current, 'day');
-
     }else{
       if(this.timeSpan == TimeSpan.DAY){
         return this.leadingZero(current.getHours()) +':00' == item && moment(this.startDate).isSame(current, 'day');
@@ -167,7 +173,9 @@ export class DraggableSchedulingComponent {
     }
   }
 
-  //Gets cell columns
+  /*
+  Gets cell columns
+  */
   getColumns() {
     let columns = [];
     switch(this.timeSpan){
@@ -181,7 +189,9 @@ export class DraggableSchedulingComponent {
     return columns;
   }
 
-  //Updated row after drag & drop
+  /*
+  Updated row after drag & drop
+  */
   updateSchedulerRow(rowIndexAfter: number, rowIndexBefore:number, schedulerEvent: SchedulerEvent, minutes:number ):void{
     //update schedulerEvent startDate
     if(minutes < 0){
@@ -199,7 +209,9 @@ export class DraggableSchedulingComponent {
     this.schedulerRows[rowIndexAfter].schedulerEvents.push(schedulerEvent);
   }
 
-  //get foreground styles
+  /*
+  Get foreground styles
+  */
   getStyle(event: SchedulerEvent):any{
     if(this.isBetween(event)){
       let durationWidth = moment.duration(moment(event.endDate).diff(moment(event.startDate)));
@@ -239,7 +251,9 @@ export class DraggableSchedulingComponent {
     }
   }
   
-  // Checks scheduler event should be shown
+  /*
+  Checks scheduler event should be shown
+  */
   isBetween(event: SchedulerEvent):boolean{
     let case1 = this.isOverlappingLeftAndRight(event);
     let case2 = this.isOverlappingRight(event);
@@ -261,12 +275,16 @@ export class DraggableSchedulingComponent {
     return moment(event.startDate).isBefore(this.startDate) && moment(event.endDate).isAfter(this.startDate) && moment(event.endDate).isBefore(this.endDate);
   }
 
-  //Get class style as string
+  /*
+  Get class style as string
+  */
   getClassStyle(schedulerEvent: SchedulerEvent):string{
     return `${schedulerEvent.classStyle}`;
   }
 
-  // Generates array of days from current month or week
+  /*
+  Generates array of days from current month or week
+  */
   getDays(): string[]{
     const days = [];
     const dateStart = moment(this.startDate).startOf(this.timeSpan === TimeSpan.WEEK ? 'isoWeek' : this.timeSpan);
@@ -279,7 +297,9 @@ export class DraggableSchedulingComponent {
     return days;
   }
 
-  // Generates array of hours from current day
+  /*
+  Generates array of hours from current day
+  */
   getHours(): string[] {
     const header: string[] = [];
     for (let i = 0; i < 24; i ++) {
@@ -293,7 +313,9 @@ export class DraggableSchedulingComponent {
     return header;
   }
 
-  // Generates array of iso week days 
+  /*
+  Generates array of iso week days 
+  */
   getWeekDays(): Date[]{
     const days = [];
     const dateStart = moment(this.startDate).startOf(this.timeSpan === TimeSpan.WEEK ? 'isoWeek' : this.timeSpan);
@@ -306,7 +328,9 @@ export class DraggableSchedulingComponent {
     return days;
   }
 
-  //add leading zero to single digit numbers 
+  /*
+  Adds leading zero to single digit numbers 
+  */
   leadingZero(num: number): string {
     if (num < 10) return `0${num}`;
     else return `${num}`;
