@@ -13,6 +13,10 @@
 }
 
 
+/*===================================================
+Media queries for small devices
+======================================================*/
+
 @media only screen and (max-width: 1480px) {
   .container{
     min-width: 550px;
@@ -28,3 +32,4 @@
     min-width: auto;
   }
 }
+

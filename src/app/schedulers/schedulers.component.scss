@@ -1,5 +1,9 @@
 @import 'src/content/_baseVariables';
 
+.content{
+  grid-template-columns: 1fr;
+}
+
 .container{
   min-width: 80%;
 }
