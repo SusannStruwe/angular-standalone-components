@@ -60,14 +60,18 @@ export class DraggableSchedulingComponent {
     this.setTimeSpan(this.timeSpan);
     this.activeTimeSpanBtn = this.buttons.filter((btn:any) => btn.value === this.timeSpan)[0].text;
   }
-
+ 
   @HostListener('window:resize', ['$event'])
   ngAfterViewChecked(){
+    this.setCellWidth();
+    this.cdr.detectChanges();
+  }
+
+  setCellWidth():void{
     if(this.cellRef){
       this.cellWidth =  this.cellRef.nativeElement.getBoundingClientRect().width;
       this.cellHeight = this.cellRef.nativeElement.getBoundingClientRect().height;
     }
-    this.cdr.detectChanges();
   }
 
   onDropEnd(event: CdkDragEnd<any>): void {
@@ -153,7 +157,9 @@ export class DraggableSchedulingComponent {
         this.endDate = moment().endOf('isoWeek').toDate();
         break;
     }
+    this.setCellWidth();
   }
+
 
   /*
   Check if item is current day or hour
@@ -306,7 +312,7 @@ export class DraggableSchedulingComponent {
     const header: string[] = [];
     for (let i = 0; i < 24; i ++) {
       //header.push(`${this.leadingZero(i % 24)}:00`);
-      if(this.cellWidth < 35.5){
+      if(this.cellWidth < 40){
         header.push(`${this.leadingZero(i % 24)}`);
       }else{
         header.push(`${this.leadingZero(i % 24)}:00`);

@@ -1,6 +1,6 @@
 
 
-<div class="navigation-bar">
+<div class="scheduler-navigation-bar">
     <btn-group-component
         [btnArray] = "buttons"
         [activeBtn]="activeTimeSpanBtn"
@@ -37,7 +37,9 @@
             <!--second line - week days-->
             <div class="flex-row" *ngIf="timeSpan !== 'day'">
                 <div *ngFor="let item of getWeekDays();"
-                    [class.active]="isCurrent(item)">{{item | date:'EE' | slice:0:2}}
+                    [class.active]="isCurrent(item)">
+                    <span *ngIf="cellWidth >= 30">{{item | date:'EE' | slice:0:2}}</span>
+                    <span *ngIf="cellWidth < 30">{{item | date:'EE' | slice:0:1}}</span>
                 </div>
             </div>
             <!--second line - week day-->
@@ -76,8 +78,8 @@
     
                 <div *ngFor="let schedulerEvent of schedulerRow.schedulerEvents; let i = index">
                     <div id="{{i+'-'+schedulerEvent.label}}"
-                        *ngIf="isBetween(schedulerEvent)"       
-                        [tooltip]="schedulerEvent.label"
+                        *ngIf="isBetween(schedulerEvent)" 
+                        [tooltip]="schedulerEvent.label"      
                         [attr.rowIndex]="r"
                         [attr.columnIndex]="i"
                         class="scheduler-event"

@@ -29,14 +29,15 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
     margin: 20px auto;
     display: inline-block;
     width: 100%;
-    min-width: 780px;
+    min-width: 800px;
     min-height: 400px;
     -moz-box-sizing: border-box; 
     -webkit-box-sizing: border-box; 
     box-sizing: border-box; 
+    overflow: hidden;
 }
 
-.navigation-bar{
+.scheduler-navigation-bar{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -88,7 +89,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
     display: flex;
     flex-direction: row;
     font-weight: 400;
-    font-size: 0.9em;
+    font-size: 0.8em;
     background-color: $header-bg-color;
     border-bottom: 1px solid #aaa;
     position: relative;

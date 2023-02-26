@@ -268,7 +268,7 @@ export class SchedulingComponent {
     const header: string[] = [];
     for (let i = 0; i < 24; i ++) {
       //header.push(`${this.leadingZero(i % 24)}:00`);
-      if(this.cellWidth < 35.5){
+      if(this.cellWidth < 40){
         header.push(`${this.leadingZero(i % 24)}`);
       }else{
         header.push(`${this.leadingZero(i % 24)}:00`);
