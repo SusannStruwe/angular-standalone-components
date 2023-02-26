@@ -123,14 +123,14 @@ fa-icon{
   bottom: 0;
   right: 0;
   overflow-y: scroll;
-  padding: 20px;
+  padding: 15px;
   background: transparent;
   display: flex;
   flex-direction: column;
  
   .container{
     display: table;
-    margin: 5px auto;
+    margin: auto;
     padding: 10px;
     max-width: 600px;
     border: 1px solid #ddd;

@@ -35,8 +35,8 @@ export class DateRangePickerComponent {
   constructor(public platform: Platform) { }
 
   ngOnInit(){
-    //hide overlay button on ios because it does not work
-    if (this.platform.IOS) {
+    //hide overlay button on ios, safari or webkit because it does not work
+    if (this.platform.IOS || this.platform.SAFARI || this.platform.WEBKIT) {
       this.showOverlayBtn = false;
     }
   }

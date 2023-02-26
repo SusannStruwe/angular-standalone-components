@@ -1,6 +1,6 @@
 
 
-<div class="navigation-bar">
+<div class="scheduler-navigation-bar">
     <btn-group-component
         [btnArray] = "buttons"
         [activeBtn]="activeTimeSpanBtn"
@@ -76,8 +76,8 @@
     
                 <div *ngFor="let schedulerEvent of schedulerRow.schedulerEvents; let i = index">
                     <div id="{{i+'-'+schedulerEvent.label}}"
-                        *ngIf="isBetween(schedulerEvent)"       
-                        [tooltip]="schedulerEvent.label"
+                        *ngIf="isBetween(schedulerEvent)" 
+                        [tooltip]="schedulerEvent.label"      
                         [attr.rowIndex]="r"
                         [attr.columnIndex]="i"
                         class="scheduler-event"
