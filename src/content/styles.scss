@@ -116,7 +116,7 @@ fa-icon{
   border-bottom: 1px solid #ddd;
 }
 
-.content, .preview{
+.preview{
   position: absolute;
   left: calc($sidebar-with);
   top: 80px;
@@ -140,6 +140,32 @@ fa-icon{
   }
 }
 
+.content{
+  position: absolute;
+  left: calc($sidebar-with);
+  top: 80px;
+  bottom: 0;
+  right: 0;
+  overflow-y: scroll;
+  padding: 15px;
+  background: transparent;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+  text-align: center;
+
+  .container{
+    display: table;
+    margin: 5px auto;
+    padding: 10px;
+    max-width: 600px;
+    border: 1px solid #ddd;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
 .flex-column{
   display: flex;
   flex-direction: column;
@@ -151,9 +177,33 @@ fa-icon{
   align-items: center;
 }
 
+
+
+
+/*===================================================
+Media queries for small devices
+======================================================*/
+
 @media only screen and (max-width: 1100px) {
-  .content, .preview{
-    grid-template-columns: 1fr 1fr !important;
+  .content{
+    grid-template-columns: 1fr 1fr;
   }
 }
+
+@media only screen and (max-width: 925px) {
+  .content{
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .theme-input{
+    display:none;
+  }
+}
+
+
+
+
+
 
