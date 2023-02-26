@@ -157,3 +157,9 @@ fa-icon{
   }
 }
 
+
+@media only screen and (max-width: 925px) {
+  .content, .preview{
+    grid-template-columns: 1fr !important;
+  }
+}

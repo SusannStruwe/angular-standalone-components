@@ -17,3 +17,13 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+@media only screen and (max-width: 925px) {
+  .container{
+    min-width: auto;
+  }
+
+  .grid{
+    grid-template-columns: 1fr !important;
+  }
+}

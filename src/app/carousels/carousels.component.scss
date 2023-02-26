@@ -12,3 +12,19 @@
   min-width: 650px;
 }
 
+
+@media only screen and (max-width: 1480px) {
+  .container{
+    min-width: 550px;
+  }
+
+  .content{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media only screen and (max-width: 925px) {
+  .container{
+    min-width: auto;
+  }
+}
