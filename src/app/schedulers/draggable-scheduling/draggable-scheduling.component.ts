@@ -67,6 +67,13 @@ export class DraggableSchedulingComponent {
     this.cdr.detectChanges();
   }
 
+  setCellWidth():void{
+    if(this.cellRef){
+      this.cellWidth =  this.cellRef.nativeElement.getBoundingClientRect().width;
+      this.cellHeight = this.cellRef.nativeElement.getBoundingClientRect().height;
+    }
+  }
+
   onDropEnd(event: CdkDragEnd<any>): void {
     let rowIndex:number = Number(event.source.element.nativeElement.getAttribute('rowIndex'));
     let columnIndex:number = Number(event.source.element.nativeElement.getAttribute('columnIndex'));
@@ -153,13 +160,6 @@ export class DraggableSchedulingComponent {
     this.setCellWidth();
   }
 
-  setCellWidth():void{
-    console.log(this.cellRef?.nativeElement.offsetWidth, this.cellRef?.nativeElement.getBoundingClientRect().width);
-    if(this.cellRef){
-      this.cellWidth =  this.cellRef.nativeElement.getBoundingClientRect().width;
-      this.cellHeight = this.cellRef.nativeElement.getBoundingClientRect().height;
-    }
-  }
 
   /*
   Check if item is current day or hour
