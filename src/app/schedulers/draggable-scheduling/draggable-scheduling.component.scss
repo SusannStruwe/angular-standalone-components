@@ -129,8 +129,6 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
         position: relative;
         top: 0;
         left: 0;
-        overflow: hidden;
-        box-sizing: border-box;
 
         & > div{
             box-sizing: border-box;
@@ -233,7 +231,6 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
         z-index: 20;
         height: $row-height;
         line-height: $row-height;
-        box-sizing: border-box; 
     
         .scheduler-event{
             position: absolute;
