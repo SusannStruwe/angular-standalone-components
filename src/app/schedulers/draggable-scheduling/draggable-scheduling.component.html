@@ -23,7 +23,8 @@
 <div class="scheduler">
 
     <!--header-->
-    <div class="scheduler-header">
+    <div [ngClass]="headerBgColor ? 'scheduler-header-colored' : 'scheduler-header'"
+        [style.background-color]="headerBgColor">
         <!--first row-->
         <div></div>
         <span class="flex-column">

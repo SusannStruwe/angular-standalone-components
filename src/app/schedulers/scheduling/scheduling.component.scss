@@ -162,6 +162,54 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
     }
 }
 
+.scheduler-header-colored{
+    display: flex;
+    flex-direction: row;
+    font-weight: 400;
+    font-size: 0.8em;
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    color: var(--fa-icon-color);
+
+    & > div {
+              
+        &:first-of-type{
+            padding: 5px 10px;
+            box-sizing: border-box; 
+            text-align: left;
+            flex: 0 0 $first-cell-width;
+            border-right: 2px solid $border-color;
+        }
+    }
+
+    h2{
+        margin: 10px;
+        color: var(--fa-icon-color);
+    }
+
+    .flex-column{
+        width: 100%;
+    }
+
+    .flex-row{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        top: 0;
+        left: 0;
+
+        & > div{
+            box-sizing: border-box;
+            flex-basis: 100%;
+            text-align: center;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+}
+
 
 /***************************
  Scheduler Body
