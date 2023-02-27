@@ -9,7 +9,9 @@
     "watch": "ng build --watch --configuration development",
     "build:prod": "ng build --configuration production",
     "deploy": "ng deploy --base-href=/angular-component-library/",
-    "update": "ng update @angular/cli @angular/core"
+    "update:angular": "ng update @angular/cli @angular/core",
+    "update:fortawesome": "ng update @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-brands-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons",
+  
   },
   "private": false,
   "dependencies": {
