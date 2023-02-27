@@ -10,13 +10,13 @@ export enum HoverStyle {
 }
 
 @Component({
-  selector: 'border-btn-component',
+  selector: 'bordered-btn-component',
   standalone: true,
   imports:[CommonModule, FontAwesomeModule],
-  templateUrl: './border-btn.component.html',
-  styleUrls: ['./border-btn.component.scss']
+  templateUrl: './bordered-btn.component.html',
+  styleUrls: ['./bordered-btn.component.scss']
 })
-export class BorderBtnComponent {
+export class BorderedBtnComponent {
 
   @Input() buttonText?: string;
 

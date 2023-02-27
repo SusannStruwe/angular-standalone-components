@@ -7,56 +7,56 @@
 <div class="content">
 
     <div class="container">
-        <h2>border-btn-component (hoverStyle shining)</h2>
+        <h2>bordered-btn-component <br>(hoverStyle shining)</h2>
 
         <div class="grid-container">
             <p>Text</p>
-            <border-btn-component
+            <bordered-btn-component
             [hoverStyle]="shiningStyle"
             [buttonText]="buttonText"
             [disabled] = "false">
-            </border-btn-component>
+            </bordered-btn-component>
 
             <p>Text and Icon</p>
-            <border-btn-component
+            <bordered-btn-component
             [hoverStyle]="shiningStyle"
             [buttonText]="buttonText"
             [disabled] = "false"
             [faIcon]="faTwitter">
-            </border-btn-component>
+            </bordered-btn-component>
 
             <p>Icon</p>
-            <border-btn-component
+            <bordered-btn-component
             [hoverStyle]="shiningStyle"
             [disabled] = "false"
             [faIcon]="faTwitter">
-            </border-btn-component>
+            </bordered-btn-component>
 
             <p>Disabled</p>
-            <border-btn-component
+            <bordered-btn-component
             [hoverStyle]="shiningStyle"
             [buttonText]="buttonText"
             [disabled] = "true"
             [faIcon]="faTwitter">
-            </border-btn-component>
+            </bordered-btn-component>
 
             <p>Spinning Icon</p>
-            <border-btn-component
+            <bordered-btn-component
             [hoverStyle]="shiningStyle"
             [buttonText]="buttonText"
             [disabled] = "false"
             [faIcon]="faLoader"
             [spinning]="true">
-            </border-btn-component>
+            </bordered-btn-component>
 
             <p>Hovered/ Active</p>
-            <border-btn-component
+            <bordered-btn-component
             [hoverStyle]="shiningStyle"
             [buttonText]="buttonText"
             [disabled] = "false"
             [faIcon]="faLoader"
             [active]="true">
-            </border-btn-component>
+            </bordered-btn-component>
 
         </div>
 
@@ -64,82 +64,133 @@
 
     
     <div class="container">
-        <h2>border-btn-component (hoverStyle filling)</h2>
+        <h2>bordered-btn-component <br>(hoverStyle filling)</h2>
 
         <div class="grid-container">
 
             <p>Text</p>
-            <border-btn-component
+            <bordered-btn-component
             [hoverStyle]="fillingStyle"
             [buttonText]="buttonText"
             [disabled] = "false">
-            </border-btn-component>
+            </bordered-btn-component>
 
-            <p>Text and Icon</p>
-            <border-btn-component
+            <p>Text and Icon (color:gray)</p>
+            <bordered-btn-component
             [hoverStyle]="fillingStyle"
             [buttonText]="buttonText"
             [color]="'gray'"
             [disabled] = "false"
             [faIcon]="faTwitter">
-            </border-btn-component>
+            </bordered-btn-component>
 
             <p>Icon</p>
-            <border-btn-component
+            <bordered-btn-component
             [hoverStyle]="fillingStyle"
             [disabled] = "false"
             [faIcon]="faTwitter">
-            </border-btn-component>
+            </bordered-btn-component>
 
             <p>Disabled</p>
-            <border-btn-component
+            <bordered-btn-component
             [hoverStyle]="fillingStyle"
             [buttonText]="buttonText"
             [disabled] = "true"
             [faIcon]="faTwitter">
-            </border-btn-component>
+            </bordered-btn-component>
 
             <p>Spinning Icon</p>
-            <border-btn-component
+            <bordered-btn-component
             [hoverStyle]="fillingStyle"
             [buttonText]="buttonText"
             [disabled] = "false"
             [faIcon]="faLoader"
             [spinning]="true">
-            </border-btn-component>
+            </bordered-btn-component>
 
             <p>Hovered/ Active</p>
-            <border-btn-component
+            <bordered-btn-component
             [hoverStyle]="fillingStyle"
             [buttonText]="buttonText"
             [disabled] = "false"
             [faIcon]="faLoader"
             [active]="true">
-            </border-btn-component>
+            </bordered-btn-component>
         </div>
     </div>
 
 
     <div class="container">
-        <h2>btn-group-component</h2>
+        <h2>filled-btn-component <br>(hoverStyle ripple)</h2>
 
-        <btn-group-component
+        <div class="grid-container">
+
+            <p>Text</p>
+            <filled-btn-component
+            [buttonText]="buttonText"
+            [disabled] = "false">
+            </filled-btn-component>
+
+            <p>Text and Icon</p>
+            <filled-btn-component
+            [buttonText]="buttonText"
+            [faIcon]="faTwitter"
+            [disabled] = "false">
+            </filled-btn-component>
+
+            <p>Icon</p>
+            <filled-btn-component
+            [disabled] = "false"
+            [faIcon]="faTwitter">
+            </filled-btn-component>
+
+            <p>Disabled</p>
+            <filled-btn-component
+            [buttonText]="buttonText"
+            [disabled] = "true"
+            [faIcon]="faTwitter">
+            </filled-btn-component>
+
+            <p>Spinning Icon</p>
+            <filled-btn-component
+            [buttonText]="buttonText"
+            [disabled] = "false"
+            [faIcon]="faLoader"
+            [spinning]="true">
+            </filled-btn-component>
+
+            <p>Hovered/ Active</p>
+            <filled-btn-component
+            [buttonText]="buttonText"
+            [disabled] = "false"
+            [faIcon]="faLoader"
+            [active]="true">
+            </filled-btn-component>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <h2>segmented-btn-component</h2>
+
+        <segmented-btn-component
         [btnArray] = "buttons"
         (btnSelected)="clickedBtn($event)">
-        </btn-group-component>
+        </segmented-btn-component>
         <p class="output">Output: <span>{{clickedBtnText}}</span></p>
 
         <br>
 
-        <btn-group-component
+        <segmented-btn-component
         [btnArray] = "buttons2">
-        </btn-group-component>
+        </segmented-btn-component>
         
         <br>
 
-        <btn-group-component
+        <segmented-btn-component
         [btnArray] = "buttons3">
-        </btn-group-component>
+        </segmented-btn-component>
 
     </div>
    
@@ -147,26 +198,26 @@
     <div class="container">
         <h2>circle-btn-component</h2>
 
-        <circle-btn-component
-        [faIcon]="faTwitter">
-        </circle-btn-component>
+        <div class="grid-container">
 
-        <circle-btn-component
-        [backgroundColor]="'#1ae3d0'"
-        [faIcon]="faTwitter">
-        </circle-btn-component>
+            <p>Icon</p>
+            <circle-btn-component
+            [faIcon]="faTwitter">
+            </circle-btn-component>
+    
+            <p>BackgroundColor and Icon</p>
+            <circle-btn-component
+            [backgroundColor]="'#1ae3d0'"
+            [faIcon]="faTwitter">
+            </circle-btn-component>
+    
+            <p>BackgroundColor and Icon</p>
+            <circle-btn-component
+            [backgroundColor]="'#e3c11a'"
+            [faIcon]="faTwitter">
+            </circle-btn-component>
 
-        <circle-btn-component
-        [backgroundColor]="'#e3c11a'"
-        [faIcon]="faTwitter">
-        </circle-btn-component>
-
-        <!--<circle-btn-component
-        [active]="true"
-        [backgroundColor]="'#e3c11a'"
-        [faIcon]="faTwitter">
-        </circle-btn-component>-->
-
+        </div>
     </div>
    
 </div>
