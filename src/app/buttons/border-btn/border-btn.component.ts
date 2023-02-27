@@ -28,7 +28,7 @@ export class BorderBtnComponent {
   // example --> filling or shining
   @Input() hoverStyle: string = HoverStyle.SHINING;
   // example --> spin or not
-  @Input() spinning?: boolean;
+  @Input() spinning: boolean = false;
   // example --> active or not
   @Input() active?: boolean;
     
