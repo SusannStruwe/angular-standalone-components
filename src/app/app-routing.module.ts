@@ -39,12 +39,7 @@ const routes: Routes = [
   {
     path: 'progressbars',
     loadComponent: () => import('./progressbars/progressbars.component').then(m => m.ProgressbarsComponent),
-  },
-  {
-    path: 'charts',
-    loadComponent: () => import('./charts/charts.component').then(m => m.ChartsComponent),
-  },
-  
+  }, 
   
 ];
 

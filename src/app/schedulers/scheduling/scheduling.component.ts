@@ -31,6 +31,7 @@ export class SchedulingComponent {
   
   @Input() schedulerRows: SchedulerRow[] = [];
   @Input() timeSpan: TimeSpan = TimeSpan.DAY;
+  @Input() headerBgColor?: string;
   
   @Output() schedulerEventSelected = new EventEmitter<SchedulerEvent>();
 
