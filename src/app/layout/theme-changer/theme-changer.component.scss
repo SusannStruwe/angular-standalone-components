@@ -30,6 +30,8 @@ $input-height: 40px;
     height: $input-height;
     box-sizing: border-box;
     border: 1px solid $border-color;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     border-right: none;
     border-radius: 0;
     font-size: 1.2em;
@@ -57,11 +59,11 @@ $input-height: 40px;
 
     fa-icon{
       font-size: 1.5em;
-      color: white;
+      color: var(--fa-icon-color);
     }
 
     &:hover{
-      filter: brightness(0.9);
+      filter: $brightness;
     }
   }
 }

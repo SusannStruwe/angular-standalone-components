@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, LOCALE_ID } from '@angular/core';
 import { faBars, faEllipsisVertical, faFilter } from '@fortawesome/free-solid-svg-icons';
-import { BorderBtnComponent, HoverStyle } from '../buttons/border-btn/border-btn.component';
+import { BorderedBtnComponent, HoverStyle } from '../buttons/bordered-btn/bordered-btn.component';
 import { ThemeChangerComponent } from '../layout/theme-changer/theme-changer.component';
 import { CustomSelectComponent } from './custom/custom-select.component';
 import { MultiSelectComponent } from './multi-select/multi-select.component';
@@ -15,7 +15,7 @@ import { SelectComponent } from './select/select.component';
   providers:[{ provide: LOCALE_ID, useValue: 'de-DE'}],
   imports:[
     CommonModule,
-    BorderBtnComponent,
+    BorderedBtnComponent,
     ThemeChangerComponent,
     MultiSelectComponent,
     SelectComponent,

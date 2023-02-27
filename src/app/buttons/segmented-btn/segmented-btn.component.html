@@ -1,5 +1,5 @@
 
-<div class="btn-group">
+<div class="segmented-btn">
     <button
     *ngFor="let item of btnArray; let i = index"
     [class.active]="(item.text && item.text == activeBtn) || (item.icon && item.icon == activeBtn)"

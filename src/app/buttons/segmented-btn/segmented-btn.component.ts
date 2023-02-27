@@ -4,13 +4,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @Component({
-  selector: 'btn-group-component',
+  selector: 'segmented-btn-component',
   standalone: true,
   imports:[CommonModule, FontAwesomeModule],
-  templateUrl: './btn-group.component.html',
-  styleUrls: ['./btn-group.component.scss']
+  templateUrl: './segmented-btn.component.html',
+  styleUrls: ['./segmented-btn.component.scss']
 })
-export class BtnGoupComponent {
+export class SegmentedBtnComponent {
 
   // example --> primary or gray
   @Input() color?: string;

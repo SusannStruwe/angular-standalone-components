@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Even
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SchedulerEvent, SchedulerRow, TimeSpan } from '../scheduler-model';
 import * as moment from 'moment';
-import { BtnGoupComponent } from 'src/app/buttons/btn-group/btn-group.component';
+import { SegmentedBtnComponent } from 'src/app/buttons/segmented-btn/segmented-btn.component';
 import { faChevronLeft, faChevronRight, faRotate } from '@fortawesome/free-solid-svg-icons';
 import { LOCALE_ID } from '@angular/core';
 import { TooltipDirective } from 'src/app/config/directives/tooltip-directive';
@@ -20,7 +20,7 @@ const WEEK_DAY_FORMAT = 'DD';
   imports:[
     CommonModule, 
     FontAwesomeModule, 
-    BtnGoupComponent,
+    SegmentedBtnComponent,
     TooltipDirective
   ],
   templateUrl: './scheduling.component.html',

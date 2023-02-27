@@ -12,7 +12,7 @@ $borderWidth: 2px;
   display: inline-block;
 }
 
-.btn-group{
+.segmented-btn{
     margin: 10px auto;
 }
 
@@ -59,7 +59,7 @@ button {
   }
 
   &:hover{
-    filter: brightness(0.9);
+    filter: $brightness;
   }
 }
 

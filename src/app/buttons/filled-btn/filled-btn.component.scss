@@ -1,0 +1,76 @@
+@import 'src/content/_baseVariables';
+
+/********************
+CSS Variables -> --primary-color, --fa-icon-color for changing theme
+********************/
+
+$btnHeight: 45px;
+
+$primary-color-light: rgba(0,189,171, 0.9);
+$primary-color-lighter: rgba(0,189,171, 0.75);
+
+
+:host{
+  display: inline-block;
+}
+
+button {
+  position: relative;
+  height: $btnHeight;
+  margin: 5px;
+  padding: 10px 25px;
+  border: 0;
+  font-weight: 300;
+  font-size: $font-size;
+  transition: background 400ms;
+  background: var(--primary-color);
+  color: var(--fa-icon-color);
+  cursor: pointer;
+
+  fa-icon{
+    color: var(--fa-icon-color);
+  }
+
+  span{
+    color: var(--fa-icon-color);
+    margin: 0px 5px;
+  }
+}
+
+
+/************************************
+Shining
+**************************************/
+
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
+
+  &:hover:not([disabled]){
+    background: $primary-color-light radial-gradient(circle, transparent 1%, $primary-color-light 1%) center/15000%;
+  }
+
+  &:active:not([disabled]){
+    background-color: $primary-color-lighter;
+    background-size: 100%;
+    transition: background 0s;
+  }
+}
+
+
+/************************************
+Disabled
+**************************************/
+button:disabled,
+button[disabled]{
+  opacity: 0.5;
+  background-size: 0% 100%;
+  cursor: not-allowed;
+
+  &:hover::before,
+  &:hover::after{
+    width: 0%;
+    height:0%;
+    border-color: transparent;
+  }
+}

@@ -65,7 +65,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
           margin: 0px 5px;
         }
         &:hover{
-            filter: brightness(0.9);
+            filter: $brightness;
         }
     }
 }
@@ -321,7 +321,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
         );
     }
     &:hover{
-        filter: brightness(0.9);
+        filter: $brightness;
     }
 }
 
@@ -337,7 +337,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
         );
     }
     &:hover{
-        filter: brightness(0.9);
+        filter: $brightness;
     }
 }
 
@@ -353,7 +353,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
         );
     }
     &:hover{
-        filter: brightness(0.9);
+        filter: $brightness;
     }
 }
 .paused{
@@ -368,7 +368,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
         );
     }
     &:hover{
-        filter: brightness(0.9);
+        filter: $brightness;
     }
 }
 
@@ -384,7 +384,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
         );
     }
     &:hover{
-        filter: brightness(0.9);
+        filter: $brightness;
     }
 }
 

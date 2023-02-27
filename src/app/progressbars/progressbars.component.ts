@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, LOCALE_ID } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
-import { BorderBtnComponent } from '../buttons/border-btn/border-btn.component';
+import { BorderedBtnComponent } from '../buttons/bordered-btn/bordered-btn.component';
 import { ThemeChangerComponent } from '../layout/theme-changer/theme-changer.component';
 import { CircularProgressbarComponent } from './circular-progressbar/circular-progressbar.component';
 import { RectangleProgressbarComponent } from './rectangle-progressbar/rectangle-progressbar.component';
@@ -15,7 +15,7 @@ import { StrokedProgressbarComponent, StrokeForm } from './stroked-progressbar/s
   providers:[{ provide: LOCALE_ID, useValue: 'de-DE'}],
   imports:[
     CommonModule,
-    BorderBtnComponent,
+    BorderedBtnComponent,
     FontAwesomeModule,
     ThemeChangerComponent,
     CircularProgressbarComponent,

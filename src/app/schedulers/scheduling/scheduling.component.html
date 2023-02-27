@@ -1,11 +1,11 @@
 
 
 <div class="scheduler-navigation-bar">
-    <btn-group-component
+    <segmented-btn-component
         [btnArray] = "buttons"
         [activeBtn]="activeTimeSpanBtn"
         (btnSelected)="timeSpanBtnClicked($event)">
-    </btn-group-component>
+    </segmented-btn-component>
 
     <div class="flex-row">
         <!--<button>
