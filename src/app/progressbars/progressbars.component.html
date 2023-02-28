@@ -227,11 +227,11 @@
         </div>
     
         <circular-progressbar-component
-        [percentage]="40"
-        [unit]="'€'"
-        [progressColor]="'#ff8f00'"
+        [percentage]="85"
+        [unit]="'%'"
+        [additionalText]="'13,6 Stunden'"
         [progressWidth]="40"
-        [fontSize]="4"
+        [fontSize]="3"
         [style.width.px]="300"
         [style.height.px]="300"
         ></circular-progressbar-component>
@@ -285,6 +285,7 @@
             </button>
             <circular-progressbar-component
             [percentage]="progress"
+            [additionalText]="'1111 Stück'"
             [progressBgColor]="'#111'"
             [roundedCorner]="true"
             ></circular-progressbar-component>

@@ -309,7 +309,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
 
 
 
-.started{
+.state-1{
     background-color: $normal-state-color;
     &.striped{
         background: repeating-linear-gradient(
@@ -325,7 +325,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
     }
 }
 
-.started-2{
+.state-2{
     background-color: darken($normal-state-color, 10%);
     &.striped{
         background: repeating-linear-gradient(
@@ -341,7 +341,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
     }
 }
 
-.maintain{
+.state-3{
     background-color: $acting-state-color;
     &.striped{
         background: repeating-linear-gradient(
@@ -356,7 +356,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
         filter: $brightness;
     }
 }
-.paused{
+.state-4{
     background-color: $paused-state-color;
     &.striped{
         background: repeating-linear-gradient(
@@ -372,7 +372,7 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
     }
 }
 
-.disrupted{
+.state-5{
     background-color: $critical-state-color;
     &.striped{
         background: repeating-linear-gradient(
@@ -388,10 +388,10 @@ CSS Variables -> --primary-color, --fa-icon-color, --bg-color for changing theme
     }
 }
 
-.planned{
+.state-6{
     background-color: #777;
 }
-.finished{
+.state-7{
     background-color: #aaa;
 }
 

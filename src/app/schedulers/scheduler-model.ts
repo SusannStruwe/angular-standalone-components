@@ -16,12 +16,19 @@ export class SchedulerEvent {
 }
 
 export enum PlanningState {
-    STARTED = 'started',
+    STATE1 = 'state-1',
+    STATE2 = 'state-2',
+    STATE3 = 'state-3',
+    STATE4 = 'state-4',
+    STATE5 = 'state-5',
+    STATE6 = 'state-6',
+    STATE7 = 'state-7'
+    /*STARTED = 'started',
     MAINTAIN = 'maintain',
     PAUSED = 'paused',
     PLANNED = 'planned',
     DISRUPTED = 'disrupted',
-    FINISHED = 'finished'
+    FINISHED = 'finished'*/
 }
 
 export enum TimeSpan {
