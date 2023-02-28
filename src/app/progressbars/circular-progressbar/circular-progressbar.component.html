@@ -10,8 +10,11 @@
      [style.border-color]="progressColor">
      </span>
 
-     <span class="text"
-     [style.font-size.em]="fontSize">{{percentage}} {{unit}}</span>
+     <span class="label"
+     [style.font-size.em]="fontSize">
+          <h2>{{percentage}} {{unit}}</h2>
+          <p *ngIf="additionalText" class="additional">{{additionalText}}</p>
+     </span>
 </div>
 
 
@@ -26,6 +29,11 @@
           [style.stroke]="progressColor"
           [style.stroke-dashoffset]="getRoundedProgress()"/>
      </svg>
-     <span class="text"
-     [style.font-size.em]="fontSize">{{percentage}} {{unit}}</span>
+
+     <span class="label"
+     [style.font-size.em]="fontSize">
+          <h2>{{percentage}} {{unit}}</h2>
+          <p *ngIf="additionalText" class="additional">{{additionalText}}</p>
+     </span>
+
 </div>

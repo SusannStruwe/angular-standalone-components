@@ -30,6 +30,8 @@ export class CircularProgressbarComponent {
 
   @Input() roundedCorner: boolean = false;  
 
+  @Input() additionalText?: string;
+
 
   constructor() { }
 
