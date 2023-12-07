@@ -11,13 +11,13 @@
     "build:prod": "ng build --configuration production",
     "deploy": "ng deploy --base-href=/angular-component-library/",
     "update:angular": "ng update @angular/cli @angular/core",
-    "update:angular-cdk": "ng update @angular/cdk@16",
+    "update:angular-cdk": "ng update @angular/cdk",
     "update:fortawesome": "ng update @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-brands-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons"
   },
   "private": false,
   "dependencies": {
     "@angular/animations": "^16.1.1",
-    "@angular/cdk": "^15.2.0",
+    "@angular/cdk": "^16.2.12",
     "@angular/common": "^16.1.1",
     "@angular/compiler": "^16.1.1",
     "@angular/core": "^16.1.1",
