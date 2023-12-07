@@ -1,5 +1,5 @@
 
-import { CommonModule } from '@angular/common';
+
 import { Component, LOCALE_ID } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPause, faPlay } from '@fortawesome/free-solid-svg-icons';
@@ -13,15 +13,14 @@ import { StrokedProgressbarComponent, StrokeForm } from './stroked-progressbar/s
   selector: 'progressbars-component',
   standalone: true,
   providers:[{ provide: LOCALE_ID, useValue: 'de-DE'}],
-  imports:[
-    CommonModule,
+  imports: [
     BorderedBtnComponent,
     FontAwesomeModule,
     ThemeChangerComponent,
     CircularProgressbarComponent,
     RectangleProgressbarComponent,
     StrokedProgressbarComponent
-  ],
+],
   templateUrl: './progressbars.component.html',
   styleUrls: ['./progressbars.component.scss']
 })

@@ -1,14 +1,16 @@
 
 <div class="segmented-btn">
+  @for (item of btnArray; track item; let i = $index) {
     <button
-    *ngFor="let item of btnArray; let i = index"
-    [class.active]="(item.text && item.text == activeBtn) || (item.icon && item.icon == activeBtn)"
-    (click)="btnClick(item)"
-    [attr.aria-label]="item.text">
-        <fa-icon *ngIf="item.icon" [icon]="item.icon"></fa-icon>
-        <span *ngIf="item.text">{{item.text}}</span>
+      [class.active]="(item.text && item.text == activeBtn) || (item.icon && item.icon == activeBtn)"
+      (click)="btnClick(item)"
+      [attr.aria-label]="item.text">
+      @if (item.icon) {
+        <fa-icon [icon]="item.icon"></fa-icon>
+      }
+      @if (item.text) {
+        <span>{{item.text}}</span>
+      }
     </button>
-
+  }
 </div>
-
-

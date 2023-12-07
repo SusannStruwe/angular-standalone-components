@@ -1,0 +1,15 @@
+@import 'src/content/_baseVariables';
+
+
+.container{
+    min-width: 350px;
+    min-height: 320px;
+}
+
+.content{
+    grid-template-columns: 1fr;
+
+    .container{
+        max-width: 100%;
+    }
+}

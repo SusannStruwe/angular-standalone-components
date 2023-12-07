@@ -1,17 +1,20 @@
 
 <div class="icon-container">
-
-   <div *ngIf="loaderStyle && animation" [ngClass]="[loaderStyle, animation]">
-        <span></span>
-        <span></span>
-        <span></span>
-   </div>
-
-   <div *ngIf="loaderStyle && !animation" [ngClass]="[loaderStyle]">
-        <span></span>
-        <span></span>
-        <span></span>
-   </div>
-
-    <p *ngIf="text">{{text}}</p>
+  @if (loaderStyle && animation) {
+    <div [ngClass]="[loaderStyle, animation]">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  }
+  @if (loaderStyle && !animation) {
+    <div [ngClass]="[loaderStyle]">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  }
+  @if (text) {
+    <p>{{text}}</p>
+  }
 </div>

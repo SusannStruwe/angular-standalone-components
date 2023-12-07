@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -9,12 +9,11 @@ import { SassHelperComponent } from 'src/app/config/sass-helper.component';
 @Component({
   selector: 'theme-changer-component',
   standalone: true,
-  imports:[
-    CommonModule, 
+  imports: [
     FontAwesomeModule,
     SassHelperComponent,
     FormsModule
-  ],
+],
   templateUrl: './theme-changer.component.html',
   styleUrls: ['./theme-changer.component.scss']
 })

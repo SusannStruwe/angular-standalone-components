@@ -1,87 +1,90 @@
 <!-- carousel type 1-->
-<div class="carousel" *ngIf="slides && carouselStyle == 1">
-  <button aria-label="control-prev" class="control prev" (click)="previousSlide()">
-    <fa-icon [icon]="faChevronLeft"></fa-icon>
-  </button>
-  <div class="carousel-item"
-  [style.height.px]="height">
-      <img
-      class="slide"
-      [src]="slides[currentSlideIndex].src"
-      [alt]="textArray? textArray[currentSlideIndex].title: ''"
-      />
-  </div>
-  <button aria-label="control-next" class="control next" (click)="nextSlide()">
-    <fa-icon [icon]="faChevronRight"></fa-icon>
-  </button>
-</div>
-
-
-<!-- carousel type 2-->
-<div class="carousel overlaying" *ngIf="slides && carouselStyle == 2">
-  <div class="carousel-item"
-  [style.height.px]="height">
-      <img
-      class="slide"
-      [src]="slides[currentSlideIndex].src"
-      [alt]="textArray? textArray[currentSlideIndex].title: ''"
-      />
-  </div>
-  <div class="control-items">
+@if (slides && carouselStyle == 1) {
+  <div class="carousel">
     <button aria-label="control-prev" class="control prev" (click)="previousSlide()">
       <fa-icon [icon]="faChevronLeft"></fa-icon>
     </button>
-    <button aria-label="control-next" class="control next" (click)="nextSlide()">
-      <fa-icon [icon]="faChevronRight"></fa-icon>
-    </button>
-  </div>
-
-</div>
-
-<!-- carousel type 3-->
-<div class="carousel flex-column" *ngIf="slides && carouselStyle == 3">
-  <div class="carousel-item"
-  [style.height.px]="height">
-    <img
-    class="slide"
-    [src]="slides[currentSlideIndex].src"
-    [alt]="textArray? textArray[currentSlideIndex].title: ''"
-    />
-  </div>
-  <div class="carousel-bar">
-    <span class="dot bordered" *ngFor="let slide of slides; let i = index"
-    [class.active]="i === currentSlideIndex"
-    (click)="setSlide(i)">
-    </span>
-  </div>
-</div>
-
-
-<!-- carousel type 4-->
-<div class="carousel flex-column" *ngIf="slides && carouselStyle == 4">
-  <div class="carousel-item flex-row"
-    [class.reverse]="textPosition=='right'">
-    <div class="text" *ngIf="textArray">
-      <h1>{{textArray[currentSlideIndex].title}}</h1>
-      <p>{{textArray[currentSlideIndex].desc}}</p>
+    <div class="carousel-item"
+      [style.height.px]="height">
+      <img
+        class="slide"
+        [src]="slides[currentSlideIndex].src"
+        [alt]="textArray? textArray[currentSlideIndex].title: ''"
+        />
+      </div>
+      <button aria-label="control-next" class="control next" (click)="nextSlide()">
+        <fa-icon [icon]="faChevronRight"></fa-icon>
+      </button>
     </div>
-    <img
-    class="slide"
-    [style.height.px]="height"
-    [src]="slides[currentSlideIndex].src"
-    [alt]="textArray? textArray[currentSlideIndex].title: ''"
-    />
-  </div>
-  <div class="carousel-bar">
-    <span class="dot bordered" *ngFor="let slide of slides; let i = index"
-    [class.active]="i === currentSlideIndex"
-    (click)="setSlide(i)">
-    </span>
-  </div>
-</div>
-
- 
-
- 
-
-
+  }
+  <!-- carousel type 2-->
+  @if (slides && carouselStyle == 2) {
+    <div class="carousel overlaying">
+      <div class="carousel-item"
+        [style.height.px]="height">
+        <img
+          class="slide"
+          [src]="slides[currentSlideIndex].src"
+          [alt]="textArray? textArray[currentSlideIndex].title: ''"
+          />
+        </div>
+        <div class="control-items">
+          <button aria-label="control-prev" class="control prev" (click)="previousSlide()">
+            <fa-icon [icon]="faChevronLeft"></fa-icon>
+          </button>
+          <button aria-label="control-next" class="control next" (click)="nextSlide()">
+            <fa-icon [icon]="faChevronRight"></fa-icon>
+          </button>
+        </div>
+      </div>
+    }
+    <!-- carousel type 3-->
+    @if (slides && carouselStyle == 3) {
+      <div class="carousel flex-column">
+        <div class="carousel-item"
+          [style.height.px]="height">
+          <img
+            class="slide"
+            [src]="slides[currentSlideIndex].src"
+            [alt]="textArray? textArray[currentSlideIndex].title: ''"
+            />
+          </div>
+          <div class="carousel-bar">
+            @for (slide of slides; track slide; let i = $index) {
+              <span class="dot bordered"
+                [class.active]="i === currentSlideIndex"
+                (click)="setSlide(i)">
+              </span>
+            }
+          </div>
+        </div>
+      }
+      <!-- carousel type 4-->
+      @if (slides && carouselStyle == 4) {
+        <div class="carousel flex-column">
+          <div class="carousel-item flex-row"
+            [class.reverse]="textPosition=='right'">
+            @if (textArray) {
+              <div class="text">
+                <h1>{{textArray[currentSlideIndex].title}}</h1>
+                <p>{{textArray[currentSlideIndex].desc}}</p>
+              </div>
+            }
+            <img
+              class="slide"
+              [style.height.px]="height"
+              [src]="slides[currentSlideIndex].src"
+              [alt]="textArray? textArray[currentSlideIndex].title: ''"
+              />
+            </div>
+            <div class="carousel-bar">
+              @for (slide of slides; track slide; let i = $index) {
+                <span class="dot bordered"
+                  [class.active]="i === currentSlideIndex"
+                  (click)="setSlide(i)">
+                </span>
+              }
+            </div>
+          </div>
+        }
+        

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
@@ -6,7 +6,7 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 @Component({
   selector: 'circle-btn-component',
   standalone: true,
-  imports:[CommonModule, FontAwesomeModule],
+  imports: [FontAwesomeModule],
   templateUrl: './circle-btn.component.html',
   styleUrls: ['./circle-btn.component.scss']
 })

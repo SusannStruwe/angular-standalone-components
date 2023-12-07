@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -6,10 +6,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
   selector: 'rectangle-progressbar-component',
   standalone: true,
-  imports:[
-    CommonModule, 
+  imports: [
     FontAwesomeModule
-  ],
+],
   templateUrl: './rectangle-progressbar.component.html',
   styleUrls: ['./rectangle-progressbar.component.scss']
 })
