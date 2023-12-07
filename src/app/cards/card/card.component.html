@@ -1,24 +1,27 @@
 <div class="card shining shadow"
-    [style.width]="width"
-    [style.height]="height"
-    [style.justify-content]="!imageUrl && !bgColor ? 'end': 'space-between'">
-
+  [style.width]="width"
+  [style.height]="height"
+  [style.justify-content]="!imageUrl && !bgColor ? 'end': 'space-between'">
+  @if (imageUrl) {
     <img
-    *ngIf="imageUrl"
-    [style.height]="description?'65%':'75%'"
-    [src]="imageUrl"/>
-
-    <div *ngIf="bgColor"
-    class="bg-color"
-    [style.height]="description?'65%':'75%'"
+      [style.height]="description?'65%':'75%'"
+      [src]="imageUrl"/>
+  }
+  @if (bgColor) {
+    <div
+      class="bg-color"
+      [style.height]="description?'65%':'75%'"
     [style.background]="bgColor"></div>
-
-    <div *ngIf="!imageUrl && !bgColor"></div>
-
-    <h1 *ngIf="title"
+  }
+  @if (!imageUrl && !bgColor) {
+    <div></div>
+  }
+  @if (title) {
+    <h1
     class="title">{{title}}</h1>
-    
-    <p *ngIf="description"
+  }
+  @if (description) {
+    <p
     class="description">{{description}}</p>
-
+  }
 </div>

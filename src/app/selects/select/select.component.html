@@ -1,36 +1,34 @@
-<div class="dropdown" 
-(clickOutside)="handleClickOutside()">
-
-    <button #btn class="header-btn" 
-        [ngClass]="show ? 'selected' : ''"
-        (click)="toggleFilter()">
-        <fa-icon *ngIf="faIcon" 
-        [icon]="faIcon"></fa-icon>
-        <span *ngIf="buttonText">{{buttonText}}</span>
-    </button>
-    
-    <div #menu class="menu shadow" 
-        [class.show]="show"
-        [ngClass]="aligmentLeft() ? 'left': 'right'">
-
-        <input *ngIf="withFilter"
-        type="text" 
-        [(ngModel)]="filter" 
-        (ngModelChange)="filterAndSort()" 
-        class="form-control" 
+<div class="dropdown"
+  (clickOutside)="handleClickOutside()">
+  <button #btn class="header-btn"
+    [ngClass]="show ? 'selected' : ''"
+    (click)="toggleFilter()">
+    @if (faIcon) {
+      <fa-icon
+      [icon]="faIcon"></fa-icon>
+    }
+    @if (buttonText) {
+      <span>{{buttonText}}</span>
+    }
+  </button>
+  <div #menu class="menu shadow"
+    [class.show]="show"
+    [ngClass]="aligmentLeft() ? 'left': 'right'">
+    @if (withFilter) {
+      <input
+        type="text"
+        [(ngModel)]="filter"
+        (ngModelChange)="filterAndSort()"
+        class="form-control"
         placeholder="{{filterPlaceholder}}" #filterInput />
-        <ul>
-            <li (click)="selectElement(item)" 
-            *ngFor="let item of items"
-            [class.active]="item.text == selectedItem?.text">
-                <span class="text">{{ item.text }}</span>
-            </li>
-        </ul>
-    </div>
-
+    }
+    <ul>
+      @for (item of items; track item) {
+        <li (click)="selectElement(item)"
+          [class.active]="item.text == selectedItem?.text">
+          <span class="text">{{ item.text }}</span>
+        </li>
+      }
+    </ul>
+  </div>
 </div>
-
-
-
-
-    

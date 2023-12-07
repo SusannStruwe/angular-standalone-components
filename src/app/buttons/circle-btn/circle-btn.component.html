@@ -1,10 +1,11 @@
 <button
-    aria-label="social-media-btn"
-    [style.background]="backgroundColor"
-    [class.active]="active"
-    class="btn-border">
-    <fa-icon 
-        *ngIf="faIcon" 
-        [icon]="faIcon">
+  aria-label="social-media-btn"
+  [style.background]="backgroundColor"
+  [class.active]="active"
+  class="btn-border">
+  @if (faIcon) {
+    <fa-icon
+      [icon]="faIcon">
     </fa-icon>
+  }
 </button>

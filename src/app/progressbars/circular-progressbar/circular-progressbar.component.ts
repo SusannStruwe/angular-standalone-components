@@ -1,14 +1,13 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'circular-progressbar-component',
   standalone: true,
-  imports:[
-    CommonModule, 
+  imports: [
     FontAwesomeModule
-  ],
+],
   templateUrl: './circular-progressbar.component.html',
   styleUrls: ['./circular-progressbar.component.scss']
 })

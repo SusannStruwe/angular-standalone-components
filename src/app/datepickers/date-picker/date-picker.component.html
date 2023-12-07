@@ -1,14 +1,16 @@
 <div class="datepicker">
-    <input
+  <input
     id="date-input"
     type="date"
     [ngModel]="date | date: 'yyyy-MM-dd'"
     (ngModelChange)="changeDate(date = $event)"
     />
-    <div *ngIf="showOverlayBtn" 
+    @if (showOverlayBtn) {
+      <div
         class="btn-overlay"
         (click)="showDatePicker()">
         <fa-icon [icon]="faCalender"></fa-icon>
-    </div>
-</div>
-
+      </div>
+    }
+  </div>
+  

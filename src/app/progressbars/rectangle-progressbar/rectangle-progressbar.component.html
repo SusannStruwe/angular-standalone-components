@@ -1,17 +1,16 @@
- 
+
 <div class="progress-bar"
-     [style.height.px]="height"
-     [class.bordered]="bordered"
-     [style.border-color]="progressColor"
-     [style.background-color]="progressBgColor">
-
-     <div
-     [style.background]="progressColor"
-     [style.background-size]="'250px 100%'"
-     [class.gradient]="gradient"
-     [style.width.%]="percentage"></div>
-
-     <div *ngIf="striped" class="striped"
-     [style.width.%]="percentage"></div>
-
+  [style.height.px]="height"
+  [class.bordered]="bordered"
+  [style.border-color]="progressColor"
+  [style.background-color]="progressBgColor">
+  <div
+    [style.background]="progressColor"
+    [style.background-size]="'250px 100%'"
+    [class.gradient]="gradient"
+  [style.width.%]="percentage"></div>
+  @if (striped) {
+    <div class="striped"
+    [style.width.%]="percentage"></div>
+  }
 </div>

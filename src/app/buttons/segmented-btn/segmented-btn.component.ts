@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -6,7 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
   selector: 'segmented-btn-component',
   standalone: true,
-  imports:[CommonModule, FontAwesomeModule],
+  imports: [FontAwesomeModule],
   templateUrl: './segmented-btn.component.html',
   styleUrls: ['./segmented-btn.component.scss']
 })

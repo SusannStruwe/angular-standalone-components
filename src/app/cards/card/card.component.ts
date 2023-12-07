@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -6,7 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @Component({
   selector: 'card-component',
   standalone: true,
-  imports:[CommonModule, FontAwesomeModule],
+  imports: [FontAwesomeModule],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })

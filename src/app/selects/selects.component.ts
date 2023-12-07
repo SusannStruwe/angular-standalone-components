@@ -1,5 +1,5 @@
 
-import { CommonModule } from '@angular/common';
+
 import { Component, LOCALE_ID } from '@angular/core';
 import { faBars, faEllipsisVertical, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { BorderedBtnComponent, HoverStyle } from '../buttons/bordered-btn/bordered-btn.component';
@@ -13,14 +13,13 @@ import { SelectComponent } from './select/select.component';
   selector: 'selects-component',
   standalone: true,
   providers:[{ provide: LOCALE_ID, useValue: 'de-DE'}],
-  imports:[
-    CommonModule,
+  imports: [
     BorderedBtnComponent,
     ThemeChangerComponent,
     MultiSelectComponent,
     SelectComponent,
     CustomSelectComponent
-  ],
+],
   templateUrl: './selects.component.html',
   styleUrls: ['./selects.component.scss']
 })

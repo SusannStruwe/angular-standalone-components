@@ -1,101 +1,111 @@
 
-
 <div class="scheduler-navigation-bar">
-    <segmented-btn-component
-        [btnArray] = "buttons"
-        [activeBtn]="activeTimeSpanBtn"
-        (btnSelected)="timeSpanBtnClicked($event)">
-    </segmented-btn-component>
-
-    <div class="flex-row">
-        <!--<button>
-            <fa-icon [icon]="faRefresh"></fa-icon>
-        </button>-->
-        <button (click)="previous()">
-            <fa-icon [icon]="faArrowLeft"></fa-icon>
-        </button>
-        <button (click)="next()">
-            <fa-icon [icon]="faArrowRight"></fa-icon>
-        </button>
-    </div>
+  <segmented-btn-component
+    [btnArray] = "buttons"
+    [activeBtn]="activeTimeSpanBtn"
+    (btnSelected)="timeSpanBtnClicked($event)">
+  </segmented-btn-component>
+  <div class="flex-row">
+    <!--<button>
+    <fa-icon [icon]="faRefresh"></fa-icon>
+  </button>-->
+  <button (click)="previous()">
+    <fa-icon [icon]="faArrowLeft"></fa-icon>
+  </button>
+  <button (click)="next()">
+    <fa-icon [icon]="faArrowRight"></fa-icon>
+  </button>
 </div>
-
+</div>
 <div class="scheduler">
-
-    <!--header-->
-    <div [ngClass]="headerBgColor ? 'scheduler-header-colored' : 'scheduler-header'"
-        [style.background-color]="headerBgColor">
-        <!--first row-->
-        <div></div>
-        <span class="flex-column">
-
-            <!--first line - time span title-->
+  <!--header-->
+  <div [ngClass]="headerBgColor ? 'scheduler-header-colored' : 'scheduler-header'"
+    [style.background-color]="headerBgColor">
+    <!--first row-->
+    <div></div>
+    <span class="flex-column">
+      <!--first line - time span title-->
+      <div>
+        @if (timeSpan !=='day') {
+          <h2 [style.min-width]="'290px'">{{startDate | date:'dd.' }} - {{endDate | date:'dd. MMMM yyyy'}}</h2>
+        }
+        @if (timeSpan ==='day') {
+          <h2  [style.min-width]="'200px'">{{endDate | date:'dd. MMMM yyyy'}}</h2>
+        }
+      </div>
+      <!--second line - week days-->
+      @if (timeSpan !== 'day') {
+        <div class="flex-row">
+          @for (item of getWeekDays(); track item) {
+            <div
+              [class.active]="isCurrent(item)">
+              @if (cellWidth >= 30) {
+                <span>{{item | date:'EE' | slice:0:2}}</span>
+              }
+              @if (cellWidth < 30) {
+                <span>{{item | date:'EE' | slice:0:1}}</span>
+              }
+            </div>
+          }
+        </div>
+      }
+      <!--second line - week day-->
+      @if (timeSpan === 'day') {
+        <div class="flex-row"
+          >
+          <div>{{startDate | date:'EEEE'}}</div>
+        </div>
+      }
+      <!--third line - days or hours-->
+      <div class="flex-row">
+        @for (item of getColumns(); track item) {
+          <div
+            [class.active]="isCurrent(item)">{{item}}
+          </div>
+        }
+      </div>
+    </span>
+  </div>
+  <!--content-->
+  <div id="scheduler-content" class="scheduler-content">
+    <div class="background">
+      @for (schedulerRow of schedulerRows; track schedulerRow; let r = $index) {
+        <div class="scheduler-content-row"
+          >
+          <div>{{schedulerRow.label}}</div>
+          @for (item of getColumns(); track item) {
+            <div #cell
+              [class.active]="isCurrent(item)">
+            </div>
+          }
+        </div>
+      }
+    </div>
+    <div class="foreground">
+      @for (schedulerRow of schedulerRows; track schedulerRow; let r = $index) {
+        <div class="scheduler-content-row"
+          >
+          @for (schedulerEvent of schedulerRow.schedulerEvents; track schedulerEvent; let i = $index) {
             <div>
-                <h2 *ngIf="timeSpan !=='day'" [style.min-width]="'290px'">{{startDate | date:'dd.' }} - {{endDate | date:'dd. MMMM yyyy'}}</h2>
-                <h2 *ngIf="timeSpan ==='day'"  [style.min-width]="'200px'">{{endDate | date:'dd. MMMM yyyy'}}</h2>
-            </div>
-
-            <!--second line - week days-->
-            <div class="flex-row" *ngIf="timeSpan !== 'day'">
-                <div *ngFor="let item of getWeekDays();"
-                    [class.active]="isCurrent(item)">
-                        <span *ngIf="cellWidth >= 30">{{item | date:'EE' | slice:0:2}}</span>
-                        <span *ngIf="cellWidth < 30">{{item | date:'EE' | slice:0:1}}</span>
+              @if (isBetween(schedulerEvent)) {
+                <div id="{{i+'-'+schedulerEvent.label}}"
+                  [tooltip]="schedulerEvent.label"
+                  [attr.rowIndex]="r"
+                  [attr.columnIndex]="i"
+                  class="scheduler-event"
+                  [ngClass]="getClassStyle(schedulerEvent)"
+                  [ngStyle]="getStyle(schedulerEvent)"
+                  (click)="schedulerEventClicked(schedulerEvent)"
+                  (cdkDragEnded)="onDropEnd($event)"
+                  cdkDrag >
+                  <span><b> {{schedulerEvent.label}} </b> | </span>
+                  <span><small>{{schedulerEvent.startDate| date:'shortTime'}}-{{schedulerEvent.endDate | date:'shortTime'}} Uhr</small></span>
                 </div>
+              }
             </div>
-            <!--second line - week day-->
-            <div class="flex-row" 
-                *ngIf="timeSpan === 'day'">
-                <div>{{startDate | date:'EEEE'}}</div>
-            </div>
-
-            <!--third line - days or hours-->
-            <div class="flex-row">
-                <div *ngFor="let item of getColumns();"
-                    [class.active]="isCurrent(item)">{{item}}
-                </div>
-            </div>
-        </span>
-    </div>
-
-    <!--content-->
-    <div id="scheduler-content" class="scheduler-content">
-
-        <div class="background">
-            <div class="scheduler-content-row"
-            *ngFor="let schedulerRow of schedulerRows; let r = index">
-                <div>{{schedulerRow.label}}</div>
-                
-                <div #cell
-                *ngFor="let item of getColumns()"
-                [class.active]="isCurrent(item)">
-                </div>
-            </div>
+          }
         </div>
-
-        <div class="foreground">
-            <div class="scheduler-content-row"
-            *ngFor="let schedulerRow of schedulerRows; let r = index">
-    
-                <div *ngFor="let schedulerEvent of schedulerRow.schedulerEvents; let i = index">
-                    <div id="{{i+'-'+schedulerEvent.label}}"
-                        *ngIf="isBetween(schedulerEvent)"    
-                        [tooltip]="schedulerEvent.label"      
-                        [attr.rowIndex]="r"
-                        [attr.columnIndex]="i"
-                        class="scheduler-event"
-                        [ngClass]="getClassStyle(schedulerEvent)"
-                        [ngStyle]="getStyle(schedulerEvent)"
-                        (click)="schedulerEventClicked(schedulerEvent)"
-                        (cdkDragEnded)="onDropEnd($event)"
-                        cdkDrag >
-                        <span><b> {{schedulerEvent.label}} </b> | </span>
-                        <span><small>{{schedulerEvent.startDate| date:'shortTime'}}-{{schedulerEvent.endDate | date:'shortTime'}} Uhr</small></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+      }
     </div>
-
+  </div>
 </div>

@@ -1,11 +1,14 @@
 <button
-[ngClass]="[hoverStyle,color]"
-[attr.aria-label]="buttonText"
-[disabled]="disabled"
-[class.active]="active">
-    <fa-icon *ngIf="faIcon" 
-    [icon]="faIcon" 
+  [ngClass]="[hoverStyle,color]"
+  [attr.aria-label]="buttonText"
+  [disabled]="disabled"
+  [class.active]="active">
+  @if (faIcon) {
+    <fa-icon
+      [icon]="faIcon"
     [spin]="spinning"></fa-icon>
-    <span *ngIf="buttonText">{{buttonText}}</span>
+  }
+  @if (buttonText) {
+    <span>{{buttonText}}</span>
+  }
 </button>
-
