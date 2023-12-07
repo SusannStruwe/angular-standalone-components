@@ -40,6 +40,10 @@ const routes: Routes = [
     path: 'progressbars',
     loadComponent: () => import('./progressbars/progressbars.component').then(m => m.ProgressbarsComponent),
   }, 
+  {
+    path: 'splitpane',
+    loadComponent: () => import('./split-panes/split-panes.component').then(m => m.SplitPanesComponent),
+  }, 
   
 ];
 

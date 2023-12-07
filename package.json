@@ -11,6 +11,7 @@
     "build:prod": "ng build --configuration production",
     "deploy": "ng deploy --base-href=/angular-component-library/",
     "update:angular": "ng update @angular/cli @angular/core",
+    "update:cdk": "ng update @angular/cdk",
     "update:fortawesome": "ng update @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-brands-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons"
   },
   "private": false,
