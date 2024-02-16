@@ -9,7 +9,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "build:prod": "ng build --configuration production",
-    "deploy": "ng deploy --base-href=/angular-standalone-components/",
+    "deploy": "ng deploy --no-nojekyll --base-href=/angular-standalone-components/ --dir=dist/angular-standalone-components",
     "update:angular": "ng update @angular/cli @angular/core",
     "update:angular-cdk": "ng update @angular/cdk",
     "update:fortawesome": "ng update @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-brands-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons"
