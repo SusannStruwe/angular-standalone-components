@@ -1,10 +1,10 @@
-# Angular Component Library
+# Angular Standalone Components
 
 This project is a collection of Angular standalone components and it was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.2.
 
 ## Demo 
 ![](./src/assets/overview.JPG)
-[https://susannstruwe.github.io/angular-component-library/](https://susannstruwe.github.io/angular-component-library/#/)
+[https://susannstruwe.github.io/angular-standalone-components](https://susannstruwe.github.io/angular-standalone-components/#/)
 
 
 ## Development
