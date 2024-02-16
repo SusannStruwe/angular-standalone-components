@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-component-library": {
+    "angular-standalone-components": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-component-library",
+            "outputPath": "dist/angular-standalone-components",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-component-library:build:production"
+              "buildTarget": "angular-standalone-components:build:production"
             },
             "development": {
-              "buildTarget": "angular-component-library:build:development"
+              "buildTarget": "angular-standalone-components:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "angular-component-library:build"
+            "buildTarget": "angular-standalone-components:build"
           }
         },
         "test": {
