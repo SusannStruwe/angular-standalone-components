@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-component-library';
+  title = 'angular-standalone-components';
   isDefaultRoute: boolean = true;
 
   constructor(){ }

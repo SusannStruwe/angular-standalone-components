@@ -1,6 +1,6 @@
 {
-  "homepage": "https://susannstruwe.github.io/angular-component-library",
-  "name": "angular-component-library",
+  "homepage": "https://susannstruwe.github.io/angular-standalone-components",
+  "name": "angular-standalone-components",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,7 +9,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "build:prod": "ng build --configuration production",
-    "deploy": "ng deploy --base-href=/angular-component-library/",
+    "deploy": "ng deploy --base-href=/angular-standalone-components/",
     "update:angular": "ng update @angular/cli @angular/core",
     "update:angular-cdk": "ng update @angular/cdk",
     "update:fortawesome": "ng update @fortawesome/angular-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-brands-svg-icons @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons"
